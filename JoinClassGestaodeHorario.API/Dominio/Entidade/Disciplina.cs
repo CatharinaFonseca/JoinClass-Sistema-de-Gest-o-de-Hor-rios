@@ -7,6 +7,7 @@ namespace JoinClassGestaodeHorario.API.Dominio.Entidade
 {
     public class Disciplina
     {
-        
+        public string nome { get; set; }
+        public int cargaHoraria { get; set; }
     }
 }

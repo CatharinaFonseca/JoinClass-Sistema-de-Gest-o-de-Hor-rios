@@ -5,8 +5,9 @@ using System.Threading.Tasks;
 
 namespace JoinClassGestaodeHorario.API.Dominio.Entidade
 {
-    public class Professor
+    public class Professor : Pessoa
     {
-        
+        public List<Disciplina> disciplinas { get; set; }
+        public List<Graduacao> graduacoes { get; set; }
     }
 }
