@@ -59,7 +59,7 @@ create table turma (
 	foreign key (id_professor) references professor(id_professor),
 	id_matriz_curricular int,
 	foreign key (id_matriz_curricular) references matriz_curricular(id_matriz_curricular)
-);
+);joinclass
 
 create table aluno (
 	id_aluno int auto_increment primary key,
