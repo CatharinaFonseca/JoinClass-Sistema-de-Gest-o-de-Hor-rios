@@ -1,0 +1,20 @@
+# Build
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Logs
+*.log
+
+# Arquivos temporários
+*.tmp
+
+# Node (se tiver frontend)
+node_modules/
+
+# Config sensível
+appsettings.Development.json
