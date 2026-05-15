@@ -1,9 +1,17 @@
+using JoinClassGestaodeHorario.API.Dados;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+var cofiguracao = builder.Configuration;
+
+
+
+builder.Services.AddDbContext<ApplicationDbContext>(opcao => opcao.UseNpgsql(cofiguracao.GetValue<string>("Settings:CONNECTION_STRING"),o => o.UseRelationalNulls()));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
