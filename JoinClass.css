@@ -1,0 +1,89 @@
+button{
+	background-color: #F44C02;
+	color: #FFFFFF;
+	border: none;
+	padding: 10px 30px;
+	border-radius: 6px;
+	cursor: pointer;
+	transition:background-color 0.3s, transform 0.2s;
+	font-family: Arial, sans-serif;
+	margin-top: 30px;
+}
+button:hover{
+	background-color: #d04203;
+	transform: scale(1.05);
+}
+body{
+	font-family: Playfair Display, serif;
+	background-color: #012553;
+	color: #000000;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+.LogoPgPrincipal{
+	margin-top: 30px;
+	display: flex;
+	justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.BarraLateral{
+	width:220px;
+	height: 100vh;
+    background:#d9d9d9;
+  	padding-top: 90px;
+    border-radius:0 20px 20px 0;
+    transition: 0.3s;
+    padding-top: 90px;
+    overflow-x: hidden;
+    position: fixed;
+    top: 0;
+    left: -220px;
+}
+.BarraLateral h2{
+    margin-bottom:40px;
+    color:#002b66;
+}
+.BarraLateral a{
+    display: flex;
+    padding: 8px 20px;
+    text-decoration:none;
+    color:#002b66;
+    font-size:23px;
+    transition: 0.2s;
+    font-family: Arial, sans-serif;
+    gap: 5px;
+    align-items: center;
+    padding-left: 35px;
+}
+.BarraLateral a:hover {
+    background: #f1f1f1;
+}
+.BarraLateral.active{
+    left: 0;
+}
+.BarraLateral i{
+	width: 30px;
+}
+
+.BotaoMenu {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    color: white;
+    padding: 20px;
+    cursor: pointer;
+    z-index: 1000;
+    font-family: Arial, sans-serif;
+}
+.BotaoMenu.active{
+	color: #012553;
+}
+.BotaoLogin {
+    flex: 1;
+    text-align: center;
+    color: white;
+    margin-top: -80px;
+}

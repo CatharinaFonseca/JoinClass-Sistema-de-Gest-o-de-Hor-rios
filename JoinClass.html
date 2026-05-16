@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Join Class</title>
+	<link rel="stylesheet" href="JoinClass.css">
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        function toggleMenu() {
+            const BarraLateral = document.getElementById("BarraLateral");
+            const BotaoMenu = document.querySelector(".BotaoMenu");
+
+            BarraLateral.classList.toggle("active");
+            BotaoMenu.classList.toggle("active");
+        }
+    </script>
+</head>
+<body>
+    <header id="topo">
+
+        <div class="BotaoMenu" onclick="toggleMenu()">
+            <h2>☰ Menu</h2>
+        </div>
+
+
+        <div class="BarraLateral" id="BarraLateral">
+            <a href="#"> <i class="fa-solid fa-right-to-bracket"></i> Login</a>
+            <a href="#"> <i class="fa-solid fa-circle-info"></i> Sobre</a>
+        </div>
+
+        <div class="LogoPgPrincipal">
+            <img src = "imgJC/JCLogoSF.png"
+            alt="Logotipo Join Class" height="400" width="700">
+        </div>
+
+        <div class= "BotaoLogin">
+            <button>Login</button>
+        </div>
+        
+        
+
+        <nav>
+
+        </nav>
+    </header>
+</body>
+</html>
