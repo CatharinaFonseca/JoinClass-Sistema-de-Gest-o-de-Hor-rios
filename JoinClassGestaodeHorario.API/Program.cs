@@ -1,4 +1,9 @@
+using JoinClassGestaodeHorario.API.Aplicacao.Graduacoes.AtualizarGraduacao;
+using JoinClassGestaodeHorario.API.Aplicacao.Graduacoes.CriarGraduacao;
+using JoinClassGestaodeHorario.API.Aplicacao.Graduacoes.ExcluirGraduacao;
 using JoinClassGestaodeHorario.API.Dados;
+using JoinClassGestaodeHorario.API.Dados.Repositorios;
+using JoinClassGestaodeHorario.API.Dominio.Repositorios;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,9 +14,16 @@ builder.Services.AddOpenApi();
 
 var cofiguracao = builder.Configuration;
 
+// Configuração do DBContext
+builder.Services.AddDbContext<ApplicationDbContext>(opcao => opcao.UseNpgsql(cofiguracao.GetValue<string>("Settings:CONNECTION_STRING"),
+o => o.UseRelationalNulls()));
 
+//Injeção de dependência dos repositórios e casos de uso
+builder.Services.AddTransient<IGraduacaoRepositorio, GraduacaoRepositorio>();
+builder.Services.AddTransient<ICriarGraduacaoUseCase, CriarGraduacaoUseCase>();
+builder.Services.AddTransient<IAtualizarGraduacaoUseCase, AtualizarGraduacaoUseCase>();
+builder.Services.AddTransient<IExcluirGraduacao, ExcluirGaduacaoUseCase>();
 
-builder.Services.AddDbContext<ApplicationDbContext>(opcao => opcao.UseNpgsql(cofiguracao.GetValue<string>("Settings:CONNECTION_STRING"),o => o.UseRelationalNulls()));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -12,7 +12,7 @@ namespace JoinClassGestaodeHorario.API.Dados
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
-
+        public DbSet<Graduacao> Graduacoes { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Graduacao>(entidade =>
