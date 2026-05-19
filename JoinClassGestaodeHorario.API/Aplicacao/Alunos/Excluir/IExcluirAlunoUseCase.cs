@@ -7,6 +7,6 @@ namespace JoinClassGestaodeHorario.API.Aplicacao.Alunos.Excluir
 {
     public interface IExcluirAlunoUseCase
     {
-        
+        Task ExcluirAluno(int id);
     }
 }

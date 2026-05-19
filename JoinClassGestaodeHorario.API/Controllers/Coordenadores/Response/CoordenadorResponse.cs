@@ -4,9 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using JoinClassGestaodeHorario.API.Controllers.Pessoas.Response;
 
-namespace JoinClassGestaodeHorario.API.Controllers.Alunos.Response
+namespace JoinClassGestaodeHorario.API.Controllers.Coordenadores.Response
 {
-    public class AlunoResponse : PessoaResponse
+    public class CoordenadorResponse : PessoaResponse
     {
+
     }
 }

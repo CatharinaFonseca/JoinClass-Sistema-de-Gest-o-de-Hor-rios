@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using JoinClassGestaodeHorario.API.Controllers.Pessoas.Request;
 
-namespace JoinClassGestaodeHorario.API.Controllers.Alunos.Request
+namespace JoinClassGestaodeHorario.API.Controllers.Professores.Request
 {
-    public class AdicionarAlunoRequest : AdicionarPessoaRequest
+    public class AdicionarProfessorRequest : AdicionarPessoaRequest
     {
 
     }
