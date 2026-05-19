@@ -16,7 +16,7 @@ Sistema desenvolvido para gerenciar horários acadêmicos de forma eficiente.
 - Gerenciamento de horários
 - Controle de Disponibilidade
 
-  ## 🧠 Aprendizados
+## 🧠 Aprendizados
 - Aplicação de Clean Architecture
 - Uso do Entity Framework
 - Criação de APIs REST
