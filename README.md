@@ -26,5 +26,5 @@ Sistema desenvolvido para gerenciar horários acadêmicos de forma eficiente.
 - [@CatharinaFonseca](https://github.com/CatharinaFonseca)
 -  [@biagodoy](https://github.com/biagodoy)
 - [@ByJoyceDev](https://github.com/ByJoyceDev)
-- [@gabriela-396](https://github.com/gabriela-396
+- [@gabriela-396](https://github.com/gabriela-396)
 </table>
