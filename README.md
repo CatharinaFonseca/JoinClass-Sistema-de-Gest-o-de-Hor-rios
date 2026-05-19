@@ -1,4 +1,4 @@
-# 📚 Sistema de Gestão de Horários
+# 📚 JoinClass - Sistema de Gestão de Horários
 
 Sistema desenvolvido para gerenciar horários acadêmicos de forma eficiente.
 
