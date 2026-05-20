@@ -2,11 +2,66 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+<<<<<<< HEAD
 
 namespace JoinClassGestaodeHorario.API.Dados.Repositorios
 {
     public class GraduacaoRepositorio
     {
         
+=======
+using JoinClassGestaodeHorario.API.Dominio.Entidade;
+using JoinClassGestaodeHorario.API.Dominio.Repositorios;
+using Microsoft.EntityFrameworkCore;
+
+namespace JoinClassGestaodeHorario.API.Dados.Repositorios
+{
+    public class GraduacaoRepositorio : IGraduacaoRepositorio
+    {
+        private ApplicationDbContext contexto;
+
+        public GraduacaoRepositorio(ApplicationDbContext contexto)
+        {
+            this.contexto = contexto;
+        }
+
+        public async Task Alterar(Graduacao graduacao)
+        {
+            //Prepara Update
+            contexto.Graduacoes.Update(graduacao);
+            //Commit Update
+            await contexto.SaveChangesAsync();
+        }
+
+        public async Task Criar(Graduacao graduacao)
+        {
+            //Prepara Insert
+            await contexto.Graduacoes.AddAsync(graduacao);
+            //Commit Insert
+            await contexto.SaveChangesAsync();
+        }
+
+        public async Task Deletar(Graduacao graduacao)
+        {
+            //Prepara Delete
+            contexto.Graduacoes.Remove(graduacao);
+            //Commit Delete
+            await contexto.SaveChangesAsync();
+        }
+
+        public async Task<Graduacao> ObterGraduacao(int id)
+        {
+            var graduacao = contexto.Graduacoes
+                .FromSql($"Select * From graduacao where id = {id}");
+            return await graduacao.FirstOrDefaultAsync();
+        }
+
+        public async Task<List<Graduacao>> ObterTodasAsGraduacoes()
+        {
+            var graduacoes = contexto.Database
+                .SqlQuery<Graduacao>($"Select * From graduacao");
+            return await graduacoes.ToListAsync();
+        }
+>>>>>>> a4d2bb56cac098b3eaf581cd52b32dde03a60178
     }
 }

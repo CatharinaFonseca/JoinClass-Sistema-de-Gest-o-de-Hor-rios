@@ -1,41 +1,61 @@
+using JoinClassGestaodeHorario.API.Aplicacao.Alunos.Adicionar;
+using JoinClassGestaodeHorario.API.Aplicacao.Alunos.Atualizar;
+using JoinClassGestaodeHorario.API.Aplicacao.Alunos.Excluir;
+using JoinClassGestaodeHorario.API.Aplicacao.Graduacoes.AtualizarGraduacao;
+using JoinClassGestaodeHorario.API.Aplicacao.Graduacoes.CriarGraduacao;
+using JoinClassGestaodeHorario.API.Aplicacao.Graduacoes.ExcluirGraduacao;
+using JoinClassGestaodeHorario.API.Dados;
+using JoinClassGestaodeHorario.API.Dados.Repositorios;
+using JoinClassGestaodeHorario.API.Dominio.Repositorios;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+
+builder.Services.AddControllers();
+
+var cofiguracao = builder.Configuration;
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen(options =>
+{
+    options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+    {
+        Title = "JoinClass WebAPI - .NET CORE 8",
+        Version = "v1",
+        Description = "API para gestão de horários de aulas"
+    });
+});
+
+// Configuração do DBContext
+builder.Services.AddDbContext<ApplicationDbContext>(opcao => opcao.UseNpgsql(cofiguracao.GetValue<string>("Settings:CONNECTION_STRING"),
+o => o.UseRelationalNulls()));
+
+//Injeção de dependência dos repositórios e casos de uso para Graduações
+builder.Services.AddTransient<IGraduacaoRepositorio, GraduacaoRepositorio>();
+builder.Services.AddTransient<ICriarGraduacaoUseCase, CriarGraduacaoUseCase>();
+builder.Services.AddTransient<IAtualizarGraduacaoUseCase, AtualizarGraduacaoUseCase>();
+builder.Services.AddTransient<IExcluirGraduacao, ExcluirGaduacaoUseCase>();
+
+//Injeção de dependência dos repositórios e casos de uso para Alunos
+builder.Services.AddTransient<IAlunoRepositorio, AlunoRepositorio>();
+builder.Services.AddTransient<IAdicionarAlunoUseCase, AdicionarAlunoUseCase>();
+builder.Services.AddTransient<IAtualizarAlunoUseCase, AtualizarAlunoUseCase>();
+builder.Services.AddTransient<IExcluirAlunoUseCase, ExcluirAlunoUseCase>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(options =>
 {
-    app.MapOpenApi();
-}
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "JoinClass API v1");
 
-app.UseHttpsRedirection();
+    // Opcional: Define o Swagger como a página inicial (ao acessar raiz /)
+    // options.RoutePrefix = string.Empty; 
+});
 
-var summaries = new[]
-{
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+app.UseAuthorization();
 
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+app.MapControllers();
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
