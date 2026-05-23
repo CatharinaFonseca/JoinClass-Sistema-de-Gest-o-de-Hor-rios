@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using JoinClassGestaodeHorario.API.Aplicacao.Graduacoes.AtualizarGraduacao;
-using JoinClassGestaodeHorario.API.Aplicacao.Graduacoes.CriarGraduacao;
+using JoinClassGestaodeHorario.API.Aplicacao.Graduacoes.Criar;
 using JoinClassGestaodeHorario.API.Aplicacao.Graduacoes.ExcluirGraduacao;
+using JoinClassGestaodeHorario.API.Aplicacao.Graduacoes.ExcluirGraduacaoUseCase;
 using JoinClassGestaodeHorario.API.Controllers.Graduacoes.Request;
-using JoinClassGestaodeHorario.API.Controllers.Graduacoes.Responses;
+using JoinClassGestaodeHorario.API.Controllers.Graduacoes.Response;
 using JoinClassGestaodeHorario.API.Dominio.Entidade;
 using JoinClassGestaodeHorario.API.Dominio.Repositorios;
 using Microsoft.AspNetCore.Mvc;
@@ -19,10 +20,10 @@ namespace JoinClassGestaodeHorario.API.Controllers.Graduacoes
     {
         private ICriarGraduacaoUseCase criarGraduacaoUseCase;
         private IAtualizarGraduacaoUseCase atualizarGraduacaoUseCase;
-        private IExcluirGraduacao excluirGraduacao;
+        private IExcluirGraduacaoUseCase excluirGraduacao;
         private IGraduacaoRepositorio graduacaoRepositorio;
 
-        public GraduacoesController(ICriarGraduacaoUseCase criarGraduacaoUseCase, IAtualizarGraduacaoUseCase atualizarGraduacaoUseCase, IExcluirGraduacao excluirGraduacao, IGraduacaoRepositorio graduacaoRepositorio)
+        public GraduacoesController(ICriarGraduacaoUseCase criarGraduacaoUseCase, IAtualizarGraduacaoUseCase atualizarGraduacaoUseCase, IExcluirGraduacaoUseCase excluirGraduacao, IGraduacaoRepositorio graduacaoRepositorio)
         {
             this.criarGraduacaoUseCase = criarGraduacaoUseCase;
             this.atualizarGraduacaoUseCase = atualizarGraduacaoUseCase;
@@ -31,7 +32,7 @@ namespace JoinClassGestaodeHorario.API.Controllers.Graduacoes
         }
 
         [HttpPost]
-        public async Task<IActionResult> Cadastrar([FromBody]CriarGraduacoesRequest request)
+        public async Task<IActionResult> Cadastrar([FromBody] CriarGraduacaoRequest request)
         {
             try
             {
@@ -48,30 +49,30 @@ namespace JoinClassGestaodeHorario.API.Controllers.Graduacoes
             }
             catch (System.Exception)
             {
-               return StatusCode(500);
+                return StatusCode(500);
             }
         }
         [HttpPut("{id}")]
 
-        public async Task<IActionResult> Atualizar([FromRoute] int id,[FromBody] AtualizarGraduacaoRequest request)
+        public async Task<IActionResult> Atualizar([FromRoute] int id, [FromBody] AtualizarGraduacaoRequest request)
         {
-           try
-           {
-                 Graduacao graduacao = new()
+            try
+            {
+                Graduacao graduacao = new()
                 {
                     nome = request.nome,
                     cargaHoraria = request.cargaHoraria,
                     duracao = request.duracao,
                     qntAulas = request.qntAulas
                 };
-                await atualizarGraduacaoUseCase.AtualizarGraduacao( graduacao);
+                await atualizarGraduacaoUseCase.AtualizarGraduacao(graduacao);
 
                 return NoContent();
-           }
-           catch (System.Exception)
-           {
-            return StatusCode(500);
-           } 
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(500);
+            }
         }
 
         [HttpDelete("{id}")]

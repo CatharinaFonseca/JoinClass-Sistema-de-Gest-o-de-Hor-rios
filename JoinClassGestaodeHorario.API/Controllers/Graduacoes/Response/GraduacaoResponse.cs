@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace JoinClassGestaodeHorario.API.Controllers.Graduacoes.Responses
+namespace JoinClassGestaodeHorario.API.Controllers.Graduacoes.Response
 {
-    //DPO - Data Presentation Object
-    public class GraduacaoResponse 
+    public class GraduacaoResponse
     {
         public int id { get; set; }
         public string nome { get; set; }

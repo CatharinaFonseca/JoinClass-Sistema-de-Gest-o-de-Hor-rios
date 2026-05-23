@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using JoinClassGestaodeHorario.API.Dominio.Entidade;
 
-namespace JoinClassGestaodeHorario.API.Aplicacao.Graduacoes.CriarGraduacao
+namespace JoinClassGestaodeHorario.API.Aplicacao.Graduacoes.Criar
 {
     public interface ICriarGraduacaoUseCase
     {

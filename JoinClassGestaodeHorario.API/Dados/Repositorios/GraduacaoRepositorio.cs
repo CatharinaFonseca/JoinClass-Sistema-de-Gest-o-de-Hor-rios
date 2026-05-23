@@ -2,14 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-<<<<<<< HEAD
-
-namespace JoinClassGestaodeHorario.API.Dados.Repositorios
-{
-    public class GraduacaoRepositorio
-    {
-        
-=======
 using JoinClassGestaodeHorario.API.Dominio.Entidade;
 using JoinClassGestaodeHorario.API.Dominio.Repositorios;
 using Microsoft.EntityFrameworkCore;
@@ -62,6 +54,5 @@ namespace JoinClassGestaodeHorario.API.Dados.Repositorios
                 .SqlQuery<Graduacao>($"Select * From graduacao");
             return await graduacoes.ToListAsync();
         }
->>>>>>> a4d2bb56cac098b3eaf581cd52b32dde03a60178
     }
 }

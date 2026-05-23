@@ -29,7 +29,7 @@ namespace JoinClassGestaodeHorario.API.Controllers.Professores
         }
 
         [HttpPost]
-        public async Task<IActionResult> Adicionar([FromBody] AtualizarProfessorRequest request)
+        public async Task<IActionResult> Adicionar([FromBody] AdicionarProfessorRequest request)
         {
             try
             {
@@ -49,7 +49,7 @@ namespace JoinClassGestaodeHorario.API.Controllers.Professores
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Atualizar([FromRoute] int id, [FromBody] AtualizarProfessorRequest request)
+        public async Task<IActionResult> Atualizar([FromRoute] int id, [FromBody] AtualizaProfessorRequest request)
         {
             try
             {

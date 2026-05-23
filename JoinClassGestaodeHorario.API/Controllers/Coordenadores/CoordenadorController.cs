@@ -6,6 +6,7 @@ using JoinClassGestaodeHorario.API.Aplicacao.Coordenadores.Adicionar;
 using JoinClassGestaodeHorario.API.Aplicacao.Coordenadores.Atualizar;
 using JoinClassGestaodeHorario.API.Aplicacao.Coordenadores.Excluir;
 using JoinClassGestaodeHorario.API.Controllers.Coordenadores.Request;
+using JoinClassGestaodeHorario.API.Controllers.Coordenadores.Response;
 using JoinClassGestaodeHorario.API.Dominio.Entidade;
 using JoinClassGestaodeHorario.API.Dominio.Repositorios;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -13,7 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JoinClassGestaodeHorario.API.Controllers.Coordenadores
 {
-    public class CoordenadoresController
+    public class CoordenadoresController : ControllerBase
     {
         private IAdicionarCoordenadoresUseCase adicionarCoordenadoresUseCase;
         private IAtualizarCoordenadoresUseCase atualizarCoordenadoresUseCase;
