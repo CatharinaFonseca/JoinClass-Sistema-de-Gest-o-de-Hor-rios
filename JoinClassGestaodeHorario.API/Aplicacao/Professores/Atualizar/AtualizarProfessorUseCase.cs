@@ -7,11 +7,11 @@ using JoinClassGestaodeHorario.API.Dominio.Repositorios;
 
 namespace JoinClassGestaodeHorario.API.Aplicacao.Professores.Atualizar
 {
-    public class AtuallizarProfessorUseCase : IAtualizarProfessoresUseCase
+    public class AtualizarProfessorUseCase : IAtualizarProfessoresUseCase
     {
         private IProfessorRepositorio professorRepositorio;
 
-        public AtuallizarProfessorUseCase(IProfessorRepositorio professorRepositorio)
+        public AtualizarProfessorUseCase(IProfessorRepositorio professorRepositorio)
         {
             this.professorRepositorio = professorRepositorio;
         }

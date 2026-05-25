@@ -7,11 +7,11 @@ using JoinClassGestaodeHorario.API.Dominio.Repositorios;
 
 namespace JoinClassGestaodeHorario.API.Aplicacao.Disponibilidades.Criar
 {
-    public class DisponibilidadeUseCase : ICriarDisponibilidadeUseCase
+    public class CriarDisponibilidadeUseCase : ICriarDisponibilidadeUseCase
     {
         private IDisponibilidadeResitorio disponibilidadeResitorio;
 
-        public DisponibilidadeUseCase(IDisponibilidadeResitorio disponibilidadeResitorio)
+        public CriarDisponibilidadeUseCase(IDisponibilidadeResitorio disponibilidadeResitorio)
         {
             this.disponibilidadeResitorio = disponibilidadeResitorio;
         }

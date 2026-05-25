@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("JoinClassGestaodeHorario.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+29d63b67845674a48f99b6f82ef05e58871bf441")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+349edf376d965fddaa1eb3288c79a0b89f52aedb")]
 [assembly: System.Reflection.AssemblyProductAttribute("JoinClassGestaodeHorario.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("JoinClassGestaodeHorario.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

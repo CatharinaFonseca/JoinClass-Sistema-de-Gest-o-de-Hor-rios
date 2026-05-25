@@ -8,7 +8,7 @@ namespace JoinClassGestaodeHorario.API.Dominio.Repositorios
 {
     public interface ITurmaRepositorio
     {
-        Task Adicionar(Turma turma);
+        Task Criar(Turma turma);
         Task Alterar(Turma turma);
         Task Deletar(Turma turma);
         Task<Turma> ObterTurma(int id);

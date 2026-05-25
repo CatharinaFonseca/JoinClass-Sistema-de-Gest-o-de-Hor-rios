@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using JoinClassGestaodeHorario.API.Dominio.Entidade;
 
-namespace JoinClassGestaodeHorario.API.Aplicacao.Horarios.Atualizar
+namespace JoinClassGestaodeHorario.API.Aplicacao.Turmas.Atualizar
 {
-    public interface IAtualizarHorarioUseCase
+    public interface IAtualizarTurmasUseCase
     {
-        Task AtualizarHorario(Horario horario);
+        Task AtualizarTurma(Turma turma);
     }
 }
