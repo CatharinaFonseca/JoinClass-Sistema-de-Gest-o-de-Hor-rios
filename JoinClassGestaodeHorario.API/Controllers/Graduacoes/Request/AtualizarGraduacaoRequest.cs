@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace JoinClassGestaodeHorario.API.Controllers.Graduacoes.Request
 {
-    public class AtualizarGraduacaoRequest: CriarGraduacoesRequest
+    public class AtualizarGraduacaoRequest : CriarGraduacaoRequest
     {
-        
+
     }
 }

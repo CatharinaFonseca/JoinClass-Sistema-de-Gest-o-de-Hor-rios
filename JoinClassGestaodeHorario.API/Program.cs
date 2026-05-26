@@ -1,9 +1,25 @@
 using JoinClassGestaodeHorario.API.Aplicacao.Alunos.Adicionar;
 using JoinClassGestaodeHorario.API.Aplicacao.Alunos.Atualizar;
 using JoinClassGestaodeHorario.API.Aplicacao.Alunos.Excluir;
+using JoinClassGestaodeHorario.API.Aplicacao.Coordenadores.Adicionar;
+using JoinClassGestaodeHorario.API.Aplicacao.Coordenadores.Atualizar;
+using JoinClassGestaodeHorario.API.Aplicacao.Coordenadores.Excluir;
+using JoinClassGestaodeHorario.API.Aplicacao.Disciplinas.Atualizar;
+using JoinClassGestaodeHorario.API.Aplicacao.Disciplinas.Criar;
+using JoinClassGestaodeHorario.API.Aplicacao.Disciplinas.Excluir;
+using JoinClassGestaodeHorario.API.Aplicacao.Disponibilidades.Atualizar;
+using JoinClassGestaodeHorario.API.Aplicacao.Disponibilidades.Criar;
+using JoinClassGestaodeHorario.API.Aplicacao.Disponibilidades.Excluir;
 using JoinClassGestaodeHorario.API.Aplicacao.Graduacoes.AtualizarGraduacao;
-using JoinClassGestaodeHorario.API.Aplicacao.Graduacoes.CriarGraduacao;
+using JoinClassGestaodeHorario.API.Aplicacao.Graduacoes.Criar;
 using JoinClassGestaodeHorario.API.Aplicacao.Graduacoes.ExcluirGraduacao;
+using JoinClassGestaodeHorario.API.Aplicacao.Graduacoes.ExcluirGraduacaoUseCase;
+using JoinClassGestaodeHorario.API.Aplicacao.Pessoas.Adicionar;
+using JoinClassGestaodeHorario.API.Aplicacao.Pessoas.Atualizar;
+using JoinClassGestaodeHorario.API.Aplicacao.Pessoas.Excluir;
+using JoinClassGestaodeHorario.API.Aplicacao.Professores.Adicionar;
+using JoinClassGestaodeHorario.API.Aplicacao.Professores.Atualizar;
+using JoinClassGestaodeHorario.API.Aplicacao.Professores.Excluir;
 using JoinClassGestaodeHorario.API.Dados;
 using JoinClassGestaodeHorario.API.Dados.Repositorios;
 using JoinClassGestaodeHorario.API.Dominio.Repositorios;
@@ -31,17 +47,48 @@ builder.Services.AddSwaggerGen(options =>
 builder.Services.AddDbContext<ApplicationDbContext>(opcao => opcao.UseNpgsql(cofiguracao.GetValue<string>("Settings:CONNECTION_STRING"),
 o => o.UseRelationalNulls()));
 
-//Injeção de dependência dos repositórios e casos de uso para Graduações
-builder.Services.AddTransient<IGraduacaoRepositorio, GraduacaoRepositorio>();
-builder.Services.AddTransient<ICriarGraduacaoUseCase, CriarGraduacaoUseCase>();
-builder.Services.AddTransient<IAtualizarGraduacaoUseCase, AtualizarGraduacaoUseCase>();
-builder.Services.AddTransient<IExcluirGraduacao, ExcluirGaduacaoUseCase>();
-
 //Injeção de dependência dos repositórios e casos de uso para Alunos
 builder.Services.AddTransient<IAlunoRepositorio, AlunoRepositorio>();
 builder.Services.AddTransient<IAdicionarAlunoUseCase, AdicionarAlunoUseCase>();
 builder.Services.AddTransient<IAtualizarAlunoUseCase, AtualizarAlunoUseCase>();
 builder.Services.AddTransient<IExcluirAlunoUseCase, ExcluirAlunoUseCase>();
+
+// Injeção de dependência dos repositórios e casos de uso para Coordenadores
+builder.Services.AddTransient<ICoordenadorRepositorio, CoordenadorRepositorio>();
+builder.Services.AddTransient<IAdicionarCoordenadoresUseCase, AdicionarCoordenadorUseCase>();
+builder.Services.AddTransient<IAtualizarCoordenadoresUseCase, AtualizarCoordenadorUseCase>();
+builder.Services.AddTransient<IExcluirCoordenadorUseCase, ExcluirCoordenadorUseCase>();
+
+// Injeção de dependência dos repositórios e casos de uso para Disciplinas
+builder.Services.AddTransient<IDisciplinaRepositorio, DisciplinaRepositorio>();
+builder.Services.AddTransient<IAtualizarDisciplinaUseCase, AtualizarDisciplinaUseCase>();
+builder.Services.AddTransient<ICriarDisciplinaUseCase, CriarDisciplinaUseCase>();
+builder.Services.AddTransient<IExcluirDisciplinaUseCase, ExcluirDisciplinaUseCase>();
+
+//Injeção de dependência dos repositórios e casos de uso para Disponibilidades
+builder.Services.AddTransient<IDisponibilidadeResitorio, DisponibilidadeRepositorio>();
+builder.Services.AddTransient<IAtualizarDisponibilidadeUseCase, AtualizarDisponibilidadeUseCase>();
+builder.Services.AddTransient<ICriarDisponibilidadeUseCase, DisponibilidadeUseCase>();
+builder.Services.AddTransient<IExcluirDisponibilidadeUseCase, ExcluirDisponibilidadeUseCase>();
+
+
+//Injeção de dependência dos repositórios e casos de uso para Graduações
+builder.Services.AddTransient<IGraduacaoRepositorio, GraduacaoRepositorio>();
+builder.Services.AddTransient<ICriarGraduacaoUseCase, CriarGraduacaoUseCase>();
+builder.Services.AddTransient<IAtualizarGraduacaoUseCase, AtualizarGraduacaoUseCase>();
+builder.Services.AddTransient<IExcluirGraduacaoUseCase, ExcluirGaduacaoUseCase>();
+
+//Injeção de dependência dos repositórios e casos de uso para Pessoas
+builder.Services.AddTransient<IPessoaRepositorio, PessoaRepositorio>();
+builder.Services.AddTransient<IAdicionarPessoaUseCase, AdicionarPessoaUseCase>();
+builder.Services.AddTransient<IAtualizarPessoaUseCase, AtualizarPessoaUseCase>();
+builder.Services.AddTransient<IExcluirPessoaUseCase, ExcluirPessoaUseCase>();
+
+// Injeção de dependência dos repositórios e casos de uso para Professores
+builder.Services.AddTransient<IProfessorRepositorio, ProfessorRepositorio>();
+builder.Services.AddTransient<IAdicionarProfessoresUseCase, AdicionarProfessorUseCase>();
+builder.Services.AddTransient<IAtualizarProfessoresUseCase, AtuallizarProfessorUseCase>();
+builder.Services.AddTransient<IExcluirProfessorUseCase, ExcluirProfessorUseCase>();
 
 var app = builder.Build();
 

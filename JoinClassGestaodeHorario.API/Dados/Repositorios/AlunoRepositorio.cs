@@ -50,8 +50,8 @@ namespace JoinClassGestaodeHorario.API.Dados.Repositorios
 
         public async Task<List<Aluno>> ObterTodosOsAlunos()
         {
-            var alunos = contexto.Alunos
-                .FromSql($"Select * From aluno");
+            var alunos = contexto.Database
+                .SqlQuery<Aluno>($"Select * From aluno");
             return await alunos.ToListAsync();
         }
     }

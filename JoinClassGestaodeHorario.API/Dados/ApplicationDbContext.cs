@@ -12,12 +12,44 @@ namespace JoinClassGestaodeHorario.API.Dados
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
-        public DbSet<Graduacao> Graduacoes { get; set; }
         public DbSet<Aluno> Alunos { get; set; }
+        public DbSet<Coordenador> Coordenadores { get; set; }
+        public DbSet<Disciplina> Disciplinas { get; set; }
+        public DbSet<Disponibilidade> Disponibilidades { get; set; }
+        public DbSet<Graduacao> Graduacoes { get; set; }
+        public DbSet<Horario> Horarios { get; set; }
         public DbSet<Pessoa> Pessoas { get; set; }
         public DbSet<Professor> Professores { get; set; }
+        public DbSet<Turma> Turmas { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Aluno>(entidade =>
+            {
+                entidade.ToTable("Aluno", "public");
+                entidade.Ignore(e => e.graduacao);
+                entidade.HasKey(e => e.id);
+            });
+
+            modelBuilder.Entity<Coordenador>(entidade =>
+            {
+                entidade.ToTable("Coordenador", "public");
+                entidade.Ignore(e => e.disciplinas);
+                entidade.HasKey(e => e.id);
+            });
+
+            modelBuilder.Entity<Disciplina>(entidade =>
+            {
+                entidade.ToTable("Disciplina", "public");
+                entidade.HasKey(e => e.id);
+            });
+
+            modelBuilder.Entity<Disponibilidade>(entidade =>
+            {
+                entidade.ToTable("Disponibilidade", "public");
+                entidade.Ignore(e => e.professor);
+                entidade.HasKey(e => e.id);
+            });
+
             modelBuilder.Entity<Graduacao>(entidade =>
             {
                 entidade.ToTable("Graduacao", "public");
@@ -25,10 +57,9 @@ namespace JoinClassGestaodeHorario.API.Dados
                 entidade.HasKey(e => e.id);
             });
 
-            modelBuilder.Entity<Aluno>(entidade =>
+            modelBuilder.Entity<Horario>(entidade =>
             {
-                entidade.ToTable("Aluno", "public");
-                entidade.Ignore(e => e.graduacao);
+                entidade.ToTable("Horario", "public");
                 entidade.HasKey(e => e.id);
             });
 
@@ -42,6 +73,13 @@ namespace JoinClassGestaodeHorario.API.Dados
             {
                 entidade.ToTable("Professor", "public");
                 entidade.Ignore(e => e.disciplinas);
+                entidade.HasKey(e => e.id);
+            });
+
+            modelBuilder.Entity<Turma>(entidade =>
+            {
+                entidade.ToTable("Turma", "public");
+                entidade.Ignore(e => e.horarios);
                 entidade.HasKey(e => e.id);
             });
         }
