@@ -7,11 +7,11 @@ using JoinClassGestaodeHorario.API.Dominio.Repositorios;
 
 namespace JoinClassGestaodeHorario.API.Aplicacao.Turmas.Excluir
 {
-    public class ExluirTurmaUseCase : IExcluirTurmaUseCase
+    public class ExcluirTurmaUseCase : IExcluirTurmaUseCase
     {
         private ITurmaRepositorio turmaRepositorio;
 
-        public ExluirTurmaUseCase(ITurmaRepositorio turmaRepositorio)
+        public ExcluirTurmaUseCase(ITurmaRepositorio turmaRepositorio)
         {
             this.turmaRepositorio = turmaRepositorio;
         }

@@ -19,10 +19,10 @@ namespace JoinClassGestaodeHorario.API.Controllers.Turmas
     {
         private ITurmaRepositorio turmaRepositorio;
         private ICriarTurmaUseCase criarTurmaUseCase;
-        private IAtualizarTurmasUseCase atualizarTurmaUseCase;
+        private IAtualizarTurmaUseCase atualizarTurmaUseCase;
         private IExcluirTurmaUseCase excluirTurmaUseCase;
 
-        public TurmasController(ITurmaRepositorio turmaRepositorio, ICriarTurmaUseCase criarTurmaUseCase, IAtualizarTurmasUseCase atualizarTurmaUseCase, IExcluirTurmaUseCase excluirTurmaUseCase)
+        public TurmasController(ITurmaRepositorio turmaRepositorio, ICriarTurmaUseCase criarTurmaUseCase, IAtualizarTurmaUseCase atualizarTurmaUseCase, IExcluirTurmaUseCase excluirTurmaUseCase)
         {
             this.turmaRepositorio = turmaRepositorio;
             this.criarTurmaUseCase = criarTurmaUseCase;

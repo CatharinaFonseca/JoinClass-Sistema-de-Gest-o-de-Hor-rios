@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace JoinClassGestaodeHorario.API.Controllers.Turmas.Request
 {
-    public class AtualizarTurmaRequest
+    public class AtualizarTurmaRequest : CriarTurmaRequest
     {
-        
+
     }
 }

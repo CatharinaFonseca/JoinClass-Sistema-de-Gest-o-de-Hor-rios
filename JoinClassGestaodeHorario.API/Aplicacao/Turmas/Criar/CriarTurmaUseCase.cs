@@ -7,11 +7,11 @@ using JoinClassGestaodeHorario.API.Dominio.Repositorios;
 
 namespace JoinClassGestaodeHorario.API.Aplicacao.Turmas.Criar
 {
-    public class CriarTurmaCase : ICriarTurmaUseCase
+    public class CriarTurmaUseCase : ICriarTurmaUseCase
     {
         private ITurmaRepositorio turmaRepositorio;
 
-        public CriarTurmaCase(ITurmaRepositorio turmaRepositorio)
+        public CriarTurmaUseCase(ITurmaRepositorio turmaRepositorio)
         {
             this.turmaRepositorio = turmaRepositorio;
         }

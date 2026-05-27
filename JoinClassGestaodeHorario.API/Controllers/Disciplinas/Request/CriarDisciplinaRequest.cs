@@ -7,6 +7,7 @@ namespace JoinClassGestaodeHorario.API.Controllers.Disciplinas.Request
 {
     public class CriarDisciplinaRequest
     {
-        
+        public string nome { get; set; }
+        public int cargaHoraria { get; set; }
     }
 }

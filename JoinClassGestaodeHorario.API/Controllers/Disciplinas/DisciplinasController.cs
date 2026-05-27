@@ -51,7 +51,7 @@ namespace JoinClassGestaodeHorario.API.Controllers.Disciplinas
         }
         [HttpPut("{id}")]
 
-        public async Task<IActionResult> Atualizar([FromRoute] int id, [FromBody] AtualizarDisciplinaRequest request)
+        public async Task<IActionResult> Atualizar([FromRoute] int id, [FromBody] AtualizarDisciplinasRequest request)
         {
             try
             {

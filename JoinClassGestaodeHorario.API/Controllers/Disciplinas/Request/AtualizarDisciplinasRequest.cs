@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace JoinClassGestaodeHorario.API.Controllers.Disciplinas.Request
 {
-    public class AtualizarDisciplinaRequest
+    public class AtualizarDisciplinasRequest : CriarDisciplinaRequest
     {
-        
+
     }
 }
