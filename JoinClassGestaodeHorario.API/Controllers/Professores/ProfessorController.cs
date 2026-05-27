@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JoinClassGestaodeHorario.API.Controllers.Professores
 {
+    [ApiController]
+    [Route("api/professores")]
     public class ProfessoresController : ControllerBase
     {
         private IAdicionarProfessoresUseCase adicionarProfessoresUseCase;

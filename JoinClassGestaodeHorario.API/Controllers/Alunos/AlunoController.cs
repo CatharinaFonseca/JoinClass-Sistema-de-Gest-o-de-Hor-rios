@@ -14,6 +14,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JoinClassGestaodeHorario.API.Controllers.Alunos
 {
+    [ApiController]
+    [Route("api/alunos")]
     public class AlunosController : ControllerBase
     {
         private IAdicionarAlunoUseCase adicionarAlunoUseCase;
