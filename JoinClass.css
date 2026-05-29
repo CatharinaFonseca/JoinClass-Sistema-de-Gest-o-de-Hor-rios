@@ -1,3 +1,4 @@
+/* Pagina Inicial*/
 button{
 	background-color: #F44C02;
 	color: #FFFFFF;
@@ -87,3 +88,148 @@ body{
     color: white;
     margin-top: -80px;
 }
+/*Pagina Inicial*/
+
+/*Pagina Login*/
+.BodyLogin{
+    background-color: #f5f9ff;
+}
+
+.TopoLogin{
+    background-color: #012553;
+    height: 90px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.LogoLogin{
+    width: 140px;
+    height: auto;
+}
+
+
+.CardLogin{
+    width: 500px;
+    margin: 50px auto;
+    background-color: #e5e5e5;
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 40px;
+}
+
+.CardLogin h1{
+    font-size: 70px;
+    margin-bottom: 40px;
+}
+
+.CampoLogin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    gap: 15px;
+}
+
+.CampoLogin label{
+    font-size: 22px;
+    font-family: Arial, sans-serif;
+}
+
+.CampoLogin input{
+    width: 280px;
+    height: 35px;
+    border-radius: 12px;
+    border: 1px solid black;
+    padding-left: 10px;
+    font-size: 16px;
+}
+
+
+.BotaoEntrar{
+    margin-top: 20px;
+}
+
+.BotaoEntrar button{
+    width: 180px;
+    height: 55px;
+    font-size: 28px;
+    border-radius: 20px;
+}
+
+
+.TextoCadastro{
+    margin-top: 10px;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+}
+/*Pagina Login*/
+
+/*Primeiro Acesso*/
+
+.Body1Acesso{
+    background-color: #f5f9ff;
+}
+
+.Topo1Acesso{
+    background-color: #012553;
+    height: 90px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.LogoLogin{
+    width: 140px;
+    height: auto;
+}
+
+
+.CardLogin{
+    width: 500px;
+    margin: 50px auto;
+    background-color: #e5e5e5;
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 40px;
+}
+
+.CardLogin h1{
+    font-size: 70px;
+    margin-bottom: 40px;
+}
+
+.CampoLogin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    gap: 15px;
+}
+
+.CampoLogin label{
+    font-size: 22px;
+    font-family: Arial, sans-serif;
+}
+
+.CampoLogin input{
+    width: 280px;
+    height: 35px;
+    border-radius: 12px;
+    border: 1px solid black;
+    padding-left: 10px;
+    font-size: 16px;
+}
+.BotaoEntrar{
+    margin-top: 20px;
+}
+
+.BotaoEntrar button{
+    width: 180px;
+    height: 55px;
+    font-size: 28px;
+    border-radius: 20px;
+}
+/*Primeiro Acesso*/
