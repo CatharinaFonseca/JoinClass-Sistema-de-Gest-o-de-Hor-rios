@@ -1,34 +1,34 @@
 -- 1. Criar o banco de dados
-CREATE DATABASE "JoinClass";
+CREATE DATABASE JoinClass;
 
 --2. Tabela Pessoa
-CREATE TABLE pessoa (
+CREATE TABLE Pessoa (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100)
 );
 
 --3. Tabela Coordenador
-CREATE TABLE coordenador (
+CREATE TABLE Coordenador (
     id INT NOT NULL,
-    CONSTRAINT pk_coordenador,
-    PRIMARY KEY (id),
+    CONSTRAINT pk_coordenador PRIMARY KEY (id),
     CONSTRAINT fk_coordenadoor_pessoa FOREIGN KEY (id) REFERENCES pessoa (id) ON DELETE CASCADE
 );
 
 -- 4. Tabela Graduacao
 
-CREATE TABLE graduacao (
+CREATE TABLE Graduacao (
     id SERIAL PRIMARY KEY,
     nome_graduacao VARCHAR(100) NOT NULL,
     duracao_graduacao INT NOT NULL,
-    qnt_aula_graduacao INT NOT NULL id_coordenador INT NOT NULL,
+    qnt_aula_graduacao INT NOT NULL,
+    id_coordenador INT NOT NULL,
     CONSTRAINT fk_graduacao_coordenador FOREIGN KEY (id_coordenador) REFERENCES coordenador (id) ON DELETE CASCADE
 );
 
 -- 5. Tabela Disciplina
 
-CREATE TABLE disciplina (
+CREATE TABLE Disciplina (
     id SERIAL PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     carg_horaria int NOT NULL
@@ -36,7 +36,7 @@ CREATE TABLE disciplina (
 
 -- 6. Tabela Aluno (herda de Pessoa - TPT)
 
-CREATE TABLE aluno (
+CREATE TABLE Aluno (
     id INT NOT NULL,
     CONSTRAINT pk_aluno PRIMARY KEY (id),
     CONSTRAINT fk_professor_pessoa FOREIGN KEY (id) REFERENCES pessoa (id) ON DELETE CASCADE
@@ -44,14 +44,14 @@ CREATE TABLE aluno (
 
 -- 7. Tabela Professor
 
-CREATE TABLE professor (
+CREATE TABLE Professor (
     id INT NOT NULL,
     CONSTRAINT pk_professor PRIMARY KEY (id),
     CONSTRAINT fk_professor_pessoa FOREIGN KEY (id) REFERENCES pessoa (id) ON DELETE CASCADE
 );
 
 -- 8. Tabela ProfessorDisciplina
-CREATE TABLE professor_disciplina (
+CREATE TABLE Professor_Disciplina (
     id_professor INT NOT NULL,
     id_disciplina INT NOT NULL,
     CONSTRAINT pk_professor_disciplina PRIMARY KEY (id_professor, id_disciplina),
@@ -61,7 +61,7 @@ CREATE TABLE professor_disciplina (
 
 -- 9. Tabela Disponibilidade
 
-CREATE TABLE disponibilidade (
+CREATE TABLE Disponibilidade (
     id SERIAL PRIMARY KEY,
     dia_semana VARCHAR(20) NOT NULL,
     horario_inicio VARCHAR(5) NOT NULL,
@@ -72,14 +72,14 @@ CREATE TABLE disponibilidade (
 
 -- 10. Tabela Semestre
 
-CREATE TABLE semestre (
+CREATE TABLE Semestre (
     id SERIAL PRIMARY KEY,
     periodo VARCHAR(20) NOT NULL
 );
 
 -- 11. Tabela Matriz Curricular
 
-CREATE TABLE matriz_curricular (
+CREATE TABLE Matriz_curricular (
     id SERIAL PRIMARY KEY,
     nome_matriz_curricular VARCHAR(100) NOT NULL,
     id_graduacao INT NOT NULL,
@@ -92,17 +92,17 @@ CREATE TABLE matriz_curricular (
 
 -- 12. Tabela Turma
 
-CREATE TABLE turma (
+CREATE TABLE Turma (
     id SERIAL PRIMARY KEY,
     id_professor INT NOT NULL,
-    id_matriz_curricular_ INT NOT NULL,
-    CONSTRAINT fk_turma_professor FOREIGN KEY (id_professor) REFERENCES professor (id) ON DELETE CASCADE,
-    CONSTRAINT fk_turma_matriz_curricular FOREIGN KEY (id_matriz_curricular) REFERENCES matriz_curricular (id) ON DELETE CASCADE
+    id_matriz_curricular INT NOT NULL,
+    CONSTRAINT fk_turma_professor FOREIGN KEY (id_professor) REFERENCES Professor (id) ON DELETE CASCADE,
+    CONSTRAINT fk_turma_matriz_curricular FOREIGN KEY (id_matriz_curricular) REFERENCES Matriz_curricular (id) ON DELETE CASCADE
 );
 
 -- 13. Tabela Turma Aluno
 
-CREATE TABLE turma_aluno (
+CREATE TABLE Turma_Aluno (
     id_turma INT NOT NULL,
     id_aluno INT NOT NULL,
     CONSTRAINT pk_turma_aluno PRIMARY KEY (id_turma, id_aluno),
@@ -112,7 +112,7 @@ CREATE TABLE turma_aluno (
 
 -- 14. Tabela Horario
 
-CREATE TABLE horario (
+CREATE TABLE Horario (
     id SERIAL PRIMARY KEY,
     dia_semana VARCHAR(20) NOT NULL,
     horario_inicio VARCHAR(5) NOT NULL,
@@ -123,7 +123,7 @@ CREATE TABLE horario (
 
 -- 15. Tabela Titulacao
 
-CREATE TABLE titulacao (
+CREATE TABLE Titulacao (
     id SERIAL PRIMARY KEY,
     tipo_titulacao VARCHAR(20) NOT NULL,
     id_professor INT NOT NULL,
