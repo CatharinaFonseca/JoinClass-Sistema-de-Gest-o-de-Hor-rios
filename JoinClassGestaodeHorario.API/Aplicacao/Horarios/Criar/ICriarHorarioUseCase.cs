@@ -8,6 +8,6 @@ namespace JoinClassGestaodeHorario.API.Aplicacao.Horarios.Criar
 {
     public interface ICriarHorarioUseCase
     {
-        Task CriarHorario(Horario horario);
+        Task CadastrarHorario(Horario horario);
     }
 }

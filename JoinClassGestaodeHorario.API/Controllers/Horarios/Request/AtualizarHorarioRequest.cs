@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace JoinClassGestaodeHorario.API.Controllers.Horarios.Request
 {
-    public class AtualizarHorarioRequest
+    public class AtualizarHorarioRequest : CriarHorarioRequest
     {
-        
+
     }
 }

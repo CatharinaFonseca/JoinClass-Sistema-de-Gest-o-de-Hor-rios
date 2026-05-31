@@ -7,6 +7,10 @@ namespace JoinClassGestaodeHorario.API.Dominio.Entidade
 {
     public class TurmaAluno
     {
-        
+        public int IdTurma { get; set; }
+        public Turma Turma { get; set; }
+
+        public int IdAluno { get; set; }
+        public Aluno Aluno { get; set; }
     }
 }

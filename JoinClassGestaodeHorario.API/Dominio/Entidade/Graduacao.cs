@@ -7,11 +7,14 @@ namespace JoinClassGestaodeHorario.API.Dominio.Entidade
 {
     public class Graduacao
     {
-        public int id { get; set; }
-        public string nome { get; set; }
-        public int cargaHoraria { get; set; }
-        public int duracao { get; set; }
-        public int qntAulas { get; set; }
-        public List<Disciplina> disciplinas { get; set; }
+        public int Id { get; set; }
+        public string NomeGraduacao { get; set; }
+        public int DuracaoGraduacao { get; set; }
+        public int QntAulaGraduacao { get; set; }
+
+        public int IdCoordenador { get; set; }
+        public Coordenador Coordenador { get; set; }
+
+        public List<MatrizCurricular> Matrizes { get; set; }
     }
 }

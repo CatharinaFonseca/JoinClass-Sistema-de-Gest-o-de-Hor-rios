@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 
 namespace JoinClassGestaodeHorario.API.Controllers.Disponibilidades.Request
 {
-    public class AtualizarDisponibilidadeRequest
+    public class AtualizarDisponibilidadeRequest : CriarDisponibilidadeRequest
     {
-        
+
     }
 }

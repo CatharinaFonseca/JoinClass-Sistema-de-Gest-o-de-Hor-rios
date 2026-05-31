@@ -7,6 +7,7 @@ namespace JoinClassGestaodeHorario.API.Dominio.Entidade
 {
     public class Semestre
     {
-        
+        public int Id { get; set; }
+        public string Periodo { get; set; }
     }
 }
