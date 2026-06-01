@@ -29,162 +29,136 @@ namespace JoinClassGestaodeHorario.API.Dados
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Aluno>(entidade =>
-            {
-                entidade.ToTable("Aluno", "public");
+            base.OnModelCreating(modelBuilder);
 
-                entidade.HasKey(e => e.Id);
+            modelBuilder.Entity<Pessoa>()
+                .ToTable("Pessoa", "public");
 
-                entidade.HasOne(a => a.Pessoa)
-                    .WithOne()
-                    .HasForeignKey<Aluno>(a => a.Id);
-            });
+            modelBuilder.Entity<Aluno>()
+                .ToTable("Aluno", "public");
 
-            modelBuilder.Entity<Coordenador>(entidade =>
-            {
-                entidade.ToTable("Coordenador", "public");
+            modelBuilder.Entity<Professor>()
+                .ToTable("Professor", "public");
 
-                entidade.HasKey(e => e.Id);
-
-                entidade.HasOne(c => c.Pessoa)
-                    .WithOne()
-                    .HasForeignKey<Coordenador>(c => c.Id);
-            });
+            modelBuilder.Entity<Coordenador>()
+                .ToTable("Coordenador", "public");
 
             modelBuilder.Entity<Disciplina>(entidade =>
             {
                 entidade.ToTable("Disciplina", "public");
-                entidade.HasKey(e => e.Id);
+                entidade.HasKey(e => e.id);
             });
 
             modelBuilder.Entity<Disponibilidade>(entidade =>
             {
                 entidade.ToTable("Disponibilidade", "public");
 
-                entidade.HasKey(e => e.Id);
+                entidade.HasKey(e => e.id);
 
                 entidade.HasOne(d => d.Professor)
                         .WithMany(p => p.Disponibilidades)
-                        .HasForeignKey(d => d.IdProfessor);
+                        .HasForeignKey(d => d.idProfessor);
             });
 
             modelBuilder.Entity<Graduacao>(entidade =>
             {
                 entidade.ToTable("Graduacao", "public");
 
-                entidade.HasKey(e => e.Id);
+                entidade.HasKey(e => e.id);
 
                 entidade.HasOne(g => g.Coordenador)
                     .WithMany(c => c.Graduacoes)
-                    .HasForeignKey(g => g.IdCoordenador);
+                    .HasForeignKey(g => g.idCoordenador);
             });
 
             modelBuilder.Entity<Horario>(entidade =>
             {
                 entidade.ToTable("Horario", "public");
 
-                entidade.HasKey(e => e.Id);
+                entidade.HasKey(e => e.id);
 
                 entidade.HasOne(h => h.Turma)
                     .WithMany(t => t.Horarios)
-                    .HasForeignKey(h => h.IdTurma);
+                    .HasForeignKey(h => h.idTurma);
             });
 
             modelBuilder.Entity<MatrizCurricular>(entidade =>
             {
                 entidade.ToTable("Matriz_curricular", "public");
-                entidade.HasKey(e => e.Id);
+                entidade.HasKey(e => e.id);
 
                 entidade.HasOne(m => m.Graduacao)
                     .WithMany(g => g.Matrizes)
-                    .HasForeignKey(m => m.IdGraduacao);
+                    .HasForeignKey(m => m.idGraduacao);
 
                 entidade.HasOne(m => m.Semestre)
                     .WithMany()
-                    .HasForeignKey(m => m.IdSemestre);
+                    .HasForeignKey(m => m.idSemestre);
 
                 entidade.HasOne(m => m.Disponibilidade)
                     .WithMany()
-                    .HasForeignKey(m => m.IdDisponibilidade);
-            });
-
-
-            modelBuilder.Entity<Pessoa>(entidade =>
-            {
-                entidade.ToTable("Pessoa", "public");
-                entidade.HasKey(e => e.id);
-            });
-
-            modelBuilder.Entity<Professor>(entidade =>
-            {
-                entidade.ToTable("Professor", "public");
-
-                entidade.HasKey(e => e.Id);
-
-                entidade.HasOne(p => p.Pessoa)
-                    .WithOne()
-                    .HasForeignKey<Professor>(p => p.Id);
+                    .HasForeignKey(m => m.idDisponibilidade);
             });
 
             modelBuilder.Entity<ProfessorDisciplina>(entidade =>
            {
                entidade.ToTable("Professor_Disciplina", "public");
 
-               entidade.HasKey(pd => new { pd.IdProfessor, pd.IdDisciplina });
+               entidade.HasKey(pd => new { pd.idProfessor, pd.idDisciplina });
 
                entidade.HasOne(pd => pd.Professor)
                    .WithMany(p => p.ProfessorDisciplinas)
-                   .HasForeignKey(pd => pd.IdProfessor);
+                   .HasForeignKey(pd => pd.idProfessor);
 
                entidade.HasOne(pd => pd.Disciplina)
                    .WithMany(d => d.ProfessorDisciplinas)
-                   .HasForeignKey(pd => pd.IdDisciplina);
+                   .HasForeignKey(pd => pd.idDisciplina);
            });
 
             modelBuilder.Entity<Semestre>(entidade =>
             {
                 entidade.ToTable("Semestre", "public");
-                entidade.HasKey(e => e.Id);
+                entidade.HasKey(e => e.id);
             });
 
             modelBuilder.Entity<Titulacao>(entidade =>
             {
                 entidade.ToTable("Titulacao", "public");
-                entidade.HasKey(e => e.Id);
+                entidade.HasKey(e => e.id);
 
                 entidade.HasOne(t => t.Professor)
                     .WithMany()
-                    .HasForeignKey(t => t.IdProfessor);
+                    .HasForeignKey(t => t.idProfessor);
             });
 
             modelBuilder.Entity<Turma>(entidade =>
             {
                 entidade.ToTable("Turma", "public");
 
-                entidade.HasKey(e => e.Id);
+                entidade.HasKey(e => e.id);
 
                 entidade.HasOne(t => t.Professor)
                         .WithMany()
-                        .HasForeignKey(t => t.IdProfessor);
+                        .HasForeignKey(t => t.idProfessor);
 
                 entidade.HasOne(t => t.MatrizCurricular)
                         .WithMany()
-                        .HasForeignKey(t => t.IdMatrizCurricular);
+                        .HasForeignKey(t => t.idMatrizCurricular);
             });
 
             modelBuilder.Entity<TurmaAluno>(entidade =>
             {
                 entidade.ToTable("Turma_Aluno", "public");
 
-                entidade.HasKey(ta => new { ta.IdTurma, ta.IdAluno });
+                entidade.HasKey(ta => new { ta.idTurma, ta.idAluno });
 
                 entidade.HasOne(ta => ta.Turma)
                     .WithMany(t => t.TurmaAlunos)
-                    .HasForeignKey(ta => ta.IdTurma);
+                    .HasForeignKey(ta => ta.idTurma);
 
                 entidade.HasOne(ta => ta.Aluno)
                     .WithMany(a => a.TurmaAlunos)
-                    .HasForeignKey(ta => ta.IdAluno);
+                    .HasForeignKey(ta => ta.idAluno);
             });
         }
     }
