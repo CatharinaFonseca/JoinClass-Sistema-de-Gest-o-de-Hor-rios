@@ -32,7 +32,7 @@ namespace JoinClassGestaodeHorario.API.Controllers.Alunos
         }
 
         [HttpPost]
-        public async Task<IActionResult> Adicionar([FromBody] AtualizarPessoaRequest request)
+        public async Task<IActionResult> Adicionar([FromBody] AdicionarAlunoRequest request)
         {
             try
             {
@@ -58,6 +58,7 @@ namespace JoinClassGestaodeHorario.API.Controllers.Alunos
             {
                 Aluno aluno = new()
                 {
+                    id = id,
                     nome = request.nome,
                     email = request.email
                 };
@@ -90,17 +91,43 @@ namespace JoinClassGestaodeHorario.API.Controllers.Alunos
         {
             try
             {
-                List<Aluno> alunos = await alunoRepositorio.ObterTodosOsAlunos();
+                Aluno aluno = await alunoRepositorio.ObterAluno(id);
 
-                List<AlunoResponse> alunosResponse = alunos.Select(a => new AlunoResponse()
+                if (aluno == null)
+                    return NotFound();
+
+                AlunoResponse response = new()
+                {
+                    id = aluno.id,
+                    nome = aluno.nome,
+                    email = aluno.email
+                };
+
+                return Ok(response);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ObterTodos()
+        {
+            try
+            {
+                var alunos = await alunoRepositorio.ObterTodosOsAlunos();
+
+                var response = alunos.Select(a => new AlunoResponse
                 {
                     id = a.id,
                     nome = a.nome,
                     email = a.email
                 }).ToList();
-                return Ok(alunosResponse);
+
+                return Ok(response);
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 return StatusCode(500);
             }

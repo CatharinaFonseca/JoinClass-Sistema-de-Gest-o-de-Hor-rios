@@ -8,9 +8,10 @@ namespace JoinClassGestaodeHorario.API.Controllers.Graduacoes.Response
     public class GraduacaoResponse
     {
         public int id { get; set; }
-        public string nome { get; set; }
-        public int cargaHoraria { get; set; }
-        public int duracao { get; set; }
-        public int qntAulas { get; set; }
+        public string nomeGraduacao { get; set; }
+        public int duracaoGraduacao { get; set; }
+        public int qntAulaGraduacao { get; set; }
+
+        public int idCoordenador { get; set; }
     }
 }

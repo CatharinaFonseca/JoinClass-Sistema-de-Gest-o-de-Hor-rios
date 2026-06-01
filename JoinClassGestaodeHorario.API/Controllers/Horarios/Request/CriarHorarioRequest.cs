@@ -7,9 +7,9 @@ namespace JoinClassGestaodeHorario.API.Controllers.Horarios.Request
 {
     public class CriarHorarioRequest
     {
-        public string DiaSemana { get; set; }
-        public string HorarioInicio { get; set; }
-        public string HorarioFim { get; set; }
-        public int IdTurma { get; set; }
+        public string diaSemana { get; set; }
+        public string horarioInicio { get; set; }
+        public string horarioFim { get; set; }
+        public int idTurma { get; set; }
     }
 }

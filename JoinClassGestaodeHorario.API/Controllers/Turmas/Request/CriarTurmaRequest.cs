@@ -7,6 +7,7 @@ namespace JoinClassGestaodeHorario.API.Controllers.Turmas.Request
 {
     public class CriarTurmaRequest
     {
-
+        public int idProfessor { get; set; }
+        public int idMatrizCurricular { get; set; }
     }
 }

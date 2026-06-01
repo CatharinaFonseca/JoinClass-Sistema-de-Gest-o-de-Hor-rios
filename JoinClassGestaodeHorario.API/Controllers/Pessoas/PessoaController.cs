@@ -76,7 +76,6 @@ namespace JoinClassGestaodeHorario.API.Controllers.Pessoas
         {
             try
             {
-                //Não precisa ter objeto
                 await excluirPessoaUseCase.ExcluirPessoa(id);
                 return NoContent();
             }

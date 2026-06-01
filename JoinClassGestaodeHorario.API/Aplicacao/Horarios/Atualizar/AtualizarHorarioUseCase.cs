@@ -16,7 +16,7 @@ namespace JoinClassGestaodeHorario.API.Aplicacao.Horarios.Atualizar
             this.horarioRepository = horarioRepository;
         }
 
-        public async Task AlterarHorario(Horario horario)
+        public async Task AtualizarHorario(Horario horario)
         {
             await horarioRepository.Alterar(horario);
         }

@@ -6,8 +6,9 @@ using JoinClassGestaodeHorario.API.Controllers.Pessoas.Request;
 
 namespace JoinClassGestaodeHorario.API.Controllers.Professores.Request
 {
-    public class AdicionarProfessorRequest : AdicionarPessoaRequest
+    public class AdicionarProfessorRequest
     {
-
+        public string nome { get; set; }
+        public string email { get; set; }
     }
 }

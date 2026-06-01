@@ -104,5 +104,26 @@ namespace JoinClassGestaodeHorario.API.Controllers.Professores
                 return StatusCode(500);
             }
         }
+
+        public async Task<IActionResult> ObterTodos()
+        {
+            try
+            {
+                var professores = await professorRepositorio.ObterTodosOsProfessores();
+
+                var response = professores.Select(p => new ProfessorResponse
+                {
+                    id = p.id,
+                    nome = p.nome,
+                    email = p.email
+                }).ToList();
+
+                return Ok(response);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500);
+            }
+        }
     }
 }

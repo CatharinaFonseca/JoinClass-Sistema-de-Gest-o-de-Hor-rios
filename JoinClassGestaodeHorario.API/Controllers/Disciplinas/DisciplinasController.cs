@@ -57,6 +57,7 @@ namespace JoinClassGestaodeHorario.API.Controllers.Disciplinas
             {
                 Disciplina disciplina = new()
                 {
+                    id = id,
                     nome = request.nome,
                     cargaHoraria = request.cargaHoraria
                 };

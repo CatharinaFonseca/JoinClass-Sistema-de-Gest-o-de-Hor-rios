@@ -6,8 +6,10 @@ using JoinClassGestaodeHorario.API.Controllers.Pessoas.Response;
 
 namespace JoinClassGestaodeHorario.API.Controllers.Coordenadores.Response
 {
-    public class CoordenadorResponse : PessoaResponse
+    public class CoordenadorResponse
     {
-
+        public int id { get; set; }
+        public string nome { get; set; }
+        public string email { get; set; }
     }
 }

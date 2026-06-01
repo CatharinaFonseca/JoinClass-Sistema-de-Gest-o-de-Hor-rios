@@ -20,57 +20,101 @@ namespace JoinClassGestaodeHorario.API.Controllers.Horarios
     [Route("api/[controller]")]
     public class HorarioController : ControllerBase
     {
-        private readonly ApplicationDbContext contexto;
+        private IHorarioRepositorio horarioRepositorio;
+        private ICriarHorarioUseCase criarHorarioUseCase;
+        private IAtualizarHorarioUseCase atualizarHorarioUseCase;
+        private IExcluirHorarioUseCase excluirHorarioUseCase;
 
-        public HorarioController(ApplicationDbContext contexto)
+        public HorarioController(IHorarioRepositorio horarioRepositorio, ICriarHorarioUseCase criarHorarioUseCase, IAtualizarHorarioUseCase atualizarHorarioUseCase, IExcluirHorarioUseCase excluirHorarioUseCase)
         {
-            contexto = contexto;
+            this.horarioRepositorio = horarioRepositorio;
+            this.criarHorarioUseCase = criarHorarioUseCase;
+            this.atualizarHorarioUseCase = atualizarHorarioUseCase;
+            this.excluirHorarioUseCase = excluirHorarioUseCase;
         }
 
         [HttpPost]
         public async Task<IActionResult> Criar(CriarHorarioRequest request)
         {
-            var turma = await contexto.Turmas.FindAsync(request.IdTurma);
-
-            if (turma == null)
-                return NotFound("Turma não encontrada");
-
-            var horario = new Horario
+            try
             {
-                DiaSemana = request.DiaSemana,
-                HorarioInicio = request.HorarioInicio,
-                HorarioFim = request.HorarioFim,
-                IdTurma = request.IdTurma
-            };
+                Horario horario = new()
+                {
+                    diaSemana = request.diaSemana,
+                    horarioInicio = request.horarioInicio,
+                    horarioFim = request.horarioFim,
+                    idTurma = request.idTurma
+                };
 
-            contexto.Horarios.Add(horario);
-            await contexto.SaveChangesAsync();
+                await criarHorarioUseCase.CadastrarHorario(horario);
+                return Created();
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(500);
+            }
+        }
 
-            return Ok(horario);
+        [HttpPut("{id}")]
+
+        public async Task<IActionResult> Atualizar([FromRoute] int id, [FromBody] AtualizarHorarioRequest request)
+        {
+            try
+            {
+                Horario horario = new()
+                {
+                    id = id,
+                    diaSemana = request.diaSemana,
+                    horarioInicio = request.horarioInicio,
+                    horarioFim = request.horarioFim,
+                    idTurma = request.idTurma
+                };
+                await atualizarHorarioUseCase.AtualizarHorario(horario);
+
+                return NoContent();
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(500);
+            }
         }
 
         [HttpGet]
-        public async Task<IActionResult> Listar()
+        public async Task<IActionResult> ObterHorarios()
         {
-            var horarios = await contexto.Horarios
-                .Include(h => h.Turma)
-                .ToListAsync();
+            try
+            {
+                List<Horario> horarios = await horarioRepositorio.ObterTodosOsHorarios();
 
-            return Ok(horarios);
+                List<HorarioResponse> horariosResponse = horarios.Select(h => new HorarioResponse()
+                {
+                    id = h.id,
+                    diaSemana = h.diaSemana,
+                    horarioInicio = h.horarioInicio,
+                    horarioFim = h.horarioFim,
+                    idTurma = h.idTurma
+                }).ToList();
+
+                return Ok(horariosResponse);
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(500);
+            }
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Deletar(int id)
+        public async Task<IActionResult> Excluir(int id)
         {
-            var horario = await contexto.Horarios.FindAsync(id);
-
-            if (horario == null)
-                return NotFound();
-
-            contexto.Horarios.Remove(horario);
-            await contexto.SaveChangesAsync();
-
-            return Ok();
+            try
+            {
+                await excluirHorarioUseCase.ExcluirHorario(id);
+                return NoContent();
+            }
+            catch (System.Exception)
+            {
+                return StatusCode(500);
+            }
         }
     }
 }

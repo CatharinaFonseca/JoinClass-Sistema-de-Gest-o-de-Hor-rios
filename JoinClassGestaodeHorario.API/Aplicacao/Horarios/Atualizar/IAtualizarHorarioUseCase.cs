@@ -8,6 +8,6 @@ namespace JoinClassGestaodeHorario.API.Aplicacao.Horarios.Atualizar
 {
     public interface IAtualizarHorarioUseCase
     {
-        Task AlterarHorario(Horario horario);
+        Task AtualizarHorario(Horario horario);
     }
 }
