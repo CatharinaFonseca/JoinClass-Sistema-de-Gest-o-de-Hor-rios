@@ -7,12 +7,12 @@ namespace JoinClassGestaodeHorario.API.Dominio.Entidade
 {
     public class Disponibilidade
     {
-        public int Id { get; set; }
-        public string DiaSemana { get; set; }
-        public string HorarioInicio { get; set; }
-        public string HorarioFim { get; set; }
+        public int id { get; set; }
+        public string diaSemana { get; set; }
+        public string horarioInicio { get; set; }
+        public string horarioFim { get; set; }
 
-        public int IdProfessor { get; set; }
+        public int idProfessor { get; set; }
         public Professor Professor { get; set; }
     }
 
