@@ -16,7 +16,7 @@ namespace JoinClassGestaodeHorario.API.Aplicacao.Horarios.Criar
             this.horarioRepositorio = horarioRepositorio;
         }
 
-        public async Task CriarHorario(Horario horario)
+        public async Task CadastrarHorario(Horario horario)
         {
             await horarioRepositorio.Criar(horario);
         }
