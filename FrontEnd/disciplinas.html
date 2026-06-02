@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JoinClass - Disciplinas</title>
+    <!-- Vinculando o mesmo arquivo de estilo compartilhado -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Cabeçalho Principal -->
+    <header class="main-header">
+        <div class="logo-container">
+            <span class="logo-text-join">Join</span><span class="logo-text-class">Class</span>
+        </div>
+    </header>
+
+    <!-- Conteúdo da Página -->
+    <main class="container form-container">
+        
+        <!-- Card Central do Formulário -->
+        <div class="form-card">
+            <h1 class="form-title">Disciplina</h1>
+            
+            <h2 class="form-subtitle">Identificação</h2>
+            <hr class="form-divider">
+
+            <form>
+                <!-- Linha 1: Nome e Curso -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nome-disciplina">Nome:</label>
+                        <input type="text" id="nome-disciplina" class="form-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="curso-disciplina">Curso:</label>
+                        <input type="text" id="curso-disciplina" class="form-input">
+                    </div>
+                </div>
+
+                <!-- Linha 2: Carga Horária -->
+                <div class="form-row">
+                    <div class="form-group" style="max-width: 50%; margin: 0 auto;">
+                        <label for="carga-disciplina">Carga Horária:</label>
+                        <input type="text" id="carga-disciplina" class="form-input">
+                    </div>
+                </div>
+
+                <!-- Botão de Ação -->
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">Enviar</button>
+                </div>
+            </form>
+
+        </div>
+
+    </main>
+
+</body>
+</html>
