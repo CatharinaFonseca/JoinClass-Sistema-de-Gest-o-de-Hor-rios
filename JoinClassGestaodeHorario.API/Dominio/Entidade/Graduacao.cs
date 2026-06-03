@@ -15,6 +15,6 @@ namespace JoinClassGestaodeHorario.API.Dominio.Entidade
         public int idCoordenador { get; set; }
         public Coordenador Coordenador { get; set; }
 
-        public List<MatrizCurricular> Matrizes { get; set; }
+        public ICollection<MatrizCurricular> Matrizes { get; set; } = new List<MatrizCurricular>();
     }
 }

@@ -32,26 +32,26 @@ namespace JoinClassGestaodeHorario.API.Dados
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Pessoa>()
-                .ToTable("Pessoa", "public");
+                .ToTable("pessoa", "public");
 
             modelBuilder.Entity<Aluno>()
-                .ToTable("Aluno", "public");
+                .ToTable("aluno", "public");
 
             modelBuilder.Entity<Professor>()
-                .ToTable("Professor", "public");
+                .ToTable("professor", "public");
 
             modelBuilder.Entity<Coordenador>()
-                .ToTable("Coordenador", "public");
+                .ToTable("coordenador", "public");
 
             modelBuilder.Entity<Disciplina>(entidade =>
             {
-                entidade.ToTable("Disciplina", "public");
+                entidade.ToTable("disciplina", "public");
                 entidade.HasKey(e => e.id);
             });
 
             modelBuilder.Entity<Disponibilidade>(entidade =>
             {
-                entidade.ToTable("Disponibilidade", "public");
+                entidade.ToTable("disponibilidade", "public");
 
                 entidade.HasKey(e => e.id);
 
@@ -62,9 +62,21 @@ namespace JoinClassGestaodeHorario.API.Dados
 
             modelBuilder.Entity<Graduacao>(entidade =>
             {
-                entidade.ToTable("Graduacao", "public");
+                entidade.ToTable("graduacao", "public");
 
                 entidade.HasKey(e => e.id);
+
+                entidade.Property(e => e.nomeGraduacao)
+                    .HasColumnName("nome_graduacao");
+
+                entidade.Property(e => e.duracaoGraduacao)
+                    .HasColumnName("duracao_graduacao");
+
+                entidade.Property(e => e.qntAulaGraduacao)
+                    .HasColumnName("qnt_aula_graduacao");
+
+                entidade.Property(e => e.idCoordenador)
+                    .HasColumnName("id_coordenador");
 
                 entidade.HasOne(g => g.Coordenador)
                     .WithMany(c => c.Graduacoes)
@@ -73,7 +85,7 @@ namespace JoinClassGestaodeHorario.API.Dados
 
             modelBuilder.Entity<Horario>(entidade =>
             {
-                entidade.ToTable("Horario", "public");
+                entidade.ToTable("horario", "public");
 
                 entidade.HasKey(e => e.id);
 
@@ -84,7 +96,7 @@ namespace JoinClassGestaodeHorario.API.Dados
 
             modelBuilder.Entity<MatrizCurricular>(entidade =>
             {
-                entidade.ToTable("Matriz_curricular", "public");
+                entidade.ToTable("matriz_curricular", "public");
                 entidade.HasKey(e => e.id);
 
                 entidade.HasOne(m => m.Graduacao)
@@ -102,7 +114,7 @@ namespace JoinClassGestaodeHorario.API.Dados
 
             modelBuilder.Entity<ProfessorDisciplina>(entidade =>
            {
-               entidade.ToTable("Professor_Disciplina", "public");
+               entidade.ToTable("professor_disciplina", "public");
 
                entidade.HasKey(pd => new { pd.idProfessor, pd.idDisciplina });
 
@@ -117,13 +129,13 @@ namespace JoinClassGestaodeHorario.API.Dados
 
             modelBuilder.Entity<Semestre>(entidade =>
             {
-                entidade.ToTable("Semestre", "public");
+                entidade.ToTable("semestre", "public");
                 entidade.HasKey(e => e.id);
             });
 
             modelBuilder.Entity<Titulacao>(entidade =>
             {
-                entidade.ToTable("Titulacao", "public");
+                entidade.ToTable("titulacao", "public");
                 entidade.HasKey(e => e.id);
 
                 entidade.HasOne(t => t.Professor)
@@ -133,7 +145,7 @@ namespace JoinClassGestaodeHorario.API.Dados
 
             modelBuilder.Entity<Turma>(entidade =>
             {
-                entidade.ToTable("Turma", "public");
+                entidade.ToTable("turma", "public");
 
                 entidade.HasKey(e => e.id);
 
@@ -148,7 +160,7 @@ namespace JoinClassGestaodeHorario.API.Dados
 
             modelBuilder.Entity<TurmaAluno>(entidade =>
             {
-                entidade.ToTable("Turma_Aluno", "public");
+                entidade.ToTable("turma_aluno", "public");
 
                 entidade.HasKey(ta => new { ta.idTurma, ta.idAluno });
 

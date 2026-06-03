@@ -44,15 +44,14 @@ namespace JoinClassGestaodeHorario.API.Dados.Repositorios
         public async Task<Graduacao> ObterGraduacao(int id)
         {
             var graduacao = contexto.Graduacoes
-                .FromSql($"Select * From graduacao where id = {id}");
+                .FromSqlInterpolated($"Select * From graduacao where id = {id}");
             return await graduacao.FirstOrDefaultAsync();
         }
 
         public async Task<List<Graduacao>> ObterTodasAsGraduacoes()
         {
-            var graduacoes = contexto.Database
-                .SqlQuery<Graduacao>($"Select * From graduacao");
-            return await graduacoes.ToListAsync();
+            return await contexto.Graduacoes
+                .ToListAsync();
         }
     }
 }
