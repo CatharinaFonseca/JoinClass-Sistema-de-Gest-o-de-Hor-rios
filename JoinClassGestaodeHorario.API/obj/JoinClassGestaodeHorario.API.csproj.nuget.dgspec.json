@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\JoinClassDev\\JoinClassGestaodeHorario.API\\JoinClassGestaodeHorario.API.csproj": {}
+    "C:\\Users\\gabig\\OneDrive\\Documentos\\GitHub\\JoinClass-SistemaDeGestaoDeHorarios\\JoinClassGestaodeHorario.API\\JoinClassGestaodeHorario.API.csproj": {}
   },
   "projects": {
-    "C:\\JoinClassDev\\JoinClassGestaodeHorario.API\\JoinClassGestaodeHorario.API.csproj": {
+    "C:\\Users\\gabig\\OneDrive\\Documentos\\GitHub\\JoinClass-SistemaDeGestaoDeHorarios\\JoinClassGestaodeHorario.API\\JoinClassGestaodeHorario.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\JoinClassDev\\JoinClassGestaodeHorario.API\\JoinClassGestaodeHorario.API.csproj",
+        "projectUniqueName": "C:\\Users\\gabig\\OneDrive\\Documentos\\GitHub\\JoinClass-SistemaDeGestaoDeHorarios\\JoinClassGestaodeHorario.API\\JoinClassGestaodeHorario.API.csproj",
         "projectName": "JoinClassGestaodeHorario.API",
-        "projectPath": "C:\\JoinClassDev\\JoinClassGestaodeHorario.API\\JoinClassGestaodeHorario.API.csproj",
-        "packagesPath": "C:\\Users\\CatharinaFonseca\\.nuget\\packages\\",
-        "outputPath": "C:\\JoinClassDev\\JoinClassGestaodeHorario.API\\obj\\",
+        "projectPath": "C:\\Users\\gabig\\OneDrive\\Documentos\\GitHub\\JoinClass-SistemaDeGestaoDeHorarios\\JoinClassGestaodeHorario.API\\JoinClassGestaodeHorario.API.csproj",
+        "packagesPath": "C:\\Users\\gabig\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\gabig\\OneDrive\\Documentos\\GitHub\\JoinClass-SistemaDeGestaoDeHorarios\\JoinClassGestaodeHorario.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\CatharinaFonseca\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\gabig\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -38,7 +38,7 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.300"
+        "SdkAnalysisLevel": "10.0.100"
       },
       "frameworks": {
         "net9.0": {
@@ -80,7 +80,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.312/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.108/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
