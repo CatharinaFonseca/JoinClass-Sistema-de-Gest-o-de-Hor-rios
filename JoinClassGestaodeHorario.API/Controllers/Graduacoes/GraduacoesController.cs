@@ -38,10 +38,10 @@ namespace JoinClassGestaodeHorario.API.Controllers.Graduacoes
             {
                 Graduacao graduacao = new()
                 {
-                    nome = request.nome,
-                    cargaHoraria = request.cargaHoraria,
-                    duracao = request.duracao,
-                    qntAulas = request.qntAulas
+                    nomeGraduacao = request.nomeGraduacao,
+                    duracaoGraduacao = request.duracaoGraduacao,
+                    qntAulaGraduacao = request.qntAulaGraduacao,
+                    idCoordenador = request.idCoordenador
                 };
                 await criarGraduacaoUseCase.CadastrarGraduacao(graduacao);
 
@@ -60,10 +60,10 @@ namespace JoinClassGestaodeHorario.API.Controllers.Graduacoes
             {
                 Graduacao graduacao = new()
                 {
-                    nome = request.nome,
-                    cargaHoraria = request.cargaHoraria,
-                    duracao = request.duracao,
-                    qntAulas = request.qntAulas
+                    nomeGraduacao = request.nomeGraduacao,
+                    duracaoGraduacao = request.duracaoGraduacao,
+                    qntAulaGraduacao = request.qntAulaGraduacao,
+                    idCoordenador = request.idCoordenador
                 };
                 await atualizarGraduacaoUseCase.AtualizarGraduacao(graduacao);
 
@@ -80,7 +80,6 @@ namespace JoinClassGestaodeHorario.API.Controllers.Graduacoes
         {
             try
             {
-                //Não precisa ter objeto
                 await excluirGraduacao.ExcluirGraduacao(id);
                 return NoContent();
             }
@@ -100,13 +99,13 @@ namespace JoinClassGestaodeHorario.API.Controllers.Graduacoes
                 List<GraduacaoResponse> graduacoesresponse = graduacoes.Select(g => new GraduacaoResponse()
                 {
                     id = g.id,
-                    nome = g.nome,
-                    cargaHoraria = g.cargaHoraria,
-                    duracao = g.duracao,
-                    qntAulas = g.qntAulas
+                    nomeGraduacao = g.nomeGraduacao,
+                    duracaoGraduacao = g.duracaoGraduacao,
+                    qntAulaGraduacao = g.qntAulaGraduacao,
+                    idCoordenador = g.idCoordenador
                 }).ToList();
 
-                return Ok(graduacoes);
+                return Ok(graduacoesresponse);
             }
             catch (System.Exception)
             {

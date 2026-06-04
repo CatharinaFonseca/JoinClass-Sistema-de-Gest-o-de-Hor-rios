@@ -6,7 +6,7 @@ using JoinClassGestaodeHorario.API.Dominio.Entidade;
 
 namespace JoinClassGestaodeHorario.API.Aplicacao.Turmas.Atualizar
 {
-    public interface IAtualizarTurmasUseCase
+    public interface IAtualizarTurmaUseCase
     {
         Task AtualizarTurma(Turma turma);
     }

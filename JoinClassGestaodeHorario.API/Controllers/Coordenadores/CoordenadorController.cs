@@ -14,6 +14,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JoinClassGestaodeHorario.API.Controllers.Coordenadores
 {
+<<<<<<< HEAD
+=======
+    [ApiController]
+    [Route("api/coordenadores")]
+>>>>>>> feature/Gabriela
     public class CoordenadoresController : ControllerBase
     {
         private IAdicionarCoordenadoresUseCase adicionarCoordenadoresUseCase;
@@ -55,6 +60,7 @@ namespace JoinClassGestaodeHorario.API.Controllers.Coordenadores
             {
                 Coordenador coordenador = new()
                 {
+                    id = id,
                     nome = request.nome,
                     email = request.email
                 };
@@ -87,17 +93,21 @@ namespace JoinClassGestaodeHorario.API.Controllers.Coordenadores
         {
             try
             {
-                List<Coordenador> coordenadores = await coordenadorRepositorio.ObterTodosOsCoordenadores();
+                Coordenador coordenador = await coordenadorRepositorio.ObterCoordenador(id);
 
-                List<CoordenadorResponse> coordenadoresResponse = coordenadores.Select(c => new CoordenadorResponse()
+                if (coordenador == null)
+                    return NotFound();
+
+                CoordenadorResponse response = new()
                 {
-                    id = c.id,
-                    nome = c.nome,
-                    email = c.email
-                }).ToList();
-                return Ok(coordenadoresResponse);
+                    id = coordenador.id,
+                    nome = coordenador.nome,
+                    email = coordenador.email
+                };
+
+                return Ok(response);
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 return StatusCode(500);
             }

@@ -13,6 +13,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JoinClassGestaodeHorario.API.Controllers.Professores
 {
+    [ApiController]
+    [Route("api/professores")]
     public class ProfessoresController : ControllerBase
     {
         private IAdicionarProfessoresUseCase adicionarProfessoresUseCase;
@@ -55,6 +57,7 @@ namespace JoinClassGestaodeHorario.API.Controllers.Professores
             {
                 Professor professor = new()
                 {
+                    id = id,
                     nome = request.nome,
                     email = request.email
                 };
@@ -62,9 +65,9 @@ namespace JoinClassGestaodeHorario.API.Controllers.Professores
                 await atualizarProfessoresUseCase.AtualizarProfessor(professor);
                 return NoContent();
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
-                return StatusCode(500);
+                return StatusCode(500, ex.Message);
             }
         }
 
@@ -87,17 +90,43 @@ namespace JoinClassGestaodeHorario.API.Controllers.Professores
         {
             try
             {
-                List<Professor> professores = await professorRepositorio.ObterTodosOsProfessores();
+                var professor = await professorRepositorio.ObterProfessor(id);
 
-                List<ProfessorResponse> professoresResponse = professores.Select(p => new ProfessorResponse()
+                if (professor == null)
+                    return NotFound();
+
+                var response = new ProfessorResponse
+                {
+                    id = professor.id,
+                    nome = professor.nome,
+                    email = professor.email
+                };
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message); // 👈 MOSTRA O ERRO REAL
+            }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ObterTodos()
+        {
+            try
+            {
+                var professores = await professorRepositorio.ObterTodosOsProfessores();
+
+                var response = professores.Select(p => new ProfessorResponse
                 {
                     id = p.id,
                     nome = p.nome,
                     email = p.email
                 }).ToList();
-                return Ok(professoresResponse);
+
+                return Ok(response);
             }
-            catch (System.Exception)
+            catch (Exception)
             {
                 return StatusCode(500);
             }

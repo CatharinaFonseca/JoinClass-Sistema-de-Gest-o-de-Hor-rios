@@ -7,8 +7,9 @@ using JoinClassGestaodeHorario.API.Dominio.Entidade;
 
 namespace JoinClassGestaodeHorario.API.Controllers.Coordenadores.Request
 {
-    public class AdicionarCoordenadorRequest : AdicionarPessoaRequest
+    public class AdicionarCoordenadorRequest
     {
-
+        public string nome { get; set; }
+        public string email { get; set; }
     }
 }

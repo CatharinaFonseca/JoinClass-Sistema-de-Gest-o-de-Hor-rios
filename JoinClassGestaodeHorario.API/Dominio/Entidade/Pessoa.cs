@@ -8,7 +8,7 @@ namespace JoinClassGestaodeHorario.API.Dominio.Entidade
     public class Pessoa
     {
         public int id { get; set; }
-        public string nome { get; set; }
-        public string email { get; set; }
+        public string nome { get; set; } = string.Empty;
+        public string email { get; set; } = string.Empty;
     }
 }

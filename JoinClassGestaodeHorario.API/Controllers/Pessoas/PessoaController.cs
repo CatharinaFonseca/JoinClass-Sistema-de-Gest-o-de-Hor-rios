@@ -14,6 +14,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JoinClassGestaodeHorario.API.Controllers.Pessoas
 {
+    [ApiController]
+    [Route("api/pessoas")]
     public class PessoasController : ControllerBase
     {
         private IAdicionarPessoaUseCase adicionarPessoaUseCase;
@@ -74,7 +76,6 @@ namespace JoinClassGestaodeHorario.API.Controllers.Pessoas
         {
             try
             {
-                //Não precisa ter objeto
                 await excluirPessoaUseCase.ExcluirPessoa(id);
                 return NoContent();
             }

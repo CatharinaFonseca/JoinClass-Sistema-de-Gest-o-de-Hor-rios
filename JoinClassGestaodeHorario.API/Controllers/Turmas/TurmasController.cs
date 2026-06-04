@@ -19,10 +19,17 @@ namespace JoinClassGestaodeHorario.API.Controllers.Turmas
     {
         private ITurmaRepositorio turmaRepositorio;
         private ICriarTurmaUseCase criarTurmaUseCase;
+<<<<<<< HEAD
         private IAtualizarTurmasUseCase atualizarTurmaUseCase;
         private IExcluirTurmaUseCase excluirTurmaUseCase;
 
         public TurmasController(ITurmaRepositorio turmaRepositorio, ICriarTurmaUseCase criarTurmaUseCase, IAtualizarTurmasUseCase atualizarTurmaUseCase, IExcluirTurmaUseCase excluirTurmaUseCase)
+=======
+        private IAtualizarTurmaUseCase atualizarTurmaUseCase;
+        private IExcluirTurmaUseCase excluirTurmaUseCase;
+
+        public TurmasController(ITurmaRepositorio turmaRepositorio, ICriarTurmaUseCase criarTurmaUseCase, IAtualizarTurmaUseCase atualizarTurmaUseCase, IExcluirTurmaUseCase excluirTurmaUseCase)
+>>>>>>> feature/Gabriela
         {
             this.turmaRepositorio = turmaRepositorio;
             this.criarTurmaUseCase = criarTurmaUseCase;
@@ -37,6 +44,11 @@ namespace JoinClassGestaodeHorario.API.Controllers.Turmas
             {
                 Turma turma = new()
                 {
+<<<<<<< HEAD
+=======
+                    idProfessor = request.idProfessor,
+                    idMatrizCurricular = request.idMatrizCurricular
+>>>>>>> feature/Gabriela
                 };
                 await criarTurmaUseCase.CadastrarTurma(turma);
 
@@ -55,6 +67,12 @@ namespace JoinClassGestaodeHorario.API.Controllers.Turmas
             {
                 Turma turma = new()
                 {
+<<<<<<< HEAD
+=======
+                    id = id,
+                    idProfessor = request.idProfessor,
+                    idMatrizCurricular = request.idMatrizCurricular
+>>>>>>> feature/Gabriela
                 };
                 await atualizarTurmaUseCase.AtualizarTurma(turma);
 
@@ -90,6 +108,11 @@ namespace JoinClassGestaodeHorario.API.Controllers.Turmas
                 List<TurmaResponse> turmasResponse = turmas.Select(t => new TurmaResponse()
                 {
                     id = t.id,
+<<<<<<< HEAD
+=======
+                    idProfessor = t.idProfessor,
+                    idMatrizCurricular = t.idMatrizCurricular
+>>>>>>> feature/Gabriela
                 }).ToList();
 
                 return Ok(turmasResponse);

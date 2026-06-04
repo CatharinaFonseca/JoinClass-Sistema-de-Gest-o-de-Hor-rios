@@ -7,7 +7,6 @@ namespace JoinClassGestaodeHorario.API.Dominio.Entidade
 {
     public class Coordenador : Pessoa
     {
-        public List<Disciplina> disciplinas { get; set; }
-        public List<Graduacao> graduacoes { get; set; }
+        public ICollection<Graduacao> Graduacoes { get; set; } = new List<Graduacao>();
     }
 }
