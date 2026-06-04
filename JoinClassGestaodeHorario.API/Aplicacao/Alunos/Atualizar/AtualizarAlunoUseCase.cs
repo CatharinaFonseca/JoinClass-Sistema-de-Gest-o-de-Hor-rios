@@ -18,6 +18,12 @@ namespace JoinClassGestaodeHorario.API.Aplicacao.Alunos.Atualizar
 
         public async Task AtualizarAluno(Aluno aluno)
         {
+            //Impede cadastro incompleto
+            if (string.IsNullOrWhiteSpace(aluno.nome))
+            {
+                throw new Exception("Nome do aluno é obrigatório.");
+            }
+            
             await alunoRepositorio.Alterar(aluno);
         }
     }

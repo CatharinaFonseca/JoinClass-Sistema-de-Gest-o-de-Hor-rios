@@ -18,6 +18,17 @@ namespace JoinClassGestaodeHorario.API.Aplicacao.Disciplinas.Criar
 
         public async Task CadastrarDisciplina(Disciplina disciplina)
         {
+            //Não permitir disciplina sem nome 
+            if (string.IsNullOrWhiteSpace(disciplina.nome))
+            {
+                throw new Exception("Nome da disciplina é obrigatório.");
+            }
+            //Garantir carga horária positiva
+            if (disciplina.cargaHoraria <= 0)
+            {
+                throw new Exception("Carga horária inválida.");
+            }
+            
             await disciplinaRepositorio.Adicionar(disciplina);
         }
     }

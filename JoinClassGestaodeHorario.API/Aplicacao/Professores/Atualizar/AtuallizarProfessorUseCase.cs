@@ -18,6 +18,18 @@ namespace JoinClassGestaodeHorario.API.Aplicacao.Professores.Atualizar
 
         public async Task AtualizarProfessor(Professor professor)
         {
+            //Impedir professor sem nome 
+            if (string.IsNullOrWhiteSpace(professor.nome))
+            {
+                throw new Exception("Nome do professor é obrigatório.");
+            }
+            //Professor precisa informar quando pode dar aula 
+            if (!professor.Disponibilidades.Any())
+            {
+                throw new Exception(
+                    "Professor deve possuir disponibilidade cadastrada.");
+            }
+            
             await professorRepositorio.Alterar(professor);
         }
     }

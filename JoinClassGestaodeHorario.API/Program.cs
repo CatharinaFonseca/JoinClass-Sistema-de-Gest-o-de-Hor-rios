@@ -30,6 +30,7 @@ using JoinClassGestaodeHorario.API.Dados;
 using JoinClassGestaodeHorario.API.Dados.Repositorios;
 using JoinClassGestaodeHorario.API.Dominio.Repositorios;
 using Microsoft.EntityFrameworkCore;
+using JoinClassGestaodeHorario.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -88,6 +89,7 @@ builder.Services.AddTransient<IHorarioRepositorio, HorarioRepositorio>();
 builder.Services.AddTransient<ICriarHorarioUseCase, CriarHorarioUseCase>();
 builder.Services.AddTransient<IAtualizarHorarioUseCase, AtualizarHorarioUseCase>();
 builder.Services.AddTransient<IExcluirHorarioUseCase, ExcluirHorarioUseCase>();
+builder.Services.AddTransient<GerarHorariosService>();
 
 //Injeção de dependência dos repositórios e casos de uso para Pessoas
 builder.Services.AddTransient<IPessoaRepositorio, PessoaRepositorio>();

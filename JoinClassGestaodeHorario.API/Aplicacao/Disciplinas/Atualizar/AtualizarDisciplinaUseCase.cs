@@ -18,6 +18,17 @@ namespace JoinClassGestaodeHorario.API.Aplicacao.Disciplinas.Atualizar
 
         public async Task AtualizarDisciplina(Disciplina disciplina)
         {
+            //Não permitir disciplina sem nome 
+            if (string.IsNullOrWhiteSpace(disciplina.nome))
+            {
+                throw new Exception("Nome da disciplina é obrigatório.");
+            }
+            //Garantir carga horária positiva
+            if (disciplina.cargaHoraria <= 0)
+            {
+                throw new Exception("Carga horária inválida.");
+            }
+
             await disciplinaRepositorio.Alterar(disciplina);
         }
     }

@@ -18,6 +18,11 @@ namespace JoinClassGestaodeHorario.API.Aplicacao.Turmas.Atualizar
 
         public async Task AtualizarTurma(Turma turma)
         {
+            if (turma.idProfessor <= 0)
+            {
+                throw new Exception("Professor é obrigatório.");
+            }
+
             await turmaRepositorio.Alterar(turma);
         }
     }
