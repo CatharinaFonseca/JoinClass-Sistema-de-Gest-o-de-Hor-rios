@@ -1,9 +1,0 @@
-C:\JoinClassDev\JoinClassGestaodeHorario.API\obj\Debug\net9.0\JoinClassGestaodeHorario.API.csproj.AssemblyReference.cache
-C:\JoinClassDev\JoinClassGestaodeHorario.API\obj\Debug\net9.0\rpswa.dswa.cache.json
-C:\JoinClassDev\JoinClassGestaodeHorario.API\obj\Debug\net9.0\JoinClassGestaodeHorario.API.GeneratedMSBuildEditorConfig.editorconfig
-C:\JoinClassDev\JoinClassGestaodeHorario.API\obj\Debug\net9.0\JoinClassGestaodeHorario.API.AssemblyInfoInputs.cache
-C:\JoinClassDev\JoinClassGestaodeHorario.API\obj\Debug\net9.0\JoinClassGestaodeHorario.API.AssemblyInfo.cs
-C:\JoinClassDev\JoinClassGestaodeHorario.API\obj\Debug\net9.0\JoinClassGestaodeHorario.API.csproj.CoreCompileInputs.cache
-C:\JoinClassDev\JoinClassGestaodeHorario.API\obj\Debug\net9.0\JoinClassGestaodeHorario.API.MvcApplicationPartsAssemblyInfo.cs
-C:\JoinClassDev\JoinClassGestaodeHorario.API\obj\Debug\net9.0\JoinClassGestaodeHorario.API.MvcApplicationPartsAssemblyInfo.cache
-C:\JoinClassDev\JoinClassGestaodeHorario.API\obj\Debug\net9.0\JoinClassGestaodeHorario.API.sourcelink.json
