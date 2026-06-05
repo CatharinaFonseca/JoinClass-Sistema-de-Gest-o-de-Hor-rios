@@ -5,19 +5,16 @@ using System.Threading.Tasks;
 
 namespace JoinClassGestaodeHorario.API.Dominio.Entidade
 {
-<<<<<<<< HEAD:JoinClassGestaodeHorario.API/Controllers/Graduacoes/Request/CriarGraduacaoRequest.cs
-    public class CriarGraduacaoRequest
-========
     public class Graduacao
->>>>>>>> feature/Gabriela:JoinClass-SistemaDeGestaoDeHorarios/JoinClassGestaodeHorario.API/Dominio/Entidade/Graduacao.cs
     {
-        public string nome { get; set; }
-        public int cargaHoraria { get; set; }
-        public int duracao { get; set; }
-        public int qntAulas { get; set; }
-<<<<<<<< HEAD:JoinClassGestaodeHorario.API/Controllers/Graduacoes/Request/CriarGraduacaoRequest.cs
-========
-        //public List<Disciplina> disciplinas { get; set; }
->>>>>>>> feature/Gabriela:JoinClass-SistemaDeGestaoDeHorarios/JoinClassGestaodeHorario.API/Dominio/Entidade/Graduacao.cs
+        public int id { get; set; }
+        public string nomeGraduacao { get; set; }
+        public int duracaoGraduacao { get; set; }
+        public int qntAulaGraduacao { get; set; }
+
+        public int idCoordenador { get; set; }
+        public Coordenador Coordenador { get; set; }
+
+        public ICollection<MatrizCurricular> Matrizes { get; set; } = new List<MatrizCurricular>();
     }
 }
