@@ -1,0 +1,427 @@
+/* Pagina Inicial*/
+button{
+	background-color: #F44C02;
+	color: #FFFFFF;
+	border: none;
+	padding: 10px 30px;
+	border-radius: 6px;
+	cursor: pointer;
+	transition:background-color 0.3s, transform 0.2s;
+	font-family: Arial, sans-serif;
+	margin-top: 30px;
+}
+button:hover{
+	background-color: #d04203;
+	transform: scale(1.05);
+}
+body{
+	font-family: Playfair Display, serif;
+	background-color: #012553;
+	color: #000000;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+}
+.LogoPgPrincipal{
+	margin-top: 30px;
+	display: flex;
+	justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.BarraLateral{
+	width:220px;
+	height: 100vh;
+    background:#d9d9d9;
+  	padding-top: 90px;
+    border-radius:0 20px 20px 0;
+    transition: 0.3s;
+    padding-top: 90px;
+    overflow-x: hidden;
+    position: fixed;
+    top: 0;
+    left: -220px;
+}
+.BarraLateral h2{
+    margin-bottom:40px;
+    color:#002b66;
+}
+.BarraLateral a{
+    display: flex;
+    padding: 8px 20px;
+    text-decoration:none;
+    color:#002b66;
+    font-size:23px;
+    transition: 0.2s;
+    font-family: Arial, sans-serif;
+    gap: 5px;
+    align-items: center;
+    padding-left: 35px;
+}
+.BarraLateral a:hover {
+    background: #f1f1f1;
+}
+.BarraLateral.active{
+    left: 0;
+}
+.BarraLateral i{
+	width: 30px;
+}
+
+.BotaoMenu {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    color: white;
+    padding: 20px;
+    cursor: pointer;
+    z-index: 1000;
+    font-family: Arial, sans-serif;
+}
+.BotaoMenu.active{
+	color: #012553;
+}
+.BotaoLogin {
+    flex: 1;
+    text-align: center;
+    color: white;
+    margin-top: -80px;
+}
+/*Pagina Inicial*/
+
+/*Pagina Login*/
+.BodyLogin{
+    background-color: #f5f9ff;
+}
+
+.TopoLogin{
+    background-color: #012553;
+    height: 90px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.LogoLogin{
+    width: 140px;
+    height: auto;
+}
+
+
+.CardLogin{
+    width: 500px;
+    margin: 50px auto;
+    background-color: #e5e5e5;
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 40px;
+}
+
+.CardLogin h1{
+    font-size: 70px;
+    margin-bottom: 40px;
+}
+
+.CampoLogin{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 25px;
+    gap: 15px;
+}
+
+.CampoLogin label{
+    font-size: 22px;
+    font-family: Arial, sans-serif;
+}
+
+.CampoLogin input{
+    width: 280px;
+    height: 35px;
+    border-radius: 12px;
+    border: 1px solid black;
+    padding-left: 10px;
+    font-size: 16px;
+}
+
+
+.BotaoEntrar{
+    margin-top: 20px;
+}
+
+.BotaoEntrar button{
+    width: 180px;
+    height: 55px;
+    font-size: 28px;
+    border-radius: 20px;
+}
+
+
+.TextoCadastro{
+    margin-top: 10px;
+    font-size: 18px;
+    font-family: Arial, sans-serif;
+}
+/*Pagina Login*/
+
+/*Primeiro Acesso*/
+
+.Body1Acesso{
+    background-color: #f5f9ff;
+}
+
+.Topo1Acesso{
+    background-color: #012553;
+    height: 90px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.LogoLogin{
+    width: 140px;
+    height: auto;
+}
+
+
+.CardLogin{
+    width: 750px;
+    margin: 50px auto;
+    background-color: #e5e5e5;
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 40px;
+}
+
+.CardLogin h1{
+    font-size: 70px;
+    margin-bottom: 40px;
+}
+
+.LinhaCampos{
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-bottom: 25px;
+}
+
+.CampoNome1Acesso{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 350px;
+    gap: 10px;
+}
+
+.CampoNome1Acesso label{
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+}
+
+.CampoNome1Acesso input{
+    width: 220px;
+    height: 35px;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding-left: 10px;
+}
+
+.CampoRE{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 350px;
+    gap: 10px;
+}
+
+.CampoRE label{
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+}
+
+.CampoRE input{
+    width: 220px;
+    height: 35px;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding-left: 10px;
+}
+
+.CampoEmail{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 350px;
+    gap: 10px;
+}
+
+.CampoEmail label{
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+}
+
+.CampoEmail input{
+    width: 220px;
+    height: 35px;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding-left: 10px;
+}
+
+.CampoSenha{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 350px;
+    gap: 10px;
+}
+
+.CampoSenha label{
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+}
+
+.CampoSenha input{
+    width: 220px;
+    height: 35px;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding-left: 10px;
+}
+.BotaoEntrar{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.BotaoEntrar button{
+    width: 180px;
+    height: 55px;
+    font-size: 28px;
+    border-radius: 20px;
+}
+/*Primeiro Acesso*/
+
+/*Diretor*/
+
+.BodyDiretor{
+    background-color: #f5f9ff;
+}
+
+.TopoDiretor{
+    background-color: #012553;
+    height: 90px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.LogoLogin{
+    width: 140px;
+    height: auto;
+}
+
+.TituloDiretor{
+    margin-left: 360px;
+    margin-top: 30px;
+    font-size: 40px;
+    text-align: left;
+    margin-bottom: -30px;
+}
+
+
+.CardLogin{
+    width: 750px;
+    margin: 50px auto;
+    background-color: #e5e5e5;
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 40px;
+}
+
+.CardLogin h1{
+    font-size: 70px;
+    margin-bottom: 40px;
+}
+
+.LinhaCampos{
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-bottom: 20px;
+}
+
+.CampoNome{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.CampoNome label{
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+}
+
+.CampoNome input{
+    width: 170px;
+    height: 35px;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding-left: 10px;
+}
+
+.CampoTitulacao{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.CampoTitulacao label{
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+}
+
+.CampoTitulacao input{
+    width: 170px;
+    height: 35px;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding-left: 10px;
+}
+
+.CampoCurso{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.CampoCurso label{
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+}
+
+.CampoCurso input{
+    width: 170px;
+    height: 35px;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding-left: 10px;
+}
+.BotaoEnviar{
+    margin-top: 20px;
+}
+
+.BotaoEnviar button{
+    width: 180px;
+    height: 55px;
+    font-size: 28px;
+    border-radius: 20px;
+}
+/*Diretor*/

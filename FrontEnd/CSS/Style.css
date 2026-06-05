@@ -1,0 +1,383 @@
+/* Configurações Gerais e Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f7fc;
+    min-height: 100vh;
+}
+/* Cabeçalho */
+.main-header {
+    background-color: #002855; /* Azul escuro principal */
+    padding: 20px 60px;
+    display: flex;
+    align-items: center;
+}
+
+.logo-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 28px; /* Tamanho destacado */
+    font-weight: 800; /* Letra bem gordinha/firme */
+    letter-spacing: -1px; /* Junta um pouco as letras para dar efeito de marca */
+    text-transform: none;
+}
+
+.logo-text-join {
+    color: #ffffff; /* Branco */
+}
+
+.logo-text-class {
+    color: #ff5500; /* Laranja vibrante */
+    margin-left: 1px;
+}
+
+.logo-container {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.logo-text-join {
+    color: #ffffff;
+}
+
+.logo-text-class {
+    color: #ff5500;
+}
+
+/* Área de Conteúdo principal - Agora ocupa mais a tela */
+.container {
+    padding: 60px;
+    max-width: 1400px; /* Aumentamos a largura máxima para usar as laterais */
+    margin: 0 auto;
+}
+
+.page-title {
+    font-family: 'Georgia', serif;
+    font-size: 36px;
+    color: #111111;
+    margin-bottom: 50px;
+}
+
+/* Painel de Cards - Agora usa CSS Grid para organizar melhor */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Divide a tela em 3 colunas iguais */
+    gap: 40px; /* Espaço maior entre os blocos */
+}
+
+/* Estilo dos novos Cards Grandes */
+.card {
+    background-color: #ffffff; /* Fundo branco para destacar do fundo da tela */
+    border: 2px solid #002855; /* Borda com a cor principal */
+    border-radius: 16px; /* Cantos mais arredondados e modernos */
+    height: 250px; /* Bem mais alto para preencher o espaço vertical */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #002855;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Sombra leve para dar elegância */
+    transition: all 0.3s ease;
+    padding: 30px;
+}
+
+/* Efeito ao passar o mouse */
+.card:hover {
+    background-color: #002855;
+    color: #ffffff; /* Inverte as cores quando passa o mouse */
+    transform: translateY(-5px); /* Sobe um pouquinho */
+    box-shadow: 0 8px 24px rgba(0, 40, 85, 0.2);
+}
+
+.card-text {
+    font-size: 24px; /* Letras maiores */
+    font-weight: 600;
+    text-align: center;
+}
+
+/* ==========================================================================
+   Estilos específicos para Telas de Formulário (Matriz Curricular, etc.)
+   ========================================================================== */
+
+/* Centraliza o card de formulário na tela */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 150px); /* Desconta o espaço do cabeçalho */
+}
+
+/* O Bloco/Card centralizado */
+.form-card {
+    background-color: #f5f5f5; /* Cor cinza clara de fundo idêntica à imagem */
+    border: 2px solid #111111; /* Borda escura fina */
+    border-radius: 24px; /* Cantos arredondados e elegantes */
+    width: 100%;
+    max-width: 850px; /* Largura para preencher bem o espaço sem esparramar */
+    padding: 40px 50px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.form-title {
+    font-family: 'Georgia', serif;
+    font-size: 42px;
+    font-weight: bold;
+    text-align: center;
+    color: #111111;
+    margin-bottom: 20px;
+}
+
+.form-subtitle {
+    font-size: 22px;
+    font-weight: bold;
+    color: #111111;
+    margin-bottom: 5px;
+}
+
+/* Linha divisória abaixo de Identificação */
+.form-divider {
+    border: none;
+    border-top: 2px solid #555555;
+    margin-bottom: 35px;
+    width: 45%; /* Tamanho parcial como na imagem */
+}
+
+/* Organização dos Inputs em Linhas */
+.form-row {
+    display: flex;
+    gap: 40px; /* Espaço entre os campos da mesma linha */
+    margin-bottom: 30px;
+}
+
+/* Agrupamento de Label + Input */
+.form-group {
+    display: flex;
+    align-items: center;
+    flex: 1; /* Faz com que os campos dividam o espaço igualmente */
+    gap: 15px;
+}
+
+.form-group label {
+    font-size: 20px;
+    font-weight: 500;
+    color: #111111;
+    white-space: nowrap; /* Evita que o texto quebre linha */
+}
+
+/* Os campos arredondados brancos */
+.form-input {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: #ffffff;
+    border: 1px solid #777777;
+    border-radius: 15px; /* Formato oval idêntico ao protótipo */
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.form-input:focus {
+    border-color: #ff5500; /* Destaca com laranja ao clicar */
+    box-shadow: 0 0 5px rgba(255, 85, 0, 0.2);
+}
+
+/* Alinhamento do Botão Enviar */
+.form-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Botão Laranja */
+.btn-submit {
+    background-color: #ff5500; /* Laranja JoinClass */
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 12px 60px; /* Mais largo nas laterais */
+    border: 2px solid #002855; /* Borda escura para dar acabamento */
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-submit:hover {
+    background-color: #e04b00;
+    transform: scale(1.03); /* Efeito de crescer levemente ao passar o mouse */
+}
+
+/* ==========================================================================
+   Estilos específicos para a Tela de Disponibilidade
+   ========================================================================== */
+
+/* Ajuste sutil no card para posicionar o título "Professor" */
+.availability-card {
+    position: relative;
+    padding-top: 50px;
+}
+
+/* O título menor "Professor" que fica acima do bloco principal */
+.header-badge {
+    position: absolute;
+    top: -45px;
+    left: 10px;
+    font-family: 'Georgia', serif;
+    font-size: 32px;
+    font-weight: bold;
+    color: #111111;
+}
+
+/* Bloco que envolve todos os dias da semana */
+.checkbox-container {
+    margin: 40px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Espaço vertical entre a linha 1 e a linha 2 */
+}
+
+/* Linhas de opções */
+.checkbox-row {
+    display: flex;
+    justify-content: space-around; /* Distribui os itens igualmente para os lados */
+    align-items: center;
+    width: 100%;
+}
+
+/* Centraliza melhor a segunda linha que só tem 2 itens (Quinta e Sexta) */
+.checkbox-row.center-row {
+    justify-content: center;
+    gap: 80px; /* Distância confortável entre Quinta e Sexta */
+}
+
+/* Estilização do item (Texto + Caixinha) */
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #111111;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Esconde o checkbox padrão feio do navegador */
+.checkbox-item input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Cria a nossa caixinha customizada arredondada azul escura */
+.custom-checkbox {
+    height: 22px;
+    width: 22px;
+    background-color: #ffffff;
+    border: 2px solid #002855; /* Borda azul idêntica à identidade */
+    border-radius: 6px; /* Cantos levemente suaves */
+    display: inline-block;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+/* Efeito visual quando a caixinha for marcada */
+.checkbox-item input:checked ~ .custom-checkbox {
+    background-color: #ff5500; /* Pinta de laranja ao selecionar */
+    border-color: #ff5500;
+}
+
+/* O símbolo de "check" (v) dentro da caixinha */
+.custom-checkbox:after {
+    content: "";
+    position: absolute;
+    display: none;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 11px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Mostra o "v" quando estiver marcado */
+.checkbox-item input:checked ~ .custom-checkbox:after {
+    display: block;
+}
+
+/* ==========================================================================
+   Estilos específicos para a Tela de Horário Acadêmico
+   ========================================================================== */
+
+/* Alinhamento do título no cabeçalho ao lado da logo */
+.main-header {
+    justify-content: flex-start;
+}
+
+.header-title-schedule {
+    font-family: 'Georgia', serif;
+    color: #ffffff;
+    font-size: 38px;
+    font-weight: bold;
+    margin-left: 120px; /* Joga o título mais para o centro */
+}
+
+/* Espaçamento da área da tabela */
+.schedule-container {
+    padding: 50px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Configuração geral da tabela para ocupar toda a largura */
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse; /* Cola as bordas para ficar uma linha única */
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Estilo de todas as células de dados e bordas vermelhas/laranjas suaves */
+.schedule-table td {
+    border: 1.5px solid #ff7b54; /* Cor da grade divisória */
+    text-align: center;
+    vertical-align: middle;
+    width: 20%; /* Distribui as 5 colunas de forma igual (1 dia + 4 blocos) */
+}
+
+/* Coluna lateral esquerda (Os dias da semana em laranja) */
+.day-column {
+    background-color: #ff5500; /* Laranja padrão do JoinClass */
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 35px 20px;
+}
+
+/* Alinhamento do texto interno de Disciplina e Professor */
+.schedule-cell {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 20px;
+}
+
+.subject {
+    font-size: 18px;
+    font-weight: 500;
+    color: #111111;
+}
+
+.professor {
+    font-size: 14px;
+    color: #555555;
+}

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JoinClass - Disponibilidade Professor</title>
+    <!-- Reaproveitando nosso style.css -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Cabeçalho Principal -->
+    <header class="main-header">
+        <div class="logo-container">
+            <span class="logo-text-join">Join</span><span class="logo-text-class">Class</span>
+        </div>
+    </header>
+
+    <!-- Conteúdo da Página -->
+    <main class="container form-container">
+        
+        <div class="form-card availability-card">
+            <!-- Título Externo/Superior como na imagem -->
+            <div class="header-badge">Professor</div>
+            
+            <h1 class="form-title">Disponibilidade</h1>
+
+            <form onsubmit="salvarDisponibilidade(event)">
+
+                <!-- Grupo de Checkboxes Organizados -->
+                <div class="checkbox-container">
+                    
+                    <!-- Linha 1: Segunda, Terça e Quarta -->
+                    <div class="checkbox-row">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="disponibilidade" value="segunda">
+                            <span class="custom-checkbox"></span>
+                            Segunda-feira
+                        </label>
+
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="disponibilidade" value="terca">
+                            <span class="custom-checkbox"></span>
+                            Terça-feira
+                        </label>
+
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="disponibilidade" value="quarta">
+                            <span class="custom-checkbox"></span>
+                            Quarta-feira
+                        </label>
+                    </div>
+
+                    <!-- Linha 2: Quinta e Sexta -->
+                    <div class="checkbox-row center-row">
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="disponibilidade" value="quinta">
+                            <span class="custom-checkbox"></span>
+                            Quinta-feira
+                        </label>
+
+                        <label class="checkbox-item">
+                            <input type="checkbox" name="disponibilidade" value="sexta">
+                            <span class="custom-checkbox"></span>
+                            Sexta-feira
+                        </label>
+                    </div>
+
+                </div>
+
+                <!-- Botão de Ação -->
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">Enviar</button>
+                </div>
+            </form>
+
+        </div>
+
+    </main>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JoinClass - Matriz Curricular</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Cabeçalho Principal (Reutilizando a estrutura da anterior) -->
+    <header class="main-header">
+        <div class="logo-container">
+            <span class="logo-text-join">Join</span><span class="logo-text-class">Class</span>
+        </div>
+    </header>
+
+    <!-- Conteúdo da Página -->
+    <main class="container form-container">
+        
+        <!-- Card Central do Formulário -->
+        <div class="form-card">
+            <h1 class="form-title">Matriz Curricular</h1>
+            
+            <h2 class="form-subtitle">Identificação</h2>
+            <hr class="form-divider">
+
+            <form onsubmit="salvarMatrizCurricular(event)">
+                <!-- Linha 1: Curso e Modalidade -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="curso">Curso:</label>
+                        <input type="text" id="curso" class="form-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="modalidade">Modalidade:</label>
+                        <input type="text" id="modalidade" class="form-input">
+                    </div>
+                </div>
+
+                <!-- Linha 2: Carga Horária e Grau -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="carga-horaria">Carga Horária:</label>
+                        <input type="text" id="carga-horaria" class="form-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="grau">Grau:</label>
+                        <input type="text" id="grau" class="form-input">
+                    </div>
+                </div>
+
+                <!-- Botão de Ação -->
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">Enviar</button>
+                </div>
+            </form>
+
+        </div>
+
+    </main>
+    <script src="js/script.js"></script>
+
+</body>
+</html>

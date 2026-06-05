@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JoinClass - Professores</title>
+    <!-- Vinculando o mesmo arquivo de estilo -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Cabeçalho Principal -->
+    <header class="main-header">
+        <div class="logo-container">
+            <span class="logo-text-join">Join</span><span class="logo-text-class">Class</span>
+        </div>
+    </header>
+
+    <!-- Conteúdo da Página (Aproveitando a estrutura centralizada) -->
+    <main class="container form-container">
+        
+        <!-- Card Central do Formulário -->
+        <div class="form-card">
+            <h1 class="form-title">Professores</h1>
+            
+            <h2 class="form-subtitle">Identificação</h2>
+            <hr class="form-divider">
+
+            <form onsubmit="salvarProfessor(event)">
+                <!-- Linha 1: Nome e Titulação -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" class="form-input">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="titulacao">Titulação:</label>
+                        <input type="text" id="titulacao" class="form-input">
+                    </div>
+                </div>
+
+                <!-- Linha 2: Disciplina (Centralizada ou ocupando espaço equivalente) -->
+                <div class="form-row">
+                    <div class="form-group" style="max-width: 50%; margin: 0 auto;">
+                        <label for="disciplina">Disciplina:</label>
+                        <input type="text" id="disciplina" class="form-input">
+                    </div>
+                </div>
+
+                <!-- Botão de Ação -->
+                <div class="form-actions">
+                    <button type="submit" class="btn-submit">Enviar</button>
+                </div>
+            </form>
+
+        </div>
+
+    </main>
+    <script src="js/script.js"></script>
+
+</body>
+</html>
