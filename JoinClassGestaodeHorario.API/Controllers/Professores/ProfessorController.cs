@@ -21,13 +21,15 @@ namespace JoinClassGestaodeHorario.API.Controllers.Professores
         private IAtualizarProfessoresUseCase atualizarProfessoresUseCase;
         private IExcluirProfessorUseCase excluirProfessorUseCase;
         private IProfessorRepositorio professorRepositorio;
+        private readonly ILogger<ProfessoresController> _logger;
 
-        public ProfessoresController(IAdicionarProfessoresUseCase adicionarProfessoresUseCase, IAtualizarProfessoresUseCase atualizarProfessoresUseCase, IExcluirProfessorUseCase excluirProfessorUseCase, IProfessorRepositorio professorRepositorio)
+        public ProfessoresController(IAdicionarProfessoresUseCase adicionarProfessoresUseCase, IAtualizarProfessoresUseCase atualizarProfessoresUseCase, IExcluirProfessorUseCase excluirProfessorUseCase, IProfessorRepositorio professorRepositorio, ILogger<ProfessoresController> logger)
         {
             this.adicionarProfessoresUseCase = adicionarProfessoresUseCase;
             this.atualizarProfessoresUseCase = atualizarProfessoresUseCase;
             this.excluirProfessorUseCase = excluirProfessorUseCase;
             this.professorRepositorio = professorRepositorio;
+            _logger = logger;
         }
 
         [HttpPost]
@@ -44,9 +46,10 @@ namespace JoinClassGestaodeHorario.API.Controllers.Professores
                 await adicionarProfessoresUseCase.CadastrarProfessor(professor);
                 return Created();
             }
-            catch (System.Exception)
+            catch (Exception ex)
             {
-                return StatusCode(500);
+                _logger.LogError(ex, "Erro ao adicionar professor");
+                return StatusCode(500, ex.Message);
             }
         }
 
@@ -126,9 +129,9 @@ namespace JoinClassGestaodeHorario.API.Controllers.Professores
 
                 return Ok(response);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(500);
+                return StatusCode(500, ex.Message);
             }
         }
     }

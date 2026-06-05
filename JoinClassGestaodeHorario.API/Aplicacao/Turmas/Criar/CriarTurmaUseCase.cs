@@ -18,14 +18,10 @@ namespace JoinClassGestaodeHorario.API.Aplicacao.Turmas.Criar
 
         public async Task CadastrarTurma(Turma turma)
         {
-<<<<<<< HEAD
-=======
-            if (turma.idProfessor <= 0)
+            if (turma.id_professor == 0)
             {
                 throw new Exception("Professor é obrigatório.");
             }
-
->>>>>>> feature/Gabriela
             await turmaRepositorio.Criar(turma);
         }
     }

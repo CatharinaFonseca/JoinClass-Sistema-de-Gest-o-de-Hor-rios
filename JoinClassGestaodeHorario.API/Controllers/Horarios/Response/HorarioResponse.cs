@@ -7,16 +7,9 @@ namespace JoinClassGestaodeHorario.API.Controllers.Horarios.Response
 {
     public class HorarioResponse
     {
-<<<<<<< HEAD
+        public int id { get; set; }
         public string dia_semana { get; set; }
         public string horario_inicio { get; set; }
         public string horario_fim { get; set; }
-=======
-        public int id { get; set; }
-        public string diaSemana { get; set; }
-        public string horarioInicio { get; set; }
-        public string horarioFim { get; set; }
-        public int idTurma { get; set; }
->>>>>>> feature/Gabriela
     }
 }

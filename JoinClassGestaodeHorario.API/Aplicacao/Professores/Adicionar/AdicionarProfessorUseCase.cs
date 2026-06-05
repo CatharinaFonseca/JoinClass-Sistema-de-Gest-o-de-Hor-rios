@@ -23,12 +23,6 @@ namespace JoinClassGestaodeHorario.API.Aplicacao.Professores.Adicionar
             {
                 throw new Exception("Nome do professor é obrigatório.");
             }
-            //Professor precisa informar quando pode dar aula 
-            if (!professor.Disponibilidades.Any())
-            {
-                throw new Exception(
-                    "Professor deve possuir disponibilidade cadastrada.");
-            }
 
             await professorRepositorio.Adicionar(professor);
         }

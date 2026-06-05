@@ -37,16 +37,10 @@ namespace JoinClassGestaodeHorario.API.Controllers.Disponibilidades
             {
                 Disponibilidade disponibilidade = new()
                 {
-<<<<<<< HEAD
                     dia_semana = request.dia_semana,
                     horario_inicio = request.horario_inicio,
-                    horario_fim = request.horario_fim
-=======
-                    diaSemana = request.diaSemana,
-                    horarioInicio = request.horarioInicio,
-                    horarioFim = request.horarioFim,
-                    idProfessor = request.idProfessor
->>>>>>> feature/Gabriela
+                    horario_fim = request.horario_fim,
+                    id_professor = request.id_professor
                 };
                 await criarDisponibilidadeUseCase.CadastrarDisponibilidade(disponibilidade);
 
@@ -65,17 +59,11 @@ namespace JoinClassGestaodeHorario.API.Controllers.Disponibilidades
             {
                 Disponibilidade disponibilidade = new()
                 {
-<<<<<<< HEAD
                     dia_semana = request.dia_semana,
                     horario_inicio = request.horario_inicio,
-                    horario_fim = request.horario_fim
-=======
+                    horario_fim = request.horario_fim,
                     id = id,
-                    diaSemana = request.diaSemana,
-                    horarioInicio = request.horarioInicio,
-                    horarioFim = request.horarioFim,
-                    idProfessor = request.idProfessor
->>>>>>> feature/Gabriela
+                    id_professor = request.id_professor,
                 };
                 await atualizarDisponibilidadeUseCase.AtualizarDisponibilidade(disponibilidade);
 
@@ -111,16 +99,10 @@ namespace JoinClassGestaodeHorario.API.Controllers.Disponibilidades
                 List<DisponibilidadeResponse> disponibilidadesResponse = disponibilidades.Select(d => new DisponibilidadeResponse()
                 {
                     id = d.id,
-<<<<<<< HEAD
                     dia_semana = d.dia_semana,
                     horario_inicio = d.horario_inicio,
-                    horario_fim = d.horario_fim
-=======
-                    diaSemana = d.diaSemana,
-                    horarioInicio = d.horarioInicio,
-                    horarioFim = d.horarioFim,
-                    idProfessor = d.idProfessor
->>>>>>> feature/Gabriela
+                    horario_fim = d.horario_fim,
+                    id_professor = d.id_professor
                 }).ToList();
 
                 return Ok(disponibilidadesResponse);

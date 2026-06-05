@@ -2,14 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-<<<<<<< HEAD
-
-namespace JoinClassGestaodeHorario.API.Controllers.Disciplinas
-{
-    public class DisciplinasController
-    {
-        
-=======
 using JoinClassGestaodeHorario.API.Aplicacao.Disciplinas.Atualizar;
 using JoinClassGestaodeHorario.API.Aplicacao.Disciplinas.Criar;
 using JoinClassGestaodeHorario.API.Aplicacao.Disciplinas.Excluir;
@@ -46,7 +38,7 @@ namespace JoinClassGestaodeHorario.API.Controllers.Disciplinas
                 Disciplina disciplina = new()
                 {
                     nome = request.nome,
-                    cargaHoraria = request.cargaHoraria
+                    carga_horaria = request.carga_horaria
                 };
                 await criarDisciplinaUseCase.CadastrarDisciplina(disciplina);
 
@@ -67,7 +59,7 @@ namespace JoinClassGestaodeHorario.API.Controllers.Disciplinas
                 {
                     id = id,
                     nome = request.nome,
-                    cargaHoraria = request.cargaHoraria
+                    carga_horaria = request.carga_horaria
                 };
                 await atualizarDisciplinaUseCase.AtualizarDisciplina(disciplina);
 
@@ -104,7 +96,7 @@ namespace JoinClassGestaodeHorario.API.Controllers.Disciplinas
                 {
                     id = d.id,
                     nome = d.nome,
-                    cargaHoraria = d.cargaHoraria
+                    carga_horaria = d.carga_horaria
                 }).ToList();
 
                 return Ok(disciplinasResponse);
@@ -114,6 +106,5 @@ namespace JoinClassGestaodeHorario.API.Controllers.Disciplinas
                 return StatusCode(500);
             }
         }
->>>>>>> feature/Gabriela
     }
 }

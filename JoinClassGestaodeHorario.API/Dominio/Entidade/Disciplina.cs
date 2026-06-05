@@ -9,8 +9,8 @@ namespace JoinClassGestaodeHorario.API.Dominio.Entidade
     {
         public int id { get; set; }
         public string nome { get; set; }
-        public int cargaHoraria { get; set; }
+        public int carga_horaria { get; set; }
 
-        public List<ProfessorDisciplina> ProfessorDisciplinas { get; set; }
+        public ICollection<ProfessorDisciplina> ProfessorDisciplinas { get; set; } = new List<ProfessorDisciplina>();
     }
 }

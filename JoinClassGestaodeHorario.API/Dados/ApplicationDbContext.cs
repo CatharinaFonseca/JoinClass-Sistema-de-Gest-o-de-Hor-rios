@@ -21,27 +21,6 @@ namespace JoinClassGestaodeHorario.API.Dados
         public DbSet<Pessoa> Pessoas { get; set; }
         public DbSet<Professor> Professores { get; set; }
         public DbSet<Turma> Turmas { get; set; }
-<<<<<<< HEAD
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Aluno>(entidade =>
-            {
-                entidade.ToTable("Aluno", "public");
-                entidade.Ignore(e => e.graduacao);
-                entidade.HasKey(e => e.id);
-            });
-
-            modelBuilder.Entity<Coordenador>(entidade =>
-            {
-                entidade.ToTable("Coordenador", "public");
-                entidade.Ignore(e => e.disciplinas);
-                entidade.HasKey(e => e.id);
-            });
-
-            modelBuilder.Entity<Disciplina>(entidade =>
-            {
-                entidade.ToTable("Disciplina", "public");
-=======
         public DbSet<MatrizCurricular> MatrizCurriculars { get; set; }
         public DbSet<Semestre> Semestres { get; set; }
         public DbSet<TurmaAluno> TurmaAlunos { get; set; }
@@ -67,25 +46,18 @@ namespace JoinClassGestaodeHorario.API.Dados
             modelBuilder.Entity<Disciplina>(entidade =>
             {
                 entidade.ToTable("disciplina", "public");
->>>>>>> feature/Gabriela
                 entidade.HasKey(e => e.id);
             });
 
             modelBuilder.Entity<Disponibilidade>(entidade =>
             {
-<<<<<<< HEAD
-                entidade.ToTable("Disponibilidade", "public");
-                entidade.Ignore(e => e.professor);
-                entidade.HasKey(e => e.id);
-=======
                 entidade.ToTable("disponibilidade", "public");
 
                 entidade.HasKey(e => e.id);
 
                 entidade.HasOne(d => d.Professor)
                         .WithMany(p => p.Disponibilidades)
-                        .HasForeignKey(d => d.idProfessor);
->>>>>>> feature/Gabriela
+                        .HasForeignKey(d => d.id_professor);
             });
 
             modelBuilder.Entity<Graduacao>(entidade =>
@@ -144,15 +116,15 @@ namespace JoinClassGestaodeHorario.API.Dados
            {
                entidade.ToTable("professor_disciplina", "public");
 
-               entidade.HasKey(pd => new { pd.idProfessor, pd.idDisciplina });
+               entidade.HasKey(pd => new { pd.id_professor, pd.id_disciplina });
 
                entidade.HasOne(pd => pd.Professor)
                    .WithMany(p => p.ProfessorDisciplinas)
-                   .HasForeignKey(pd => pd.idProfessor);
+                   .HasForeignKey(pd => pd.id_professor);
 
                entidade.HasOne(pd => pd.Disciplina)
                    .WithMany(d => d.ProfessorDisciplinas)
-                   .HasForeignKey(pd => pd.idDisciplina);
+                   .HasForeignKey(pd => pd.id_disciplina);
            });
 
             modelBuilder.Entity<Semestre>(entidade =>
@@ -161,20 +133,14 @@ namespace JoinClassGestaodeHorario.API.Dados
                 entidade.HasKey(e => e.id);
             });
 
-<<<<<<< HEAD
-            modelBuilder.Entity<Horario>(entidade =>
-            {
-                entidade.ToTable("Horario", "public");
-=======
             modelBuilder.Entity<Titulacao>(entidade =>
             {
                 entidade.ToTable("titulacao", "public");
->>>>>>> feature/Gabriela
                 entidade.HasKey(e => e.id);
 
                 entidade.HasOne(t => t.Professor)
                     .WithMany()
-                    .HasForeignKey(t => t.idProfessor);
+                    .HasForeignKey(t => t.id_professor);
             });
 
             modelBuilder.Entity<Turma>(entidade =>
@@ -185,7 +151,7 @@ namespace JoinClassGestaodeHorario.API.Dados
 
                 entidade.HasOne(t => t.Professor)
                         .WithMany()
-                        .HasForeignKey(t => t.idProfessor);
+                        .HasForeignKey(t => t.id_professor);
 
                 entidade.HasOne(t => t.MatrizCurricular)
                         .WithMany()
@@ -205,13 +171,6 @@ namespace JoinClassGestaodeHorario.API.Dados
                 entidade.HasOne(ta => ta.Aluno)
                     .WithMany(a => a.TurmaAlunos)
                     .HasForeignKey(ta => ta.idAluno);
-            });
-
-            modelBuilder.Entity<Turma>(entidade =>
-            {
-                entidade.ToTable("Turma", "public");
-                entidade.Ignore(e => e.horarios);
-                entidade.HasKey(e => e.id);
             });
         }
     }

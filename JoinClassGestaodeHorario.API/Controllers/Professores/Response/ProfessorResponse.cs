@@ -8,12 +8,8 @@ namespace JoinClassGestaodeHorario.API.Controllers.Professores.Response
 {
     public class ProfessorResponse
     {
-<<<<<<< HEAD
-
-=======
         public int id { get; set; }
         public string nome { get; set; }
         public string email { get; set; }
->>>>>>> feature/Gabriela
     }
 }

@@ -7,10 +7,10 @@ namespace JoinClassGestaodeHorario.API.Dominio.Entidade
 {
     public class ProfessorDisciplina
     {
-        public int idProfessor { get; set; }
+        public int id_professor { get; set; }
         public Professor Professor { get; set; }
 
-        public int idDisciplina { get; set; }
+        public int id_disciplina { get; set; }
         public Disciplina Disciplina { get; set; }
     }
 }

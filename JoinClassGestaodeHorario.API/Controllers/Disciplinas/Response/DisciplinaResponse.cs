@@ -9,6 +9,6 @@ namespace JoinClassGestaodeHorario.API.Controllers.Disciplinas.Response
     {
         public int id { get; set; }
         public string nome { get; set; }
-        public int cargaHoraria { get; set; }
+        public int carga_horaria { get; set; }
     }
 }

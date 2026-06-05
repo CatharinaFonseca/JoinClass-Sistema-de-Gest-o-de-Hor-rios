@@ -14,11 +14,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JoinClassGestaodeHorario.API.Controllers.Coordenadores
 {
-<<<<<<< HEAD
-=======
     [ApiController]
     [Route("api/coordenadores")]
->>>>>>> feature/Gabriela
+
     public class CoordenadoresController : ControllerBase
     {
         private IAdicionarCoordenadoresUseCase adicionarCoordenadoresUseCase;

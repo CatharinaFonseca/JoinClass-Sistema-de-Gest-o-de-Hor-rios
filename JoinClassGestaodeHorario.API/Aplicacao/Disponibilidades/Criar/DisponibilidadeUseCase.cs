@@ -19,14 +19,14 @@ namespace JoinClassGestaodeHorario.API.Aplicacao.Disponibilidades.Criar
         public async Task CadastrarDisponibilidade(Disponibilidade disponibilidade)
         {
             //Garantir qu o professor informou o dia disponivel 
-            if (string.IsNullOrWhiteSpace(disponibilidade.diaSemana))
+            if (string.IsNullOrWhiteSpace(disponibilidade.dia_semana))
             {
                 throw new Exception("Dia da semana é obrigatório.");
             }
             //Evitar disponibilidade inválida 
             if (string.Compare(
-                disponibilidade.horarioFim,
-                disponibilidade.horarioInicio) <= 0)
+                disponibilidade.horario_fim,
+                disponibilidade.horario_inicio) <= 0)
             {
                 throw new Exception("Horário final deve ser maior que horário inicial.");
             }

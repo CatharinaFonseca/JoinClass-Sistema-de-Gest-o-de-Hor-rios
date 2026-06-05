@@ -29,8 +29,8 @@ using JoinClassGestaodeHorario.API.Aplicacao.Turmas.Excluir;
 using JoinClassGestaodeHorario.API.Dados;
 using JoinClassGestaodeHorario.API.Dados.Repositorios;
 using JoinClassGestaodeHorario.API.Dominio.Repositorios;
-using Microsoft.EntityFrameworkCore;
 using JoinClassGestaodeHorario.API.Services;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -75,11 +75,7 @@ builder.Services.AddTransient<IExcluirDisciplinaUseCase, ExcluirDisciplinaUseCas
 //Injeção de dependência dos repositórios e casos de uso para Disponibilidades
 builder.Services.AddTransient<IDisponibilidadeResitorio, DisponibilidadeRepositorio>();
 builder.Services.AddTransient<IAtualizarDisponibilidadeUseCase, AtualizarDisponibilidadeUseCase>();
-<<<<<<< HEAD
-builder.Services.AddTransient<ICriarDisponibilidadeUseCase, CriarDisponibilidadeUseCase>();
-=======
 builder.Services.AddTransient<ICriarDisponibilidadeUseCase, DisponibilidadeUseCase>();
->>>>>>> feature/Gabriela
 builder.Services.AddTransient<IExcluirDisponibilidadeUseCase, ExcluirDisponibilidadeUseCase>();
 
 //Injeção de dependência dos repositórios e casos de uso para Graduações
@@ -93,10 +89,7 @@ builder.Services.AddTransient<IHorarioRepositorio, HorarioRepositorio>();
 builder.Services.AddTransient<ICriarHorarioUseCase, CriarHorarioUseCase>();
 builder.Services.AddTransient<IAtualizarHorarioUseCase, AtualizarHorarioUseCase>();
 builder.Services.AddTransient<IExcluirHorarioUseCase, ExcluirHorarioUseCase>();
-<<<<<<< HEAD
-=======
 builder.Services.AddTransient<GerarHorariosService>();
->>>>>>> feature/Gabriela
 
 //Injeção de dependência dos repositórios e casos de uso para Pessoas
 builder.Services.AddTransient<IPessoaRepositorio, PessoaRepositorio>();
@@ -107,23 +100,13 @@ builder.Services.AddTransient<IExcluirPessoaUseCase, ExcluirPessoaUseCase>();
 // Injeção de dependência dos repositórios e casos de uso para Professores
 builder.Services.AddTransient<IProfessorRepositorio, ProfessorRepositorio>();
 builder.Services.AddTransient<IAdicionarProfessoresUseCase, AdicionarProfessorUseCase>();
-<<<<<<< HEAD
 builder.Services.AddTransient<IAtualizarProfessoresUseCase, AtualizarProfessorUseCase>();
-builder.Services.AddTransient<IExcluirProfessorUseCase, ExcluirProfessorUseCase>();
-
-// Injeção de dependência dos repositórios e casos de uso para Turmas
-builder.Services.AddTransient<ITurmaRepositorio, TurmaRepositorio>();
-builder.Services.AddTransient<ICriarTurmaUseCase, CriarTurmaUseCase>();
-builder.Services.AddTransient<AtualizarTurmaUseCase, AtualizarTurmaUseCase>();
-=======
-builder.Services.AddTransient<IAtualizarProfessoresUseCase, AtuallizarProfessorUseCase>();
 builder.Services.AddTransient<IExcluirProfessorUseCase, ExcluirProfessorUseCase>();
 
 // Injeção de dependência dos repositórios e casos de uso para Turma
 builder.Services.AddTransient<ITurmaRepositorio, TurmaRepositorio>();
 builder.Services.AddTransient<ICriarTurmaUseCase, CriarTurmaUseCase>();
 builder.Services.AddTransient<IAtualizarTurmaUseCase, AtualizarTurmaUseCase>();
->>>>>>> feature/Gabriela
 builder.Services.AddTransient<IExcluirTurmaUseCase, ExcluirTurmaUseCase>();
 
 var app = builder.Build();

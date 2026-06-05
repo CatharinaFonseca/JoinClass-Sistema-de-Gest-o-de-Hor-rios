@@ -23,32 +23,32 @@ namespace JoinClassGestaodeHorario.API.Services
         public void ValidarHorario(Horario horario)
         {
             // Dia da semana obrigatório
-            if (string.IsNullOrWhiteSpace(horario.diaSemana))
+            if (string.IsNullOrWhiteSpace(horario.dia_semana))
             {
                 throw new Exception("Dia da semana é obrigatório.");
             }
 
             // Horário inicial obrigatório
-            if (string.IsNullOrWhiteSpace(horario.horarioInicio))
+            if (string.IsNullOrWhiteSpace(horario.horario_inicio))
             {
                 throw new Exception("Horário inicial é obrigatório.");
             }
 
             // Horário final obrigatório
-            if (string.IsNullOrWhiteSpace(horario.horarioFim))
+            if (string.IsNullOrWhiteSpace(horario.horario_fim))
             {
                 throw new Exception("Horário final é obrigatório.");
             }
 
             // Horário final deve ser maior que o inicial
-            if (string.Compare(horario.horarioFim, horario.horarioInicio) <= 0)
+            if (string.Compare(horario.horario_fim, horario.horario_inicio) <= 0)
             {
                 throw new Exception(
                     "Horário final deve ser maior que o horário inicial.");
             }
 
             // Não permitir finais de semana
-            if (!Enum.TryParse<DayOfWeek>(horario.diaSemana, true, out var dia))
+            if (!Enum.TryParse<DayOfWeek>(horario.dia_semana, true, out var dia))
             {
                 throw new Exception("Dia da semana inválido.");
             }
