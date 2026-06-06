@@ -22,6 +22,14 @@
         <!-- Card Central do Formulário -->
         <div class="form-card">
             <h1 class="form-title">Professores</h1>
+
+            <script>
+            fetch("http://localhost:5036/api/professor")
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                });
+            </script>
             
             <h2 class="form-subtitle">Identificação</h2>
             <hr class="form-divider">
