@@ -34,11 +34,11 @@
                         <input type="text" id="nome-disciplina" class="form-input">
                     </div>
                     
-                    <div class="form-group">
+                    <!--<div class="form-group">
                         <label for="curso-disciplina">Curso:</label>
                         <input type="text" id="curso-disciplina" class="form-input">
                     </div>
-                </div>
+                </div>-->
 
                 <!-- Linha 2: Carga Horária -->
                 <div class="form-row">
@@ -50,13 +50,82 @@
 
                 <!-- Botão de Ação -->
                 <div class="form-actions">
-                    <button type="submit" class="btn-submit">Enviar</button>
+                    <button type="submit" class="btn-submit">Cadastrar</button>
                 </div>
             </form>
+
+            <h2>Lista de Disciplinas</h2>
+
+        <table border="1" style="width:100%; margin-top:10px;">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <!-- <th>Curso</th> -->
+                    <th>Carga Horária</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="corpoTabela"></tbody>
+</table>
 
         </div>
 
     </main>
-    <script src="js/script.js"></script>
+     <script>
+    function carregarDisciplinas() {
+        fetch("http://localhost:5036/api/disciplinas")
+            .then(res => res.json())
+            .then(data => {
+                const tbody = document.getElementById("corpoTabela");
+                tbody.innerHTML = "";
+
+                data.forEach(disc => {
+                    const tr = document.createElement("tr");
+
+                    tr.innerHTML = `
+                        <td>${disc.nome}</td>
+                        <td>${disc.carga_horaria}</td>
+                        <td>
+                            <button onclick="excluirDisciplina(${disc.id})">
+                                Excluir
+                            </button>
+                        </td>
+                    `;
+
+                    tbody.appendChild(tr);
+                });
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Erro ao carregar disciplinas");
+            });
+    }
+    </script>
+
+    <script>
+        function excluirDisciplina(id) {
+            if (!confirm("Tem certeza que deseja excluir?")) return;
+
+            fetch(`http://localhost:5036/api/disciplinas/${id}`, {
+                method: "DELETE"
+            })
+            .then(res => {
+                if (res.ok) {
+                    alert("Disciplina excluída com sucesso!");
+                    carregarDisciplinas();
+                } else {
+                    alert("Erro ao excluir");
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Erro de conexão");
+            });
+        }
+    </script>
+
+    <script>
+        window.onload = carregarDisciplinas;
+    </script>
 </body>
 </html>

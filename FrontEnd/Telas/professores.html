@@ -4,38 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JoinClass - Professores</title>
-    <!-- Vinculando o mesmo arquivo de estilo -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="FrontEnd/CSS/Style.css">
 </head>
 <body>
 
-    <!-- Cabeçalho Principal -->
     <header class="main-header">
         <div class="logo-container">
             <span class="logo-text-join">Join</span><span class="logo-text-class">Class</span>
         </div>
     </header>
 
-    <!-- Conteúdo da Página (Aproveitando a estrutura centralizada) -->
     <main class="container form-container">
-        
-        <!-- Card Central do Formulário -->
         <div class="form-card">
             <h1 class="form-title">Professores</h1>
-
-            <script>
-            fetch("http://localhost:5036/api/professor")
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                });
-            </script>
             
             <h2 class="form-subtitle">Identificação</h2>
             <hr class="form-divider">
 
             <form onsubmit="salvarProfessor(event)">
-                <!-- Linha 1: Nome e Titulação -->
                 <div class="form-row">
                     <div class="form-group">
                         <label for="nome">Nome:</label>
@@ -43,29 +29,90 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="titulacao">Titulação:</label>
-                        <input type="text" id="titulacao" class="form-input">
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" class="form-input">
                     </div>
                 </div>
 
-                <!-- Linha 2: Disciplina (Centralizada ou ocupando espaço equivalente) -->
-                <div class="form-row">
-                    <div class="form-group" style="max-width: 50%; margin: 0 auto;">
-                        <label for="disciplina">Disciplina:</label>
-                        <input type="text" id="disciplina" class="form-input">
-                    </div>
-                </div>
-
-                <!-- Botão de Ação -->
                 <div class="form-actions">
-                    <button type="submit" class="btn-submit">Enviar</button>
+                    <button type="submit" class="btn-submit">Cadastrar</button>
                 </div>
             </form>
 
-        </div>
+            <!-- Lista-->
+            <h2>Lista de Professores</h2>
+            <table id="tabelaProfessores" border="1" style="width:100%; margin-top:10px;">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="corpoTabela"></tbody>
+</table>
 
+        </div>
     </main>
-    <script src="js/script.js"></script>
+
+    <script>
+    function carregarProfessores() {
+        fetch("http://localhost:5036/api/professores")
+            .then(res => res.json())
+            .then(data => {
+                const tbody = document.getElementById("corpoTabela");
+                tbody.innerHTML = "";
+
+                data.forEach(prof => {
+                    const tr = document.createElement("tr");
+
+                    tr.innerHTML = `
+                        <td>${prof.id}</td>
+                        <td>${prof.nome}</td>
+                        <td>${prof.email}</td>
+                        <td>
+                            <button onclick="excluirProfessor(${prof.id})">
+                                Excluir
+                            </button>
+                        </td>
+                    `;
+
+                    tbody.appendChild(tr);
+                });
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Erro ao carregar professores");
+            });
+    }
+    </script>
+
+    <script>
+        function excluirProfessor(id) {
+            if (!confirm("Tem certeza que deseja excluir?")) return;
+
+            fetch(`http://localhost:5036/api/professores/${id}`, {
+                method: "DELETE"
+            })
+            .then(res => {
+                if (res.ok) {
+                    alert("Professor excluído com sucesso!");
+                    carregarProfessores();
+                } else {
+                    alert("Erro ao excluir");
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Erro de conexão");
+            });
+        }
+    </script>
+
+    <script>
+        window.onload = carregarProfessores;
+    </script>
 
 </body>
 </html>

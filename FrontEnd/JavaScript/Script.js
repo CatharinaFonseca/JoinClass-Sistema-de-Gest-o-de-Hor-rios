@@ -1,13 +1,7 @@
-// ==========================================================================
 // CONFIGURAÇÃO BASE DA API (.NET)
-// ==========================================================================
-//  definir a URL onde a API está rodando localmente
-// Exemplo comum em .NET: http://localhost:5000 ou https://localhost:7001
-const BASE_URL_API = "MUDE_AQUI_PARA_A_URL_DO_BACKEND"; 
+const BASE_URL_API = "http://localhost:5036"; 
 
-// ==========================================================================
 // 1. TELA: MATRIZ CURRICULAR (matriz-curricular.html)
-// ==========================================================================
 async function salvarMatrizCurricular(event) {
     event.preventDefault(); // Evita que a página recarregue ao enviar
 
@@ -28,7 +22,7 @@ async function salvarMatrizCurricular(event) {
     console.log("Enviando Matriz Curricular:", dadosMatriz);
 
     try {
-        const response = await fetch(`${BASE_URL_API}/api/matriz`, {
+        const response = await fetch("http://localhost:5036/api/matriz-curricular", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dadosMatriz)
@@ -45,26 +39,22 @@ async function salvarMatrizCurricular(event) {
     }
 }
 
-// ==========================================================================
 // 2. TELA: PROFESSORES (professores.html)
-// ==========================================================================
 async function salvarProfessor(event) {
     event.preventDefault();
 
     const nome = document.getElementById('nome').value;
-    const titulacao = document.getElementById('titulacao').value;
-    const disciplina = document.getElementById('disciplina').value;
+    const email = document.getElementById('email').value;
 
     const dadosProfessor = {
         nome: nome,
-        titulacao: titulacao,
-        disciplina: disciplina
+        email: email,
     };
 
     console.log("Enviando Professor:", dadosProfessor);
 
     try {
-        const response = await fetch(`${BASE_URL_API}/api/professores`, {
+        const response = await fetch("http://localhost:5036/api/professores", {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dadosProfessor)
