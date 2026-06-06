@@ -109,7 +109,20 @@ builder.Services.AddTransient<ICriarTurmaUseCase, CriarTurmaUseCase>();
 builder.Services.AddTransient<IAtualizarTurmaUseCase, AtualizarTurmaUseCase>();
 builder.Services.AddTransient<IExcluirTurmaUseCase, ExcluirTurmaUseCase>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        policy => policy
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
+});
+
 var app = builder.Build();
+
+app.UseCors("AllowAll");
+
+app.UseAuthorization();
 
 app.UseSwagger();
 app.UseSwaggerUI(options =>

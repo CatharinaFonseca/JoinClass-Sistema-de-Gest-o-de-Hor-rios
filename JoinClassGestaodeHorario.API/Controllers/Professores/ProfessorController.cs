@@ -109,7 +109,7 @@ namespace JoinClassGestaodeHorario.API.Controllers.Professores
             }
             catch (Exception ex)
             {
-                return StatusCode(500, ex.Message); // 👈 MOSTRA O ERRO REAL
+                return StatusCode(500, ex.Message);
             }
         }
 

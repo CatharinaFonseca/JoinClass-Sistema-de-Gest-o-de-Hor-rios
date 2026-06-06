@@ -37,16 +37,13 @@ namespace JoinClassGestaodeHorario.API.Dados.Repositorios
 
         public async Task<Disponibilidade> ObterDisponibilidade(int id)
         {
-            var disponibilidade = contexto.Disponibilidades
-                 .FromSql($"Select * From disponibilidade where id = {id}");
-            return await disponibilidade.FirstOrDefaultAsync();
+            return await contexto.Disponibilidades
+               .FirstOrDefaultAsync(p => p.id == id);
         }
 
         public async Task<List<Disponibilidade>> ObterTodasAsDisponibilidades()
         {
-            var disponibilidades = contexto.Database
-                .SqlQuery<Disponibilidade>($"Select * From disponibilidade");
-            return await disponibilidades.ToListAsync();
+            return await contexto.Disponibilidades.ToListAsync();
         }
     }
 }

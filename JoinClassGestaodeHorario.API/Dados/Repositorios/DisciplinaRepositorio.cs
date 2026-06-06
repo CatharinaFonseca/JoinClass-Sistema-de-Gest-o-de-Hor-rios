@@ -37,16 +37,13 @@ namespace JoinClassGestaodeHorario.API.Dados.Repositorios
 
         public async Task<Disciplina> ObterDisciplina(int id)
         {
-            var disciplina = contexto.Disciplinas
-                 .FromSql($"Select * From disciplina where id = {id}");
-            return await disciplina.FirstOrDefaultAsync();
+            return await contexto.Disciplinas
+               .FirstOrDefaultAsync(p => p.id == id);
         }
 
         public async Task<List<Disciplina>> ObterTodasAsDisciplinas()
         {
-            var disciplinas = contexto.Database
-                .SqlQuery<Disciplina>($"Select * From disciplina");
-            return await disciplinas.ToListAsync();
+            return await contexto.Disciplinas.ToListAsync();
         }
     }
 }
