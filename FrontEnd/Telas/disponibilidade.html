@@ -66,18 +66,87 @@
                         </label>
                     </div>
 
+                    <div class="form-group">
+                        <label>Horário Início</label>
+                        <input type="time" id="horario_inicio" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Horário Fim</label>
+                        <input type="time" id="horario_fim" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>ID do Professor</label>
+                        <input type="number" id="id_professor" required>
+                    </div>
+
                 </div>
 
                 <!-- Botão de Ação -->
                 <div class="form-actions">
-                    <button type="submit" class="btn-submit">Enviar</button>
+                    <button type="submit" class="btn-submit">Salvar</button>
                 </div>
             </form>
 
         </div>
 
+        <div id="mensagem"></div>
+
     </main>
 
-    <script src="js/script.js"></script>
+    <script>
+        async function salvarDisponibilidade(event) {
+    event.preventDefault();
+
+    const diasSelecionados = [...document.querySelectorAll('input[name="disponibilidade"]:checked')]
+        .map(cb => cb.value);
+
+    const horarioInicio = document.getElementById("horario_inicio").value;
+    const horarioFim = document.getElementById("horario_fim").value;
+    const idProfessor = document.getElementById("id_professor").value;
+
+    const mensagem = document.getElementById("mensagem");
+
+    try {
+        console.log({
+            diasSelecionados,
+            horarioInicio,
+            horarioFim,
+            idProfessor
+        });
+
+        const response = await fetch("http://localhost:5036/api/Disponibilidades", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                dias: diasSelecionados,
+                horario_inicio: horarioInicio,
+                horario_fim: horarioFim,
+                id_professor: parseInt(idProfessor)
+            })
+        });
+
+        if (response.ok) {
+            mensagem.innerHTML = "✅ Disponibilidade cadastrada com sucesso!";
+            mensagem.style.color = "green";
+
+            // limpar formulário
+            document.querySelector("form").reset();
+        } else {
+           const erro = await response.text();
+            mensagem.innerHTML = " " + erro;
+            mensagem.style.color = "red";
+        }
+
+    } catch (error) {
+        mensagem.innerHTML = "Erro de conexão com a API.";
+        mensagem.style.color = "red";
+        console.error(error);
+    }
+}
+    </script>
 </body>
 </html>
