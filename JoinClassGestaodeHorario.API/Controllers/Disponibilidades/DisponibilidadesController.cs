@@ -35,14 +35,23 @@ namespace JoinClassGestaodeHorario.API.Controllers.Disponibilidades
         {
             try
             {
-                Disponibilidade disponibilidade = new()
+                if (request.dias == null || !request.dias.Any())
                 {
-                    dia_semana = request.dia_semana,
-                    horario_inicio = request.horario_inicio,
-                    horario_fim = request.horario_fim,
-                    id_professor = request.id_professor
-                };
-                await criarDisponibilidadeUseCase.CadastrarDisponibilidade(disponibilidade);
+                    return BadRequest("Selecione pelo menos um dia.");
+                }
+
+                foreach (var dia in request.dias)
+                {
+                    Disponibilidade disponibilidade = new()
+                    {
+                        dia_semana = dia,
+                        horario_inicio = request.horario_inicio,
+                        horario_fim = request.horario_fim,
+                        id_professor = request.id_professor
+                    };
+
+                    await criarDisponibilidadeUseCase.CadastrarDisponibilidade(disponibilidade);
+                }
 
                 return Created();
             }
@@ -51,6 +60,7 @@ namespace JoinClassGestaodeHorario.API.Controllers.Disponibilidades
                 return StatusCode(500);
             }
         }
+
         [HttpPut("{id}")]
 
         public async Task<IActionResult> Atualizar([FromRoute] int id, [FromBody] AtualizarDisponibilidadeRequest request)
@@ -59,11 +69,11 @@ namespace JoinClassGestaodeHorario.API.Controllers.Disponibilidades
             {
                 Disponibilidade disponibilidade = new()
                 {
-                    dia_semana = request.dia_semana,
                     horario_inicio = request.horario_inicio,
                     horario_fim = request.horario_fim,
                     id = id,
                     id_professor = request.id_professor,
+
                 };
                 await atualizarDisponibilidadeUseCase.AtualizarDisponibilidade(disponibilidade);
 
@@ -99,10 +109,9 @@ namespace JoinClassGestaodeHorario.API.Controllers.Disponibilidades
                 List<DisponibilidadeResponse> disponibilidadesResponse = disponibilidades.Select(d => new DisponibilidadeResponse()
                 {
                     id = d.id,
-                    dia_semana = d.dia_semana,
                     horario_inicio = d.horario_inicio,
                     horario_fim = d.horario_fim,
-                    id_professor = d.id_professor
+                    id_professor = d.id_professor,
                 }).ToList();
 
                 return Ok(disponibilidadesResponse);
