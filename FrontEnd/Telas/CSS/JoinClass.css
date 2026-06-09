@@ -425,3 +425,75 @@ body{
     border-radius: 20px;
 }
 /*Diretor*/
+
+/* Grade de Horários */
+
+.CardGradeHorario{
+    width: 1100px;
+    margin: 50px auto;
+    background-color: #e5e5e5;
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 40px;
+}
+
+.CardGradeHorario h1{
+    text-align: center;
+    font-size: 55px;
+    margin-bottom: 30px;
+}
+
+.BotaoCarregar{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.BotaoCarregar button{
+    font-size: 15px;
+    width: 280px;
+    height: 55px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.TabelaHorario{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.TabelaHorario th{
+    background-color: #012553;
+    color: white;
+    padding: 15px;
+    border: 1px solid black;
+}
+
+.TabelaHorario td{
+    border: 1px solid black;
+    padding: 15px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.HorarioColuna{
+    font-weight: bold;
+    background-color: #d9d9d9;
+}
+
+.AulaCard{
+    background-color: #dbe9ff;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+.AulaMateria{
+    font-weight: bold;
+    color: #012553;
+    margin-bottom: 5px;
+}
+
+.AulaProfessor{
+    font-size: 14px;
+}
+
+/*Grade de Horarios*/

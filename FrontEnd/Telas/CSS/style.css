@@ -18,6 +18,20 @@ body {
     align-items: center;
 }
 
+.Topo1Acesso{
+    background-color: #012553;
+    height: 90px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+.LogoLogin{
+    width: 140px;
+    height: auto;
+}
+
+
 .logo-container {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 28px; /* Tamanho destacado */
