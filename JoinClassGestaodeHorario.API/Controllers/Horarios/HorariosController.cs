@@ -10,27 +10,31 @@ using JoinClassGestaodeHorario.API.Controllers.Horarios.Response;
 using JoinClassGestaodeHorario.API.Dados;
 using JoinClassGestaodeHorario.API.Dominio.Entidade;
 using JoinClassGestaodeHorario.API.Dominio.Repositorios;
+using JoinClassGestaodeHorario.API.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace JoinClassGestaodeHorario.API.Controllers.Horarios
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/horarios")]
     public class HorarioController : ControllerBase
     {
         private IHorarioRepositorio horarioRepositorio;
         private ICriarHorarioUseCase criarHorarioUseCase;
         private IAtualizarHorarioUseCase atualizarHorarioUseCase;
         private IExcluirHorarioUseCase excluirHorarioUseCase;
+        private readonly ApplicationDbContext _contexto;
+        private readonly GerarHorariosService _service;
 
-        public HorarioController(IHorarioRepositorio horarioRepositorio, ICriarHorarioUseCase criarHorarioUseCase, IAtualizarHorarioUseCase atualizarHorarioUseCase, IExcluirHorarioUseCase excluirHorarioUseCase)
-
+        public HorarioController(IHorarioRepositorio horarioRepositorio, ICriarHorarioUseCase criarHorarioUseCase, IAtualizarHorarioUseCase atualizarHorarioUseCase, IExcluirHorarioUseCase excluirHorarioUseCase, ApplicationDbContext contexto, GerarHorariosService service)
         {
             this.horarioRepositorio = horarioRepositorio;
             this.criarHorarioUseCase = criarHorarioUseCase;
             this.atualizarHorarioUseCase = atualizarHorarioUseCase;
             this.excluirHorarioUseCase = excluirHorarioUseCase;
+            this._contexto = contexto;
+            this._service = service;
         }
 
         [HttpPost]
@@ -42,8 +46,12 @@ namespace JoinClassGestaodeHorario.API.Controllers.Horarios
                 {
                     dia_semana = request.dia_semana,
                     horario_inicio = request.horario_inicio,
-                    horario_fim = request.horario_fim
+                    horario_fim = request.horario_fim,
+                    id_turma = request.id_turma
                 };
+
+                _service.ValidarHorario(horario);
+
                 await criarHorarioUseCase.CadastrarHorario(horario);
                 return Created();
             }
@@ -63,7 +71,8 @@ namespace JoinClassGestaodeHorario.API.Controllers.Horarios
                 {
                     dia_semana = request.dia_semana,
                     horario_inicio = request.horario_inicio,
-                    horario_fim = request.horario_fim
+                    horario_fim = request.horario_fim,
+                    id_turma = request.id_turma
                 };
                 await atualizarHorarioUseCase.AtualizarHorario(horario);
 
@@ -91,24 +100,25 @@ namespace JoinClassGestaodeHorario.API.Controllers.Horarios
         [HttpGet]
         public async Task<IActionResult> ObterHorarios()
         {
-            try
-            {
-                List<Horario> horarios = await horarioRepositorio.ObterTodosOsHorarios();
+            var horarios = await _contexto.Horarios
+     .Include(h => h.Turma)
+         .ThenInclude(t => t.Professor)
+     .Include(h => h.Turma)
+         .ThenInclude(t => t.Disciplina)
+     .ToListAsync();
 
-                List<HorarioResponse> horariosResponse = horarios.Select(h => new HorarioResponse()
-                {
-                    id = h.id,
-                    dia_semana = h.dia_semana,
-                    horario_inicio = h.horario_inicio,
-                    horario_fim = h.horario_fim
-                }).ToList();
-
-                return Ok(horariosResponse);
-            }
-            catch (System.Exception)
+            var response = horarios.Select(h => new HorarioResponse
             {
-                return StatusCode(500);
-            }
+                id = h.id,
+                dia_semana = h.dia_semana,
+                horario_inicio = h.horario_inicio,
+                horario_fim = h.horario_fim,
+
+                professor = h.Turma.Professor.nome,
+                disciplina = h.Turma.Disciplina.nome
+            });
+
+            return Ok(response);
         }
     }
 }

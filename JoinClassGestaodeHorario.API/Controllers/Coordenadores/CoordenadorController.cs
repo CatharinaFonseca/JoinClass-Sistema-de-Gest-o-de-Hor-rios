@@ -39,7 +39,8 @@ namespace JoinClassGestaodeHorario.API.Controllers.Coordenadores
                 Coordenador coordenador = new()
                 {
                     nome = request.nome,
-                    email = request.email
+                    email = request.email,
+                    senha = request.senha
                 };
 
                 await adicionarCoordenadoresUseCase.CadastrarCoordenador(coordenador);
@@ -60,7 +61,8 @@ namespace JoinClassGestaodeHorario.API.Controllers.Coordenadores
                 {
                     id = id,
                     nome = request.nome,
-                    email = request.email
+                    email = request.email,
+                    senha = request.senha
                 };
 
                 await atualizarCoordenadoresUseCase.AtualizarCoordenador(coordenador);
@@ -100,7 +102,8 @@ namespace JoinClassGestaodeHorario.API.Controllers.Coordenadores
                 {
                     id = coordenador.id,
                     nome = coordenador.nome,
-                    email = coordenador.email
+                    email = coordenador.email,
+                    senha = coordenador.senha
                 };
 
                 return Ok(response);
@@ -109,6 +112,42 @@ namespace JoinClassGestaodeHorario.API.Controllers.Coordenadores
             {
                 return StatusCode(500);
             }
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ObterTodos()
+        {
+            try
+            {
+                var coordenadores = await coordenadorRepositorio.ObterTodosOsCoordenadores();
+
+                var response = coordenadores.Select(c => new CoordenadorResponse
+                {
+                    id = c.id,
+                    nome = c.nome,
+                    email = c.email,
+                    senha = c.senha
+                }).ToList();
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpGet("debug")]
+        public async Task<IActionResult> Debug()
+        {
+            return Ok(await coordenadorRepositorio.ObterTodosOsCoordenadores());
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] AdicionarCoordenadorRequest login)
+        {
+            var todos = await coordenadorRepositorio.ObterTodosOsCoordenadores();
+            return Ok(todos);
         }
     }
 }

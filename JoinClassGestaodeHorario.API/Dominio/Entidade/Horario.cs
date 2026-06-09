@@ -12,7 +12,7 @@ namespace JoinClassGestaodeHorario.API.Dominio.Entidade
                 public string horario_inicio { get; set; }
                 public string horario_fim { get; set; }
 
-                public int idTurma { get; set; }
+                public int id_turma { get; set; }
                 public Turma Turma { get; set; }
         }
 }

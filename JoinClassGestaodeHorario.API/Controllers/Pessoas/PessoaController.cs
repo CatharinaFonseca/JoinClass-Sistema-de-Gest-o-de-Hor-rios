@@ -23,6 +23,7 @@ namespace JoinClassGestaodeHorario.API.Controllers.Pessoas
         private IExcluirPessoaUseCase excluirPessoaUseCase;
         private IPessoaRepositorio pessoaRepositorio;
 
+
         public PessoasController(IExcluirPessoaUseCase excluirPessoaUseCase, IAtualizarPessoaUseCase atualizarPessoaUseCase, IAdicionarPessoaUseCase adicionarPessoaUseCase, IPessoaRepositorio pessoaRepositorio)
         {
             this.excluirPessoaUseCase = excluirPessoaUseCase;
@@ -39,7 +40,8 @@ namespace JoinClassGestaodeHorario.API.Controllers.Pessoas
                 Pessoa pessoa = new()
                 {
                     nome = request.nome,
-                    email = request.email
+                    email = request.email,
+                    senha = request.senha
                 };
                 await adicionarPessoaUseCase.AdicionarPessoa(pessoa);
 
@@ -59,7 +61,8 @@ namespace JoinClassGestaodeHorario.API.Controllers.Pessoas
                 Pessoa pessoa = new()
                 {
                     nome = request.nome,
-                    email = request.email
+                    email = request.email,
+                    senha = request.senha
                 };
                 await atualizarPessoaUseCase.AtualizarPessoa(pessoa);
 
@@ -96,7 +99,8 @@ namespace JoinClassGestaodeHorario.API.Controllers.Pessoas
                 {
                     id = p.id,
                     nome = p.nome,
-                    email = p.email
+                    email = p.email,
+                    senha = p.senha
                 }).ToList();
 
                 return Ok(pessoasResponse);
@@ -105,6 +109,19 @@ namespace JoinClassGestaodeHorario.API.Controllers.Pessoas
             {
                 return StatusCode(500);
             }
+        }
+
+        [HttpGet("debug")]
+        public async Task<IActionResult> Debug()
+        {
+            return Ok(await pessoaRepositorio.ObterTodasAsPessoas());
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] AdicionarPessoaRequest login)
+        {
+            var todos = await pessoaRepositorio.ObterTodasAsPessoas();
+            return Ok(todos);
         }
     }
 }

@@ -11,8 +11,8 @@ namespace JoinClassGestaodeHorario.API.Dominio.Entidade
                 public int id_professor { get; set; }
                 public Professor Professor { get; set; }
 
-                public int idMatrizCurricular { get; set; }
-                public MatrizCurricular MatrizCurricular { get; set; }
+                public int id_disciplina { get; set; }
+                public Disciplina Disciplina { get; set; }
 
                 public ICollection<Horario> Horarios { get; set; } = new List<Horario>();
 

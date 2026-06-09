@@ -30,6 +30,7 @@ using JoinClassGestaodeHorario.API.Dados;
 using JoinClassGestaodeHorario.API.Dados.Repositorios;
 using JoinClassGestaodeHorario.API.Dominio.Repositorios;
 using JoinClassGestaodeHorario.API.Services;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -51,8 +52,10 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 // Configuração do DBContext
-builder.Services.AddDbContext<ApplicationDbContext>(opcao => opcao.UseNpgsql(cofiguracao.GetValue<string>("Settings:CONNECTION_STRING"),
-o => o.UseRelationalNulls()));
+builder.Services.AddDbContext<ApplicationDbContext>(opcao =>
+opcao.UseNpgsql(
+    cofiguracao.GetValue<string>("Settings:CONNECTION_STRING")
+));
 
 //Injeção de dependência dos repositórios e casos de uso para Alunos
 builder.Services.AddTransient<IAlunoRepositorio, AlunoRepositorio>();
@@ -138,3 +141,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);

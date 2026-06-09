@@ -11,5 +11,8 @@ namespace JoinClassGestaodeHorario.API.Controllers.Horarios.Response
         public string dia_semana { get; set; }
         public string horario_inicio { get; set; }
         public string horario_fim { get; set; }
+        public string disciplina { get; set; }
+        public string professor { get; set; }
+        public int id_turma { get; set; }
     }
 }

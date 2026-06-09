@@ -12,12 +12,13 @@ namespace JoinClassGestaodeHorario.API.Services
         {
             //DayOfWeek é um enum pronto do C# que representa os dias da semana
             //Determina os dias da semana
-            DayOfWeek.Monday,
-            DayOfWeek.Tuesday,
-            DayOfWeek.Wednesday,
-            DayOfWeek.Thursday,
-            DayOfWeek.Friday
-        };
+      
+    DayOfWeek.Monday,
+    DayOfWeek.Tuesday,
+    DayOfWeek.Wednesday,
+    DayOfWeek.Thursday,
+    DayOfWeek.Friday
+};
 
         // Validação dos horários cadastrados
         public void ValidarHorario(Horario horario)
@@ -58,6 +59,47 @@ namespace JoinClassGestaodeHorario.API.Services
                 throw new Exception(
                     "Não é permitido cadastrar aulas aos finais de semana.");
             }
+        }
+
+        public List<Horario> GerarHorario(int idTurma, List<Disciplina> disciplinas)
+        {
+            var horarios = new List<Horario>();
+
+            int diaIndex = 0;
+            string horaInicio = "19:00";
+
+            foreach (var disciplina in disciplinas)
+            {
+                var horario = new Horario
+                {
+                    dia_semana = diasDaSemana[diaIndex].ToString(),
+                    horario_inicio = horaInicio,
+                    horario_fim = SomarHoras(horaInicio, 2),
+                    id_turma = idTurma
+                };
+
+                ValidarHorario(horario);
+
+                horarios.Add(horario);
+
+                // próxima aula
+                horaInicio = horario.horario_fim;
+
+                // troca dia se passar limite
+                if (horaInicio == "22:30")
+                {
+                    diaIndex++;
+                    horaInicio = "19:00";
+                }
+            }
+
+            return horarios;
+        }
+
+        private string SomarHoras(string hora, int horas)
+        {
+            var h = TimeSpan.Parse(hora);
+            return h.Add(TimeSpan.FromHours(horas)).ToString(@"hh\:mm");
         }
     }
 

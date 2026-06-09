@@ -9,6 +9,6 @@ namespace JoinClassGestaodeHorario.API.Controllers.Turmas.Response
     {
         public int id { get; set; }
         public int id_professor { get; set; }
-        public int idMatrizCurricular { get; set; }
+        public int id_matriz_curricular { get; set; }
     }
 }

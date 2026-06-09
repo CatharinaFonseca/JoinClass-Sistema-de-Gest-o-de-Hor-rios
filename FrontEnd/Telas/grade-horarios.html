@@ -20,156 +20,58 @@
     <!-- Conteúdo Principal - Tabela de Horários -->
     <main class="container schedule-container">
         
-        <table class="schedule-table">
-            <tbody>
-                <!-- Linha: Segunda-Feira -->
-                <tr>
-                    <td class="day-column">Segunda - Feira</td>
-                    <td>
-                        <div class="schedule-cell">
-                            <span class="subject">Disciplina</span>
-                            <span class="professor">Professor</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="schedule-cell">
-                            <span class="subject">Disciplina</span>
-                            <span class="professor">Professor</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="schedule-cell">
-                            <span class="subject">Disciplina</span>
-                            <span class="professor">Professor</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="schedule-cell">
-                            <span class="subject">Disciplina</span>
-                            <span class="professor">Professor</span>
-                        </div>
-                    </td>
-                </tr>
+       
+        <table border="1" style="width:100%; margin-top:20px;">
+    <thead>
+        <tr>
+            <th>Dia</th>
+            <th>Horário</th>
+            <th>Disciplina</th>
+            <th>Professor</th>
+        </tr>
+    </thead>
+    <tbody id="tabela-horarios"></tbody>
+</table>
+    </thead>
 
-                <!-- Linha: Terça-Feira -->
-                <tr>
-                    <td class="day-column">Terça - Feira</td>
-                    <td>
-                        <div class="schedule-cell">
-                            <span class="subject">Disciplina</span>
-                            <span class="professor">Professor</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="schedule-cell">
-                            <span class="subject">Disciplina</span>
-                            <span class="professor">Professor</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="schedule-cell">
-                            <span class="subject">Disciplina</span>
-                            <span class="professor">Professor</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="schedule-cell">
-                            <span class="subject">Disciplina</span>
-                            <span class="professor">Professor</span>
-                        </div>
-                    </td>
-                </tr>
-
-                <!-- Linha: Quarta-Feira -->
-                <tr>
-                    <td class="day-column">Quarta - Feira</td>
-                    <td>
-                        <div class="schedule-cell">
-                            <span class="subject">Disciplina</span>
-                            <span class="professor">Professor</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="schedule-cell">
-                            <span class="subject">Disciplina</span>
-                            <span class="professor">Professor</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="schedule-cell">
-                            <span class="subject">Disciplina</span>
-                            <span class="professor">Professor</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="schedule-cell">
-                            <span class="subject">Disciplina</span>
-                            <span class="professor">Professor</span>
-                        </div>
-                    </td>
-                </tr>
-
-                <!-- Linha: Quinta-Feira -->
-                <tr>
-                    <td class="day-column">Quinta - Feira</td>
-                    <td>
-                        <div class="schedule-cell">
-                            <span class="subject">Disciplina</span>
-                            <span class="professor">Professor</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="schedule-cell">
-                            <span class="subject">Disciplina</span>
-                            <span class="professor">Professor</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="schedule-cell">
-                            <span class="subject">Disciplina</span>
-                            <span class="professor">Professor</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="schedule-cell">
-                            <span class="subject">Disciplina</span>
-                            <span class="professor">Professor</span>
-                        </div>
-                    </td>
-                </tr>
-
-                <!-- Linha: Sexta-Feira -->
-                <tr>
-                    <td class="day-column">Sexta - Feira</td>
-                    <td>
-                        <div class="schedule-cell">
-                            <span class="subject">Disciplina</span>
-                            <span class="professor">Professor</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="schedule-cell">
-                            <span class="subject">Disciplina</span>
-                            <span class="professor">Professor</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="schedule-cell">
-                            <span class="subject">Disciplina</span>
-                            <span class="professor">Professor</span>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="schedule-cell">
-                            <span class="subject">Disciplina</span>
-                            <span class="professor">Professor</span>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-
+    <tbody id="tabela-horarios"></tbody>
+</table>
     </main>
+<script>
+async function carregarHorarios() {
+    try {
+        const response = await fetch("http://localhost:5036/api/horarios");
 
+        if (!response.ok) {
+            throw new Error("Erro na API: " + response.status);
+        }
+
+        const horarios = await response.json();
+
+        const tbody = document.getElementById("tabela-horarios");
+
+        tbody.innerHTML = "";
+
+        horarios.forEach(h => {
+            const linha = `
+                <tr>
+                    <td>${h.dia_semana}</td>
+                    <td>${h.horario_inicio} - ${h.horario_fim}</td>
+                    <td>${h.disciplina ?? "-"}</td>
+                    <td>${h.professor ?? "-"}</td>
+                </tr>
+            `;
+
+            tbody.innerHTML += linha;
+        });
+
+    } catch (err) {
+        console.error(err);
+        alert("Erro ao carregar horários");
+    }
+}
+
+window.onload = carregarHorarios;
+</script>
 </body>
 </html>

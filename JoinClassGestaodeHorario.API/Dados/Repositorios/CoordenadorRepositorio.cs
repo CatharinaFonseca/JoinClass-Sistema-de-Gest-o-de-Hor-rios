@@ -37,16 +37,13 @@ namespace JoinClassGestaodeHorario.API.Dados.Repositorios
 
         public async Task<Coordenador> ObterCoordenador(int id)
         {
-            var coordenador = contexto.Coordenadores
-                .FromSql($"Select * From coordenador where id = {id}");
-            return await coordenador.FirstOrDefaultAsync();
+            return await contexto.Coordenadores
+               .FirstOrDefaultAsync(p => p.id == id);
         }
 
         public async Task<List<Coordenador>> ObterTodosOsCoordenadores()
         {
-            var coordenadores = contexto.Coordenadores
-                .FromSql($"Select * From coordenador");
-            return await coordenadores.ToListAsync();
+            return await contexto.Coordenadores.ToListAsync();
         }
     }
 }

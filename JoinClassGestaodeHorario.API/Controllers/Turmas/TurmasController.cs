@@ -37,8 +37,7 @@ namespace JoinClassGestaodeHorario.API.Controllers.Turmas
             {
                 Turma turma = new()
                 {
-                    id_professor = request.id_professor,
-                    idMatrizCurricular = request.idMatrizCurricular
+                    id_professor = request.id_professor
                 };
                 await criarTurmaUseCase.CadastrarTurma(turma);
 
@@ -58,8 +57,7 @@ namespace JoinClassGestaodeHorario.API.Controllers.Turmas
                 Turma turma = new()
                 {
                     id = id,
-                    id_professor = request.id_professor,
-                    idMatrizCurricular = request.idMatrizCurricular
+                    id_professor = request.id_professor
                 };
                 await atualizarTurmaUseCase.AtualizarTurma(turma);
 
@@ -95,8 +93,7 @@ namespace JoinClassGestaodeHorario.API.Controllers.Turmas
                 List<TurmaResponse> turmasResponse = turmas.Select(t => new TurmaResponse()
                 {
                     id = t.id,
-                    id_professor = t.id_professor,
-                    idMatrizCurricular = t.idMatrizCurricular
+                    id_professor = t.id_professor
                 }).ToList();
 
                 return Ok(turmasResponse);

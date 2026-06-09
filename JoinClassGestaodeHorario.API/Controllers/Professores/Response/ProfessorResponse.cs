@@ -12,6 +12,7 @@ namespace JoinClassGestaodeHorario.API.Controllers.Professores.Response
         public string nome { get; set; }
         public string email { get; set; }
         public string titulacao { get; set; }
+        public string senha { get; set; }
 
     }
 }

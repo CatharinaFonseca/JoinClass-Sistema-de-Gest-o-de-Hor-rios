@@ -21,7 +21,7 @@ namespace JoinClassGestaodeHorario.API.Dados
         public DbSet<Pessoa> Pessoas { get; set; }
         public DbSet<Professor> Professores { get; set; }
         public DbSet<Turma> Turmas { get; set; }
-        public DbSet<MatrizCurricular> MatrizCurriculars { get; set; }
+        //  public DbSet<MatrizCurricular> MatrizCurriculars { get; set; }
         public DbSet<Semestre> Semestres { get; set; }
         public DbSet<TurmaAluno> TurmaAlunos { get; set; }
         public DbSet<ProfessorDisciplina> ProfessorDisciplinas { get; set; }
@@ -31,8 +31,9 @@ namespace JoinClassGestaodeHorario.API.Dados
         {
             base.OnModelCreating(modelBuilder);
 
+
             modelBuilder.Entity<Pessoa>()
-                .ToTable("pessoa", "public");
+               .ToTable("pessoa", "public");
 
             modelBuilder.Entity<Aluno>()
                 .ToTable("aluno", "public");
@@ -47,6 +48,8 @@ namespace JoinClassGestaodeHorario.API.Dados
             {
                 entidade.ToTable("disciplina", "public");
                 entidade.HasKey(e => e.id);
+                entidade.Property(x => x.id).HasColumnName("id");
+                entidade.Property(x => x.nome).HasColumnName("nome");
             });
 
             modelBuilder.Entity<Disponibilidade>(entidade =>
@@ -91,26 +94,26 @@ namespace JoinClassGestaodeHorario.API.Dados
 
                 entidade.HasOne(h => h.Turma)
                     .WithMany(t => t.Horarios)
-                    .HasForeignKey(h => h.idTurma);
+                    .HasForeignKey(h => h.id_turma);
             });
 
-            modelBuilder.Entity<MatrizCurricular>(entidade =>
-            {
-                entidade.ToTable("matriz_curricular", "public");
-                entidade.HasKey(e => e.id);
+            /* modelBuilder.Entity<MatrizCurricular>(entidade =>
+             {
+                 entidade.ToTable("matriz_curricular", "public");
+                 entidade.HasKey(e => e.id);
 
-                entidade.HasOne(m => m.Graduacao)
-                    .WithMany(g => g.Matrizes)
-                    .HasForeignKey(m => m.idGraduacao);
+                 entidade.HasOne(m => m.Graduacao)
+                     .WithMany(g => g.Matrizes)
+                     .HasForeignKey(m => m.id_graduacao);
 
-                entidade.HasOne(m => m.Semestre)
-                    .WithMany()
-                    .HasForeignKey(m => m.idSemestre);
+                 entidade.HasOne(m => m.Semestre)
+                     .WithMany()
+                     .HasForeignKey(m => m.id_semestre);
 
-                entidade.HasOne(m => m.Disponibilidade)
-                    .WithMany()
-                    .HasForeignKey(m => m.idDisponibilidade);
-            });
+                 entidade.HasOne(m => m.Disponibilidade)
+                     .WithMany()
+                     .HasForeignKey(m => m.id_disponibilidade);
+             });*/
 
             modelBuilder.Entity<ProfessorDisciplina>(entidade =>
            {
@@ -144,19 +147,22 @@ namespace JoinClassGestaodeHorario.API.Dados
             });
 
             modelBuilder.Entity<Turma>(entidade =>
-            {
-                entidade.ToTable("turma", "public");
+ {
+     entidade.ToTable("turma", "public");
 
-                entidade.HasKey(e => e.id);
+     entidade.HasKey(e => e.id);
 
-                entidade.HasOne(t => t.Professor)
-                        .WithMany()
-                        .HasForeignKey(t => t.id_professor);
+     entidade.HasOne(t => t.Professor)
+         .WithMany()
+         .HasForeignKey(t => t.id_professor);
 
-                entidade.HasOne(t => t.MatrizCurricular)
-                        .WithMany()
-                        .HasForeignKey(t => t.idMatrizCurricular);
-            });
+     entidade.HasOne(t => t.Disciplina)
+         .WithMany()
+         .HasForeignKey(t => t.id_disciplina);
+
+     entidade.Property(x => x.id_disciplina).HasColumnName("id_disciplina");
+     entidade.Property(x => x.id_professor).HasColumnName("id_professor");
+ });
 
             modelBuilder.Entity<TurmaAluno>(entidade =>
             {

@@ -43,16 +43,13 @@ namespace JoinClassGestaodeHorario.API.Dados.Repositorios
 
         public async Task<Aluno> ObterAluno(int id)
         {
-            var aluno = contexto.Alunos
-                .FromSql($"Select * From aluno where id = {id}");
-            return await aluno.FirstOrDefaultAsync();
+            return await contexto.Alunos
+               .FirstOrDefaultAsync(a => a.id == id);
         }
 
         public async Task<List<Aluno>> ObterTodosOsAlunos()
         {
-            var alunos = contexto.Database
-                .SqlQuery<Aluno>($"Select * From aluno");
-            return await alunos.ToListAsync();
+            return await contexto.Alunos.ToListAsync();
         }
     }
 }

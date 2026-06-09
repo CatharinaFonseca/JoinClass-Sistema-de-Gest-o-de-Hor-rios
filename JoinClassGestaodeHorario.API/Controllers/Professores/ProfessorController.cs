@@ -40,7 +40,8 @@ namespace JoinClassGestaodeHorario.API.Controllers.Professores
                 Professor professor = new()
                 {
                     nome = request.nome,
-                    email = request.email
+                    email = request.email,
+                    senha = request.senha
                 };
 
                 await adicionarProfessoresUseCase.CadastrarProfessor(professor);
@@ -62,7 +63,8 @@ namespace JoinClassGestaodeHorario.API.Controllers.Professores
                 {
                     id = id,
                     nome = request.nome,
-                    email = request.email
+                    email = request.email,
+                    senha = request.senha
                 };
 
                 await atualizarProfessoresUseCase.AtualizarProfessor(professor);
@@ -102,7 +104,8 @@ namespace JoinClassGestaodeHorario.API.Controllers.Professores
                 {
                     id = professor.id,
                     nome = professor.nome,
-                    email = professor.email
+                    email = professor.email,
+                    senha = professor.senha
                 };
 
                 return Ok(response);
@@ -124,7 +127,8 @@ namespace JoinClassGestaodeHorario.API.Controllers.Professores
                 {
                     id = p.id,
                     nome = p.nome,
-                    email = p.email
+                    email = p.email,
+                    senha = p.senha
                 }).ToList();
 
                 return Ok(response);
@@ -133,6 +137,19 @@ namespace JoinClassGestaodeHorario.API.Controllers.Professores
             {
                 return StatusCode(500, ex.Message);
             }
+        }
+
+        [HttpGet("debug")]
+        public async Task<IActionResult> Debug()
+        {
+            return Ok(await professorRepositorio.ObterTodosOsProfessores());
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] AdicionarProfessorRequest login)
+        {
+            var todos = await professorRepositorio.ObterTodosOsProfessores();
+            return Ok(todos);
         }
     }
 }

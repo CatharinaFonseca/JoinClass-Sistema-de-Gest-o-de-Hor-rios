@@ -10,5 +10,6 @@ namespace JoinClassGestaodeHorario.API.Controllers.Alunos.Request
     {
         public string nome { get; set; }
         public string email { get; set; }
+        public string senha { get; set; }
     }
 }
