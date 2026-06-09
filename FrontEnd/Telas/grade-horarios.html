@@ -2,76 +2,142 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JoinClass - Horário Acadêmico</title>
-    <!-- Vinculando nosso arquivo de estilo centralizado -->
-    <link rel="stylesheet" href="css/style.css">
+    <title>Grade de Horários - JoinClass</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f6f9; margin: 20px; }
+        .schedule-container { max-width: 1000px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #333; margin-bottom: 20px; }
+        
+        /* Estrutura da Tabela */
+        .timetable { width: 100%; border-collapse: collapse; margin-top: 10px; table-layout: fixed; }
+        .timetable th, .timetable td { border: 1px solid #e0e0e0; padding: 12px; text-align: center; vertical-align: top; }
+        
+        /* Cabeçalho */
+        .timetable th { background-color: #4A90E2; color: white; font-weight: 600; text-transform: uppercase; font-size: 14px; }
+        .timetable th:first-child { background-color: #357ABD; width: 15%; } /* Coluna de Horas */
+        
+        /* Linhas de Horário */
+        .time-slot { font-weight: bold; color: #555; background-color: #f9f9f9; vertical-align: middle !important; }
+        
+        /* Estilo dos Cards de Aula dentro das células */
+        .aula-card { background-color: #E3F2FD; border-left: 4px solid #2196F3; padding: 8px; border-radius: 4px; text-align: left; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .aula-materia { font-weight: bold; color: #0D47A1; font-size: 14px; margin-bottom: 4px; }
+        .aula-professor { font-size: 12px; color: #555; display: block; }
+        
+        .btn-carregar { display: block; margin: 0 auto 20px auto; padding: 10px 20px; background-color: #2196F3; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
+        .btn-carregar:hover { background-color: #1976D2; }
+    </style>
 </head>
 <body>
 
-    <!-- Cabeçalho Principal -->
-    <header class="main-header">
-        <div class="logo-container">
-            <span class="logo-text-join">Join</span><span class="logo-text-class">Class</span>
-        </div>
-        <h1 class="header-title-schedule">Horário Acadêmico</h1>
-    </header>
+<div class="schedule-container">
+    <h2>Grade de Horários da Turma</h2>
+    
+    <button class="btn-carregar" onclick="buscarEPreencherHorarios(3)">Exibir Horário da Turma 3</button>
 
-    <!-- Conteúdo Principal - Tabela de Horários -->
-    <main class="container schedule-container">
-        
-       
-        <table border="1" style="width:100%; margin-top:20px;">
-    <thead>
-        <tr>
-            <th>Dia</th>
-            <th>Horário</th>
-            <th>Disciplina</th>
-            <th>Professor</th>
-        </tr>
-    </thead>
-    <tbody id="tabela-horarios"></tbody>
-</table>
-    </thead>
+    <table class="timetable">
+        <thead>
+            <tr>
+                <th>Horário</th>
+                <th>Segunda</th>
+                <th>Terça</th>
+                <th>Quarta</th>
+                <th>Quinta</th>
+                <th>Sexta</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="time-slot">19:00 - 20:40</td>
+                <td id="Segunda-19:00"></td>
+                <td id="Terça-19:00"></td>
+                <td id="Quarta-19:00"></td>
+                <td id="Quinta-19:00"></td>
+                <td id="Sexta-19:00"></td>
+            </tr>
+            <tr>
+                <td class="time-slot">20:50 - 22:30</td>
+                <td id="Segunda-20:50"></td>
+                <td id="Terça-20:50"></td>
+                <td id="Quarta-20:50"></td>
+                <td id="Quinta-20:50"></td>
+                <td id="Sexta-20:50"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-    <tbody id="tabela-horarios"></tbody>
-</table>
-    </main>
 <script>
-async function carregarHorarios() {
-    try {
-        const response = await fetch("http://localhost:5036/api/horarios");
+    const API_URL = "http://localhost:5036/api";
 
-        if (!response.ok) {
-            throw new Error("Erro na API: " + response.status);
+    async function buscarEPreencherHorarios(idTurma) {
+        try {
+            const resposta = await fetch(`${API_URL}/horarios`);
+            if (!resposta.ok) throw new Error("Erro ao buscar horários");
+            
+            const todosHorarios = await resposta.json();
+            console.log("Dados totais que chegaram da API:", todosHorarios);
+
+            limparGrade();
+
+            const horariosFiltrados = todosHorarios.filter(h => {
+                const idTurmaObjeto = h.id_turma || h.idTurma || (h.turma ? h.turma.id : null);
+                return idTurmaObjeto == idTurma;
+            });
+
+            console.log(`Horários filtrados para a turma ${idTurma}:`, horariosFiltrados);
+
+            if (horariosFiltrados.length === 0) {
+                alert(`Nenhum horário cadastrado encontrado para a turma de ID ${idTurma}.`);
+                return;
+            }
+
+            horariosFiltrados.forEach(h => {
+                let diaSemana = h.dia_semana || h.Dia_semana || h.diaSemana || h.DiaSemana;
+                if (diaSemana && diaSemana.includes("-feira")) {
+                    diaSemana = diaSemana.split("-")[0];
+                }
+
+                let horarioInicio = h.horario_inicio || h.Horario_inicio || h.horarioInicio || h.HorarioInicio;
+                if (horarioInicio && horarioInicio.split(":").length === 3) {
+                    const partes = horarioInicio.split(":");
+                    horarioInicio = `${partes[0]}:${partes[1]}`;
+                }
+                
+                const celulaId = `${diaSemana}-${horarioInicio}`;
+                const celula = document.getElementById(celulaId);
+
+                if (celula) {
+                    const nomeMateria = h.disciplina || "Sem Disciplina";
+                    const nomeProfessor = h.professor || "Sem Professor";
+
+                    celula.innerHTML = `
+                        <div class="aula-card">
+                            <div class="aula-materia">${nomeMateria}</div>
+                            <span class="aula-professor">👤 ${nomeProfessor}</span>
+                        </div>
+                    `;
+                }
+            });
+
+        } catch (erro) {
+            console.error("Erro ao processar a grade:", erro);
+            alert("Não foi possível carregar a grade de horários.");
         }
-
-        const horarios = await response.json();
-
-        const tbody = document.getElementById("tabela-horarios");
-
-        tbody.innerHTML = "";
-
-        horarios.forEach(h => {
-            const linha = `
-                <tr>
-                    <td>${h.dia_semana}</td>
-                    <td>${h.horario_inicio} - ${h.horario_fim}</td>
-                    <td>${h.disciplina ?? "-"}</td>
-                    <td>${h.professor ?? "-"}</td>
-                </tr>
-            `;
-
-            tbody.innerHTML += linha;
-        });
-
-    } catch (err) {
-        console.error(err);
-        alert("Erro ao carregar horários");
     }
-}
 
-window.onload = carregarHorarios;
+    function limparGrade() {
+        const dias = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta'];
+        // ALTERADO: Agora a limpeza limpa o turno das 19:00 e o novo turno das 22:30
+        const horas = ['19:00', '22:30'];
+        
+        dias.forEach(d => {
+            horas.forEach(h => {
+                const celula = document.getElementById(`${d}-${h}`);
+                if (celula) celula.innerHTML = "";
+            });
+        });
+    }
 </script>
 </body>
 </html>

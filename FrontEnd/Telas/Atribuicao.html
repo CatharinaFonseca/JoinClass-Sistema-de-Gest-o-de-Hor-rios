@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Atribuição de Aulas - JoinClass</title>
+    <style>
+        .container { max-width: 400px; margin: 50px auto; font-family: Arial, sans-serif; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        select, button { width: 100%; padding: 10px; font-size: 16px; border-radius: 5px; }
+        button { background-color: #4CAF50; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+        .mensagem { margin-top: 15px; font-weight: bold; text-align: center; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Atribuição de Disciplinas</h2>
+    
+    <div class="form-group">
+        <label for="selectProfessor">Selecione o Professor:</label>
+        <select id="selectProfessor">
+            <option value="">Carregando professores...</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="selectDisciplina">Selecione a Disciplina:</label>
+        <select id="selectDisciplina">
+            <option value="">Carregando disciplinas...</option>
+        </select>
+    </div>
+
+    <button onclick="vincularDados()">Vincular Professor e Matéria</button>
+    
+    <div id="mensagemStatus" class="mensagem"></div>
+</div>
+
+<script>
+    // URL centralizada da sua API local
+    const API_URL = "http://localhost:5036/api"; 
+
+    // Executa as buscas assim que a janela do navegador carregar completamente
+    window.onload = async function() {
+        await carregarProfessores();
+        await carregarDisciplinas();
+    };
+
+    // Busca os professores do Back-end
+    async function carregarProfessores() {
+        try {
+            // Usa a constante global corrigindo possíveis problemas de rota
+            const resposta = await fetch(`${API_URL}/professores`); 
+            
+            if (!resposta.ok) {
+                throw new Error(`Erro na requisição dos professores: Status ${resposta.status}`);
+            }
+            
+            const professores = await resposta.json();
+            const select = document.getElementById("selectProfessor");
+            
+            select.innerHTML = '<option value="">-- Escolha um Professor --</option>';
+            professores.forEach(p => {
+                // Tratativa de segurança: aceita tanto 'id'/'nome' quanto 'Id'/'Nome' vindo da API
+                const id = p.id || p.Id;
+                const nome = p.nome || p.Nome;
+                if (id && nome) {
+                    select.innerHTML += `<option value="${id}">${nome}</option>`;
+                }
+            });
+        } catch (erro) {
+            // Mostra o erro exato no console do navegador (F12) para sabermos o motivo real
+            console.error("Erro detalhado em carregarProfessores:", erro);
+            document.getElementById("selectProfessor").innerHTML = '<option>Erro ao carregar</option>';
+        }
+    }
+
+    // Busca as disciplinas do Back-end
+    async function carregarDisciplinas() {
+        try {
+            // Corrigido para "disciplinas" em minúsculo igual ao mapeamento do seu Controller
+            const resposta = await fetch(`${API_URL}/disciplinas`);
+            
+            if (!resposta.ok) {
+                throw new Error(`Erro na requisição das disciplinas: Status ${resposta.status}`);
+            }
+            
+            const disciplinas = await resposta.json();
+            const select = document.getElementById("selectDisciplina");
+            
+            select.innerHTML = '<option value="">-- Escolha uma Disciplina --</option>';
+            disciplinas.forEach(d => {
+                // Garante compatibilidade caso as propriedades comecem com maiúscula
+                const id = d.id || d.Id;
+                const nome = d.nome || d.Nome;
+                const cargaHoraria = d.carga_horaria || d.Carga_horaria || d.cargaHoraria;
+                
+                if (id && nome) {
+                    select.innerHTML += `<option value="${id}">${nome} (${cargaHoraria}h)</option>`;
+                }
+            });
+        } catch (erro) {
+            console.error("Erro detalhado em carregarDisciplinas:", erro);
+            document.getElementById("selectDisciplina").innerHTML = '<option>Erro ao carregar</option>';
+        }
+    }
+
+    // Envia o vínculo para o Back-end (O botão POST)
+    async function vincularDados() {
+        const idProfessor = document.getElementById("selectProfessor").value;
+        const idDisciplina = document.getElementById("selectDisciplina").value;
+        const campoMensagem = document.getElementById("mensagemStatus");
+
+        if (!idProfessor || !idDisciplina) {
+            campoMensagem.style.color = "red";
+            campoMensagem.innerText = "Por favor, selecione ambos os campos!";
+            return;
+        }
+
+        const dadosFormulario = {
+            id_professor: parseInt(idProfessor),
+            id_disciplina: parseInt(idDisciplina)
+        };
+
+        try {
+            const resposta = await fetch(`${API_URL}/professor-disciplina/vincular`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(dadosFormulario)
+            });
+
+            if (resposta.ok) {
+                campoMensagem.style.color = "green";
+                campoMensagem.innerText = "Vínculo realizado com sucesso!";
+                document.getElementById("selectProfessor").value = "";
+                document.getElementById("selectDisciplina").value = "";
+            } else {
+                const erroDados = await resposta.json();
+                campoMensagem.style.color = "red";
+                campoMensagem.innerText = erroDados.erro || "Erro ao vincular.";
+            }
+        } catch (erro) {
+            console.error("Erro detalhado ao vincular dados:", erro);
+            campoMensagem.style.color = "red";
+            campoMensagem.innerText = "Não foi possível conectar à API.";
+        }
+    }
+</script>
