@@ -61,6 +61,26 @@ namespace JoinClassGestaodeHorario.API.Controllers.Horarios
             }
         }
 
+        [HttpPost("gerar-automatico/{idTurma}")]
+        public async Task<IActionResult> GerarAutomatico([FromRoute] int idTurma, [FromBody] List<int> idsDisciplinas)
+        {
+            try
+            {
+                if (idsDisciplinas == null || !idsDisciplinas.Any())
+                {
+                    return BadRequest("Você precisa enviar pelo menos o ID de uma disciplina.");
+                }
+
+                var horariosCriados = await _service.GerarHorarioAutomatico(idTurma, idsDisciplinas);
+
+                return Ok(new { mensagem = "Horários gerados com sucesso!", quantidade = horariosCriados.Count });
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(new { erro = ex.Message });
+            }
+        }
+
         [HttpPut("{id}")]
 
         public async Task<IActionResult> Atualizar([FromRoute] int id, [FromBody] AtualizarHorarioRequest request)
@@ -100,25 +120,37 @@ namespace JoinClassGestaodeHorario.API.Controllers.Horarios
         [HttpGet]
         public async Task<IActionResult> ObterHorarios()
         {
-            var horarios = await _contexto.Horarios
-     .Include(h => h.Turma)
-         .ThenInclude(t => t.Professor)
-     .Include(h => h.Turma)
-         .ThenInclude(t => t.Disciplina)
-     .ToListAsync();
-
-            var response = horarios.Select(h => new HorarioResponse
+            try
             {
-                id = h.id,
-                dia_semana = h.dia_semana,
-                horario_inicio = h.horario_inicio,
-                horario_fim = h.horario_fim,
+                // Buscamos os dados diretamente da tabela de horários.
+                // Se o EF não encontrar o objeto mapeado, ele preenche com o texto alternativo sem zerar a lista.
+                var response = await _contexto.Horarios
+                    .Select(h => new HorarioResponse
+                    {
+                        id = h.id,
+                        id_turma = h.id_turma,
+                        dia_semana = h.dia_semana,
+                        horario_inicio = h.horario_inicio,
+                        horario_fim = h.horario_fim,
 
-                professor = h.Turma.Professor.nome,
-                disciplina = h.Turma.Disciplina.nome
-            });
+                        // Buscando diretamente do relacionamento do Horário com o Professor/Pessoa
+                        professor = h.id_professor != 0 && _contexto.Pessoas.Any(p => p.id == h.id_professor)
+                                    ? _contexto.Pessoas.Where(p => p.id == h.id_professor).Select(p => p.nome).FirstOrDefault()
+                                    : "Sem Professor",
 
-            return Ok(response);
+                        // Buscando diretamente do relacionamento do Horário com a Disciplina
+                        disciplina = h.id_disciplina != 0 && _contexto.Disciplinas.Any(d => d.id == h.id_disciplina)
+                                     ? _contexto.Disciplinas.Where(d => d.id == h.id_disciplina).Select(d => d.nome).FirstOrDefault()
+                                     : "Sem Disciplina"
+                    })
+                    .ToListAsync();
+
+                return Ok(response);
+            }
+            catch (System.Exception ex)
+            {
+                return StatusCode(500, new { mensagem = "Erro ao listar horários", detalhe = ex.Message });
+            }
         }
     }
 }

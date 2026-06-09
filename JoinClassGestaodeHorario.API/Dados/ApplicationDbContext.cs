@@ -21,7 +21,7 @@ namespace JoinClassGestaodeHorario.API.Dados
         public DbSet<Pessoa> Pessoas { get; set; }
         public DbSet<Professor> Professores { get; set; }
         public DbSet<Turma> Turmas { get; set; }
-        //  public DbSet<MatrizCurricular> MatrizCurriculars { get; set; }
+        public DbSet<MatrizCurricular> MatrizCurricular { get; set; }
         public DbSet<Semestre> Semestres { get; set; }
         public DbSet<TurmaAluno> TurmaAlunos { get; set; }
         public DbSet<ProfessorDisciplina> ProfessorDisciplinas { get; set; }
@@ -92,15 +92,24 @@ namespace JoinClassGestaodeHorario.API.Dados
 
                 entidade.HasKey(e => e.id);
 
+                // Mapeamento explícito das propriedades da tabela Horário
+                entidade.Property(e => e.id).HasColumnName("id");
+                entidade.Property(e => e.id_turma).HasColumnName("id_turma");
+                entidade.Property(e => e.id_professor).HasColumnName("id_professor");
+                entidade.Property(e => e.id_disciplina).HasColumnName("id_disciplina");
+
+                // Configura a relação dizendo que o Horário tem uma Turma,
+                // e a Turma tem muitos Horários, usando a FK id_turma
                 entidade.HasOne(h => h.Turma)
-                    .WithMany(t => t.Horarios)
-                    .HasForeignKey(h => h.id_turma);
+                        .WithMany(t => t.Horarios)
+                        .HasForeignKey(h => h.id_turma);
             });
 
-            /* modelBuilder.Entity<MatrizCurricular>(entidade =>
+            modelBuilder.Entity<MatrizCurricular>(entidade =>
              {
                  entidade.ToTable("matriz_curricular", "public");
                  entidade.HasKey(e => e.id);
+                 entidade.Property(e => e.id).HasColumnName("id");
 
                  entidade.HasOne(m => m.Graduacao)
                      .WithMany(g => g.Matrizes)
@@ -113,7 +122,7 @@ namespace JoinClassGestaodeHorario.API.Dados
                  entidade.HasOne(m => m.Disponibilidade)
                      .WithMany()
                      .HasForeignKey(m => m.id_disponibilidade);
-             });*/
+             });
 
             modelBuilder.Entity<ProfessorDisciplina>(entidade =>
            {
@@ -147,22 +156,32 @@ namespace JoinClassGestaodeHorario.API.Dados
             });
 
             modelBuilder.Entity<Turma>(entidade =>
- {
-     entidade.ToTable("turma", "public");
+{
+    // 1. Define o nome exato da tabela no Postgres
+    entidade.ToTable("turma", "public");
+    entidade.HasKey(x => x.id);
 
-     entidade.HasKey(e => e.id);
+    // 2. Mapeia estritamente os nomes de todas as colunas físicas
+    entidade.Property(x => x.id).HasColumnName("id");
+    entidade.Property(x => x.id_matriz_curricular).HasColumnName("id_matriz_curricular");
+    entidade.Property(x => x.id_professor).HasColumnName("id_professor");
+    entidade.Property(x => x.id_disciplina).HasColumnName("id_disciplina");
 
-     entidade.HasOne(t => t.Professor)
-         .WithMany()
-         .HasForeignKey(t => t.id_professor);
+    // 3. Resolve o fantasma: Vincula a propriedade de objeto à coluna física
+    entidade.HasOne(t => t.MatrizCurricular)
+             .WithMany()
+             .HasForeignKey(t => t.id_matriz_curricular)
+             .IsRequired(false);
 
-     entidade.HasOne(t => t.Disciplina)
-         .WithMany()
-         .HasForeignKey(t => t.id_disciplina);
+    // 4. Garante os outros relacionamentos para não gerarem problemas futuros
+    entidade.HasOne(t => t.Professor)
+            .WithMany()
+            .HasForeignKey(t => t.id_professor);
 
-     entidade.Property(x => x.id_disciplina).HasColumnName("id_disciplina");
-     entidade.Property(x => x.id_professor).HasColumnName("id_professor");
- });
+    entidade.HasOne(t => t.Disciplina)
+            .WithMany()
+            .HasForeignKey(t => t.id_disciplina);
+});
 
             modelBuilder.Entity<TurmaAluno>(entidade =>
             {
@@ -177,6 +196,7 @@ namespace JoinClassGestaodeHorario.API.Dados
                 entidade.HasOne(ta => ta.Aluno)
                     .WithMany(a => a.TurmaAlunos)
                     .HasForeignKey(ta => ta.idAluno);
+
             });
         }
     }
