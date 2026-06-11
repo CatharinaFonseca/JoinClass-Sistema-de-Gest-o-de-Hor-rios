@@ -3,38 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Atribuição de Aulas - JoinClass</title>
-    <style>
-        .container { max-width: 400px; margin: 50px auto; font-family: Arial, sans-serif; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; }
-        select, button { width: 100%; padding: 10px; font-size: 16px; border-radius: 5px; }
-        button { background-color: #4CAF50; color: white; border: none; cursor: pointer; }
-        button:hover { background-color: #45a049; }
-        .mensagem { margin-top: 15px; font-weight: bold; text-align: center; }
-    </style>
+    <link rel="stylesheet" type="text/css" href="CSS/JoinClass.css">
 </head>
-<body>
+<body class="BodyAtribuicao">
 
-<div class="container">
+    <div class="TopoAtribuicao">
+        <a href="JoinClass.html">
+    <img src="img/JCLogoSF.png" alt="Logo" class="LogoLogin">
+        </a>
+    </div>
+
+<div class="CardLogin">
     <h2>Atribuição de Disciplinas</h2>
     
-    <div class="form-group">
+    <div class="CampoProfessorDisciplina">
         <label for="selectProfessor">Selecione o Professor:</label>
         <select id="selectProfessor">
             <option value="">Carregando professores...</option>
         </select>
     </div>
 
-    <div class="form-group">
+    <div class="CampoProfessorDisciplina">
         <label for="selectDisciplina">Selecione a Disciplina:</label>
         <select id="selectDisciplina">
             <option value="">Carregando disciplinas...</option>
         </select>
     </div>
 
-    <button onclick="vincularDados()">Vincular Professor e Matéria</button>
+    <div class="BotaoVincular">
+        <button onclick="vincularDados()">Vincular Professor e Matéria</button>
+    </div>
     
-    <div id="mensagemStatus" class="mensagem"></div>
+    <div id="mensagemStatus" class="Mensagem"></div>
 </div>
 
 <script>

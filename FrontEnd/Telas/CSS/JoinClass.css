@@ -42,6 +42,7 @@ body{
     position: fixed;
     top: 0;
     left: -220px;
+    z-index: 998;
 }
 .BarraLateral h2{
     margin-bottom:40px;
@@ -49,7 +50,7 @@ body{
 }
 .BarraLateral a{
     display: flex;
-    padding: 8px 20px;
+    padding: 10px 30px;
     text-decoration:none;
     color:#002b66;
     font-size:23px;
@@ -58,6 +59,7 @@ body{
     gap: 5px;
     align-items: center;
     padding-left: 35px;
+    padding-top: 20px;
 }
 .BarraLateral a:hover {
     background: #f1f1f1;
@@ -71,13 +73,14 @@ body{
 
 .BotaoMenu {
     position: fixed;
-    top: 20px;
+    top: 15px;
     left: 20px;
     color: white;
     padding: 20px;
     cursor: pointer;
-    z-index: 1000;
+    z-index: 999;
     font-family: Arial, sans-serif;
+    padding-top: 10px;
 }
 .BotaoMenu.active{
 	color: #012553;
@@ -166,13 +169,13 @@ body{
 }
 /*Pagina Login*/
 
-/*Primeiro Acesso*/
+/*Acesso*/
 
-.Body1Acesso{
+.BodyAcesso{
     background-color: #f5f9ff;
 }
 
-.Topo1Acesso{
+.TopoAcesso{
     background-color: #012553;
     height: 90px;
     width: 100%;
@@ -186,7 +189,6 @@ body{
     height: auto;
 }
 
-
 .CardLogin{
     width: 750px;
     margin: 50px auto;
@@ -194,6 +196,7 @@ body{
     border: 2px solid black;
     border-radius: 25px;
     padding: 40px;
+    align-items: center;
 }
 
 .CardLogin h1{
@@ -204,11 +207,12 @@ body{
 .LinhaCampos{
     display: flex;
     justify-content: center;
-    gap: 60px;
+    gap: 30px;
     margin-bottom: 25px;
+    align-items: center;
 }
 
-.CampoNome1Acesso{
+.CampoTipoAcesso{
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -216,12 +220,12 @@ body{
     gap: 10px;
 }
 
-.CampoNome1Acesso label{
+.CampoTipoAcesso label{
     font-size: 24px;
     font-family: Arial, sans-serif;
 }
 
-.CampoNome1Acesso input{
+.CampoTipoAcesso input{
     width: 220px;
     height: 35px;
     border: 1px solid black;
@@ -229,6 +233,15 @@ body{
     padding-left: 10px;
 }
 
+.CampoTipoAcesso button{
+    width: 180px;
+    height: 55px;
+    font-size: 21px;
+    border-radius: 20px;
+    align-items: center;
+}
+
+/*SE PRECISAR 1 ACESSO*/
 .CampoRE{
     display: flex;
     align-items: center;
@@ -302,7 +315,9 @@ body{
     font-size: 28px;
     border-radius: 20px;
 }
-/*Primeiro Acesso*/
+/*SE PRECISAR 1 ACESSO*/
+/*Acesso*/
+
 
 /*Diretor*/
 
@@ -421,10 +436,12 @@ body{
 .BotaoEnviar button{
     width: 180px;
     height: 55px;
-    font-size: 28px;
+    font-size: 23px;
     border-radius: 20px;
+    font-weight: bold;
 }
 /*Diretor*/
+
 
 /* Grade de Horários */
 
@@ -449,11 +466,12 @@ body{
 }
 
 .BotaoCarregar button{
-    font-size: 15px;
+    font-size: 17px;
     width: 280px;
     height: 55px;
     border-radius: 20px;
     cursor: pointer;
+    font-weight: bold;
 }
 
 .TabelaHorario{
@@ -497,3 +515,63 @@ body{
 }
 
 /*Grade de Horarios*/
+
+
+/*Atribuição de disciplinas*/
+
+.BodyAtribuicao{
+    background-color: #f5f9ff;
+}
+
+.TopoAtribuicao{
+    background-color: #012553;
+    height: 90px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+.CampoProfessorDisciplina{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.CampoProfessorDisciplina label{
+    width: 140px;
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+}
+
+.CampoProfessorDisciplina select{
+    width: 280px;
+    height: 40px;
+    border: 1px solid black;
+    border-radius: 12px;
+    padding-left: 10px;
+    font-size: 16px;
+}
+
+.BotaoVincular{
+    text-align: center;
+    margin-top: 30px;
+}
+
+.BotaoVincular button{
+    width: 350px;
+    height: 55px;
+    font-size: 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.Mensagem{
+    text-align: center;
+    margin-top: 25px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/*Atribuição de disciplinas*/
