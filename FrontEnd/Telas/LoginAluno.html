@@ -40,12 +40,6 @@
 
         </div>
 
-		<div class="TextoCadastro">
-			<a href="JC1Acesso.html">
-            <p>Primeira vez acessando?</p>
-            </a>
-        </div>
-
     </div>
 
 <script>
@@ -66,12 +60,11 @@ async function login() {
         if (response.ok) {
             const user = await response.json();
             
-            // Opcional: Salva o ID da turma do aluno para usar na página da grade
             if (user.id_turma || user.idTurma) {
                 localStorage.setItem("idTurmaAluno", user.id_turma || user.idTurma);
             }
 
-            alert("Login efetuado com sucesso! Bem-vindo, " + user.nome);
+            alert("Login efetuado com sucesso! Bem-vindo " );
             
             
             window.location.href = "grade-horarios.html"; 

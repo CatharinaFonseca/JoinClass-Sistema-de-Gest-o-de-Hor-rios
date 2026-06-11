@@ -31,11 +31,6 @@
                         <label for="curso">Curso:</label>
                         <input type="text" id="curso" class="form-input">
                     </div>
-                    
-                    <div class="form-group">
-                        <label for="modalidade">Modalidade:</label>
-                        <input type="text" id="modalidade" class="form-input">
-                    </div>
                 </div>
 
                 <!-- Linha 2: Carga Horária e Grau -->
@@ -46,8 +41,8 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="grau">Grau:</label>
-                        <input type="text" id="grau" class="form-input">
+                        <label for="semestre">Semestre:</label>
+                        <input type="text" id="semestre" class="form-input">
                     </div>
                 </div>
 
@@ -60,7 +55,51 @@
         </div>
 
     </main>
-    <script src="js/script.js"></script>
+<script>
+    async function salvarMatrizCurricular(event) {
+    event.preventDefault();
+
+    const cursoInput = document.getElementById('curso');
+    const cargaHorariaInput = document.getElementById('carga-horaria');
+    const semestreInput = document.getElementById('semestre');
+
+    const dadosMatriz = {
+        id_graduacao: parseInt(cursoInput.value) || 0,
+        id_disponibilidade: parseInt(cargaHorariaInput.value) || 0,
+        id_disciplina: parseInt(semestreInput.value) || 0
+    };
+
+    const urlApi = 'http://localhost:5036/api/MatrizCurricular';
+
+    try {
+        const response = await fetch(urlApi, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dadosMatriz)
+        });
+
+        if (response.ok) {
+            const resultado = await response.json();
+            alert('Matriz Curricular enviada e salva com sucesso!');
+            console.log('Sucesso:', resultado);
+            
+            event.target.reset();
+        } else if (response.status === 400) {
+            const erroValidacao = await response.json();
+            alert('Erro de validação nos dados enviados.');
+            console.error('Erros do ModelState:', erroValidacao);
+        } else {
+            alert('Ocorreu um erro no servidor ao tentar salvar.');
+        }
+
+    } catch (error) {
+        console.error('Erro ao conectar com a API:', error);
+        alert('Não foi possível conectar ao servidor da API.');
+    }
+}
+</script>
 
 </body>
-</html>
+</html>r

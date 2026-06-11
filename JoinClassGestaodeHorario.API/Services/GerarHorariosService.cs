@@ -10,7 +10,6 @@ namespace JoinClassGestaodeHorario.API.Services
 {
     public class GerarHorariosService
     {
-        // Alterado para strings em português para casar perfeitamente com o seu banco e front-end
         private readonly List<string> diasDaSemanaPTBR = new List<string>()
         {
             "Segunda-feira",
@@ -73,7 +72,6 @@ namespace JoinClassGestaodeHorario.API.Services
                     throw new Exception($"Não existe nenhum professor cadastrado para a disciplina ID {idDisciplina}");
                 }
 
-                // TURNO 1: Bate certinho com o ID "Dia-19:00" do seu HTML
                 var horarioTurno1 = new Horario
                 {
                     dia_semana = diasDaSemanaPTBR[diaIndex],
@@ -86,7 +84,6 @@ namespace JoinClassGestaodeHorario.API.Services
                 ValidarHorario(horarioTurno1);
                 horarios.Add(horarioTurno1);
 
-                // TURNO 2: Bate certinho com o ID "Dia-20:50" do seu HTML
                 var horarioTurno2 = new Horario
                 {
                     dia_semana = diasDaSemanaPTBR[diaIndex], // MESMO DIA

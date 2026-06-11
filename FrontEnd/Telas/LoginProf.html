@@ -65,6 +65,8 @@ async function login() {
     if (response.ok) {
         const user = await response.json();
         alert("Login OK: " + user.nome);
+
+        window.location.href = "disponibilidade.html";
     } else {
         alert("Email ou senha inválidos");
     }

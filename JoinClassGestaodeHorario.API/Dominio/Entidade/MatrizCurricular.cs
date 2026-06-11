@@ -14,22 +14,24 @@ namespace JoinClassGestaodeHorario.API.Dominio.Entidade
 
         [Column("id_graduacao")]
         public int id_graduacao { get; set; }
+        [ForeignKey("id_graduacao")]
         public Graduacao Graduacao { get; set; }
 
-        [Column("id_semestre")] // Garantindo o mapeamento correto do nome da coluna no banco
+        [Column("id_semestre")]
         public int id_semestre { get; set; }
+        [ForeignKey("id_semestre")]
         public Semestre Semestre { get; set; }
 
-        [Column("id_disponibilidade")] // Garantindo o mapeamento correto do nome da coluna no banco
+        [Column("id_disponibilidade")]
         public int id_disponibilidade { get; set; }
+        [ForeignKey("id_disponibilidade")]
         public Disponibilidade Disponibilidade { get; set; }
 
-        [Column("id_disciplina")] // Garantindo o mapeamento correto do nome da coluna no banco
+        [Column("id_disciplina")]
         public int id_disciplina { get; set; }
+        [ForeignKey("id_disciplina")]
         public Disciplina Disciplina { get; set; }
 
-        // 🔥 O TRUQUE DE OURO: Avisa ao EF que esta lista se conecta 
-        // diretamente à propriedade "MatrizCurricular" definida na classe Turma
         [InverseProperty("MatrizCurricular")]
         public ICollection<Turma> Turmas { get; set; } = new List<Turma>();
     }

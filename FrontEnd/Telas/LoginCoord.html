@@ -64,7 +64,10 @@ async function login() {
 
     if (response.ok) {
         const user = await response.json();
-        alert("Login OK: " + user.nome);
+
+            alert("Login efetuado com sucesso! Bem-vindo " );
+            
+            window.location.href = "coordenador.html"; 
     } else {
         alert("Email ou senha inválidos");
     }

@@ -21,7 +21,7 @@ namespace JoinClassGestaodeHorario.API.Dados
         public DbSet<Pessoa> Pessoas { get; set; }
         public DbSet<Professor> Professores { get; set; }
         public DbSet<Turma> Turmas { get; set; }
-        public DbSet<MatrizCurricular> MatrizCurricular { get; set; }
+        public DbSet<MatrizCurricular> MatrizesCurriculares { get; set; }
         public DbSet<Semestre> Semestres { get; set; }
         public DbSet<TurmaAluno> TurmaAlunos { get; set; }
         public DbSet<ProfessorDisciplina> ProfessorDisciplinas { get; set; }
@@ -92,7 +92,6 @@ namespace JoinClassGestaodeHorario.API.Dados
 
                 entidade.HasKey(e => e.id);
 
-                // Mapeamento explícito das propriedades da tabela Horário
                 entidade.Property(e => e.id).HasColumnName("id");
                 entidade.Property(e => e.id_turma).HasColumnName("id_turma");
                 entidade.Property(e => e.id_professor).HasColumnName("id_professor");
